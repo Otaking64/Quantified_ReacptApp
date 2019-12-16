@@ -1,7 +1,15 @@
-.App {
-  margin-top: 15px;
+.container{
+  margin: 0;
+  padding: 0;
 }
 
-.App .navbar-brand {
-  font-weight: bold;
+.menuButton{
+  width: 24px;
+  height: 24px;
+  float: right;
+}
+
+.title{
+  font-size: 20px;
+  margin-left: 72px;
 }

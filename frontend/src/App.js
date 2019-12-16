@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
+import { Menu as MenuIcon } from '@material-ui/core';
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
 import "./App.css";
 import Routes from "./Routes";
 
+const useStyles = makeStyles(theme => ({
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+    align:'center',
+    fontSize: 20,
+  },
+}))
 
 function App(props) {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const classes = useStyles();
 
   useEffect(() => {
     onLoad();
@@ -40,29 +53,30 @@ function App(props) {
   return (
   !isAuthenticating &&
   <div className="App container">
-    <Navbar fluid collapseOnSelect>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <Link to="/">Scratch</Link>
-        </Navbar.Brand>
-        <Navbar.Toggle />
-      </Navbar.Header>
-      <Navbar.Collapse>
-        <Nav pullRight>
-        {isAuthenticated
-        ? <NavItem onClick={handleLogout}>Logout</NavItem>
-        : <>
-            <LinkContainer to="/signup">
-              <NavItem>Signup</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/login">
-              <NavItem>Login</NavItem>
-            </LinkContainer>
-          </>
-        }
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+  <AppBar position="static">
+    <Toolbar>
+      <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+        <MenuIcon />
+      </IconButton>
+      <Typography variant="h6" className={classes.title}>
+        Home
+      </Typography>
+      {isAuthenticated
+      ? <Button color="inherit" onClick={handleLogout}>Login</Button>
+      : <>
+      <LinkContainer to="/signup">
+        <Button color="inherit">Signup</Button>
+      </LinkContainer>
+      <LinkContainer to="/login">
+        <Button color="inherit">Login</Button>
+      </LinkContainer>
+      <LinkContainer to="/">
+        <Button color="inherit">Home</Button>
+      </LinkContainer>
+      </>
+    }
+    </Toolbar>
+  </AppBar>
     <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
   </div>
   );

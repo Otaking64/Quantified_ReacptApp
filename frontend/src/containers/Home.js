@@ -1,8 +1,8 @@
 import React from "react";
-import nodeIcon from './icons/node.png';
-import dashboardIcon from './icons/dashboard_18dp.png';
-import supportIcon from './icons/support_18dp.png';
-import profileIcon from './icons/account_18dp.png';
+import nodeIcon from '../icons/node.png';
+import dashboardIcon from '../icons/dashboard_18dp.png';
+import supportIcon from '../icons/support_18dp.png';
+import profileIcon from '../icons/account_18dp.png';
 import "./Home.css";
 
 export default function Home() {

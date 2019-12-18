@@ -54,7 +54,7 @@ export default function Step1() {
             </LinkContainer>
           </div>
           <div>
-            <LinkContainer to="/step1">
+            <LinkContainer to="/">
               <Box p={1}>
                 <Button size="small" color="primary">Previous step</Button>
               </Box>

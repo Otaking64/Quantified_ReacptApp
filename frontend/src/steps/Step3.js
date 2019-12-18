@@ -35,7 +35,7 @@ export default function Step3(){
         />
         <Typography variant="h4">Nodes</Typography>
         <div>
-          <LinkContainer to="/step3">
+          <LinkContainer to="/">
             <Box pt={1}>
               <Button size="large" variant="containedSecondary" color="primary">DONE</Button>
               </Box>

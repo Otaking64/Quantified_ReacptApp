@@ -4,6 +4,7 @@ import dashboardIcon from '../icons/dashboard_18dp.png';
 import supportIcon from '../icons/support_18dp.png';
 import profileIcon from '../icons/account_18dp.png';
 import "./Home.css";
+import { LinkContainer } from "react-router-bootstrap"
 
 export default function Home() {
   return (
@@ -11,9 +12,6 @@ export default function Home() {
       <header className="header">
         <p className="headerTitle">Home</p>
       </header>
-      <div className="container">
-        <p>node Information</p>
-      </div>
       <div className="wrapper">
         <button className="nodesButton">
           <img src={nodeIcon} className="node-icon" alt="logo" />
@@ -25,10 +23,12 @@ export default function Home() {
           <img src={profileIcon} className="footer-icon" alt="logo" />
           Profile
         </button>
-        <button className="footerButton">
-          <img src={dashboardIcon} className="footer-icon" alt="logo" />
-          Dashboard
-        </button>
+        <LinkContainer to="/step1">
+          <button className="footerButton">
+            <img src={dashboardIcon} className="footer-icon" alt="logo" />
+            Installatie
+          </button>
+        </LinkContainer>
         <button className="footerButton">
           <img src={supportIcon} className="footer-icon" alt="logo" />
           FAQ

@@ -10,6 +10,8 @@ import { PersonAdd as PersonAddIcon, Home as HomeIcon, Menu as MenuIcon, Account
 import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from '@material-ui/icons';
 
 import { LinkContainer } from "react-router-bootstrap";
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core'
+import { typography } from '@material-ui/system';
 import { Auth } from "aws-amplify";
 import "./App.css";
 import Routes from "./Routes";
@@ -36,6 +38,23 @@ const useStyles = makeStyles(theme => ({
 
   },
 }));
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#c2dff2',
+      main: '#599AD5',
+      dark: '#314d83',
+      contrastText: '#fff',
+    },
+    secondary:{
+      main: '#314d83'
+    }
+  },
+  //typography:{
+    //fontFamily: 'Montserrat'
+  //},
+});
 
 function App(props) {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -156,6 +175,11 @@ function App(props) {
       </BottomNavigation>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
     </div>
+  <MuiThemeProvider theme={theme}>
+  <div className="App container">
+    <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
+  </div>
+  </MuiThemeProvider>
   );
 }
 

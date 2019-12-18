@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+
 import { AppBar, Toolbar, Typography, IconButton, FormControlLabel, FormGroup, MenuItem, Menu } from '@material-ui/core';
 import { Drawer, Button, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { MoveToInbox as InboxIcon, Mail as MailIcon, Menu as MenuIcon, AccountCircle} from '@material-ui/icons';
+import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
+
+import { PersonAdd as PersonAddIcon, Home as HomeIcon, Menu as MenuIcon, AccountBox as AccountBoxIcon } from '@material-ui/icons';
+import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from '@material-ui/icons';
+
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
 import "./App.css";
@@ -26,7 +31,10 @@ const useStyles = makeStyles(theme => ({
   icon: {
     width: 24,
     height: 24
-  }
+  },
+  bottomNavigation: {
+
+  },
 }));
 
 function App(props) {
@@ -36,6 +44,7 @@ function App(props) {
   const [state, setState] = React.useState({
     sideMenu: false,
   });
+  const [value, setValue] = React.useState(0);
 
   const toggleDrawer = (open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -81,13 +90,13 @@ function App(props) {
       <List>
         <LinkContainer to="/signup">
           <ListItem button key="Signup">
-            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemIcon><PersonAddIcon /></ListItemIcon>
             <ListItemText primary="Signup" />
           </ListItem>
         </LinkContainer>
         <LinkContainer to="/login">
           <ListItem button key="Login">
-            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemIcon><AccountBoxIcon /></ListItemIcon>
             <ListItemText primary="Login" />
           </ListItem>
         </LinkContainer>
@@ -96,7 +105,7 @@ function App(props) {
       <List>
         <LinkContainer to="/">
           <ListItem button key="Home">
-            <ListItemIcon><MailIcon /></ListItemIcon>
+            <ListItemIcon><HomeIcon /></ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
         </LinkContainer>
@@ -127,6 +136,24 @@ function App(props) {
         }
         </Toolbar>
       </AppBar>
+      <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        showLabels
+        className={classes.bottomNavigation}
+      >
+        <LinkContainer to="/profile">
+          <BottomNavigationAction className={classes.bottombarText} label="Profile" icon={<AccountBoxIcon className={classes.icon} />} />
+        </LinkContainer>
+        <LinkContainer to="/dashboard">
+          <BottomNavigationAction label="Dashboard" icon={<DashboardIcon className={classes.icon} />} />
+        </LinkContainer>
+        <LinkContainer to="/faq">
+          <BottomNavigationAction label="FAQ" icon={<ContactSupportIcon className={classes.icon} />} />
+        </LinkContainer>
+      </BottomNavigation>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
     </div>
   );

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton, FormControlLabel, FormGroup, MenuItem, Menu } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import { Drawer, Button, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { MoveToInbox as InboxIcon, Mail as MailIcon, Menu as MenuIcon, AccountCircle} from '@material-ui/icons';
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
 import "./App.css";
@@ -15,27 +15,34 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    fontSize: 20
   },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+  icon: {
+    width: 24,
+    height: 24
+  }
 }));
 
 function App(props) {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const classes = useStyles();
-  const [setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [state, setState] = React.useState({
+    sideMenu: false,
+  });
 
-  const handleChange = event => {
-    setAuth(event.target.checked);
-  };
+  const toggleDrawer = (open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
 
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
+    setState({ ...state, sideMenu: open });
   };
 
   useEffect(() => {
@@ -64,6 +71,39 @@ function App(props) {
     props.history.push("/login");
   }
 
+  const sideList = side => (
+    <div
+     className={classes.list}
+     role="presentation"
+     onClick={toggleDrawer(false)}
+     onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        <LinkContainer to="/signup">
+          <ListItem button key="Signup">
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary="Signup" />
+          </ListItem>
+        </LinkContainer>
+        <LinkContainer to="/login">
+          <ListItem button key="Login">
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary="Login" />
+          </ListItem>
+        </LinkContainer>
+      </List>
+      <Divider />
+      <List>
+        <LinkContainer to="/">
+          <ListItem button key="Home">
+            <ListItemIcon><MailIcon /></ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </LinkContainer>
+      </List>
+    </div>
+  );
+
   return (
   !isAuthenticating &&
     <div className={classes.root}>
@@ -76,40 +116,12 @@ function App(props) {
           ? <IconButton color="inherit" onClick={handleLogout}>Login</IconButton>
           : <>
           <div>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <MenuIcon />
+            <IconButton color="inherit" onClick={toggleDrawer(true)}>
+              <MenuIcon className={classes.icon}/>
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={open}
-              onClose={handleClose}
-            >
-              <LinkContainer to="/signup">
-                <MenuItem onClick={handleClose}>Signup</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/login">
-                <MenuItem onClick={handleClose}>Login</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/">
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-              </LinkContainer>
-            </Menu>
+            <Drawer anchor="right" open={state.sideMenu} onClose={toggleDrawer(false)}>
+              {sideList('right')}
+            </Drawer>
           </div>
           </>
         }

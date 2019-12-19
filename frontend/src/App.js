@@ -6,7 +6,7 @@ import { AppBar, Toolbar, Typography, IconButton, FormControlLabel, FormGroup, M
 import { Drawer, Button, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 
-import { PersonAdd as PersonAddIcon, Home as HomeIcon, Menu as MenuIcon, AccountBox as AccountBoxIcon } from '@material-ui/icons';
+import { PersonAdd as PersonAddIcon, Home as HomeIcon, Menu as MenuIcon, AccountBox as AccountBoxIcon, ExitToApp as ExitToAppIcon } from '@material-ui/icons';
 import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from '@material-ui/icons';
 
 import { LinkContainer } from "react-router-bootstrap";
@@ -19,6 +19,7 @@ import Routes from "./Routes";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    padding: '56px 0',
   },
   title: {
     flexGrow: 1,
@@ -34,8 +35,11 @@ const useStyles = makeStyles(theme => ({
     width: 24,
     height: 24
   },
-  bottomNavigation: {
-
+  stickToBottom: {
+    width: '100%',
+    position: 'fixed',
+    bottom: 0,
+    zIndex : 99
   },
 }));
 
@@ -105,8 +109,15 @@ function App(props) {
      role="presentation"
      onClick={toggleDrawer(false)}
      onKeyDown={toggleDrawer(false)}
+     color="primary"
     >
       <List>
+        <LinkContainer to="/profile">
+          <ListItem button key="Profile">
+            <ListItemIcon><AccountBoxIcon /></ListItemIcon>
+            <ListItemText primary="Profile" />
+          </ListItem>
+        </LinkContainer>
         <LinkContainer to="/signup">
           <ListItem button key="Signup">
             <ListItemIcon><PersonAddIcon /></ListItemIcon>
@@ -119,13 +130,37 @@ function App(props) {
             <ListItemText primary="Login" />
           </ListItem>
         </LinkContainer>
+        <LinkContainer to="/logout">
+          <ListItem button key="Logout">
+            <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
+        </LinkContainer>
       </List>
       <Divider />
       <List>
         <LinkContainer to="/">
-          <ListItem button key="Home">
+          <ListItem button key="Nodes">
             <ListItemIcon><HomeIcon /></ListItemIcon>
-            <ListItemText primary="Home" />
+            <ListItemText primary="Nodes" />
+          </ListItem>
+        </LinkContainer>
+        <LinkContainer to="/dashboard">
+          <ListItem button key="Dashboard">
+            <ListItemIcon><DashboardIcon /></ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+        </LinkContainer>
+        <LinkContainer to="/faq">
+          <ListItem button key="FAQ">
+            <ListItemIcon><ContactSupportIcon /></ListItemIcon>
+            <ListItemText primary="FAQ" />
+          </ListItem>
+        </LinkContainer>
+        <LinkContainer to="/step1">
+          <ListItem button key="Step1">
+            <ListItemIcon><ContactSupportIcon /></ListItemIcon>
+            <ListItemText primary="Step1" />
           </ListItem>
         </LinkContainer>
       </List>
@@ -134,52 +169,49 @@ function App(props) {
 
   return (
   !isAuthenticating &&
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Home
-          </Typography>
-          {isAuthenticated
-          ? <IconButton color="inherit" onClick={handleLogout}>Login</IconButton>
-          : <>
-          <div>
-            <IconButton color="inherit" onClick={toggleDrawer(true)}>
-              <MenuIcon className={classes.icon}/>
-            </IconButton>
-            <Drawer anchor="right" open={state.sideMenu} onClose={toggleDrawer(false)}>
-              {sideList('right')}
-            </Drawer>
-          </div>
-          </>
-        }
-        </Toolbar>
-      </AppBar>
-      <BottomNavigation
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        showLabels
-        className={classes.bottomNavigation}
-      >
-        <LinkContainer to="/profile">
-          <BottomNavigationAction className={classes.bottombarText} label="Profile" icon={<AccountBoxIcon className={classes.icon} />} />
-        </LinkContainer>
-        <LinkContainer to="/dashboard">
-          <BottomNavigationAction label="Dashboard" icon={<DashboardIcon className={classes.icon} />} />
-        </LinkContainer>
-        <LinkContainer to="/faq">
-          <BottomNavigationAction label="FAQ" icon={<ContactSupportIcon className={classes.icon} />} />
-        </LinkContainer>
-      </BottomNavigation>
-      <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
-    </div>
-  <MuiThemeProvider theme={theme}>
-  <div className="App container">
-    <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
-  </div>
-  </MuiThemeProvider>
+    <MuiThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <AppBar>
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              Home
+            </Typography>
+            {isAuthenticated
+            ? <IconButton color="inherit" onClick={handleLogout}>Login</IconButton>
+            : <>
+            <div>
+              <IconButton color="inherit" onClick={toggleDrawer(true)}>
+                <MenuIcon className={classes.icon}/>
+              </IconButton>
+              <Drawer anchor="right" open={state.sideMenu} onClose={toggleDrawer(false)}>
+                {sideList('right')}
+              </Drawer>
+            </div>
+            </>
+          }
+          </Toolbar>
+        </AppBar>
+        <BottomNavigation
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          showLabels
+          className={classes.stickToBottom}
+        >
+          <LinkContainer to="/">
+            <BottomNavigationAction label="Nodes" icon={<HomeIcon className={classes.icon} />} />
+          </LinkContainer>
+          <LinkContainer to="/dashboard">
+            <BottomNavigationAction label="Dashboard" icon={<DashboardIcon className={classes.icon} />} />
+          </LinkContainer>
+          <LinkContainer to="/faq">
+            <BottomNavigationAction label="FAQ" icon={<ContactSupportIcon className={classes.icon} />} />
+          </LinkContainer>
+        </BottomNavigation>
+        <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
+      </div>
+    </MuiThemeProvider>
   );
 }
 

@@ -4,9 +4,9 @@ import Login from "./containers/Login";
 import NotFound from "./containers/NotFound";
 import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
-import Step1 from "./steps/Step1";
-import Step2 from "./steps/Step2";
-import Step3 from "./steps/Step3";
+import Step1 from "./Steps/Step1";
+import Step2 from "./Steps/Step2";
+import Step3 from "./Steps/Step3";
 
 export default function Routes({ appProps }) {
   return (

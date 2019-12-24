@@ -39,7 +39,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     position: 'fixed',
     bottom: 0,
-    zIndex : 99
+    zIndex : 99,
+    display: 'none',
   },
 }));
 

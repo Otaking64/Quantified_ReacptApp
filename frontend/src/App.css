@@ -1,4 +1,23 @@
+.root{
+  flex-grow: 1;
+  padding-top: 56px;
+}
+
+.noPadding{
+  padding: 0;
+}
+
 .container{
   margin: 0;
   padding: 0;
+}
+
+.icon{
+  width: 24px;
+  height: 24px;
+}
+
+.contentCentered{
+  text-align: center;
+  width: 100%;
 }

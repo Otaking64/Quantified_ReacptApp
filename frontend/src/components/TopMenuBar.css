@@ -1,0 +1,8 @@
+.slideMenu{
+  width: 250px;
+}
+
+.topMenuTitle{
+  flex-grow: 1;
+  font-size: 20px;
+}

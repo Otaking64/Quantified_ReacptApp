@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import "../containers/Home.css";
 import {
   Button,
@@ -16,10 +16,7 @@ import {
   Container,
 } from '@material-ui/core';
 import { LinkContainer } from "react-router-bootstrap"
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core'
-import {red} from '@material-ui/core/colors'
 import RouterImage from '../img/router.jpg'
-import {spacing, shadows} from '@material-ui/system'
 
 const useStyles = makeStyles(theme => ({
   button: {

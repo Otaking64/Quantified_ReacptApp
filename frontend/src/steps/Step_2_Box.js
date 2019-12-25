@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import "../containers/Home.css";
 import {
   Button,
@@ -16,7 +16,6 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { LinkContainer } from "react-router-bootstrap"
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core'
 import {red} from '@material-ui/core/colors'
 import RouterImage from '../img/router.jpg'
 import HelpIcon from '@material-ui/icons/Help';
@@ -71,7 +70,7 @@ export default function Step2(){
           />
           </FormGroup>
           </Grid>
-          <Grid item xs={12} className={classes.button} align="center">
+          <Grid item xs={12} className={classes.button} align="">
             <LinkContainer to="/step3">
               <Box pt={1}>
                 <Button size="large" variant="containedSecondary" color="primary">DONE</Button>

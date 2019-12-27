@@ -1,21 +1,13 @@
-import React, {Component} from "react";
+import React from "react";
 import "../containers/Home.css";
 import {
   Button,
-  Checkbox,
-  FormLabel,
-  FormHelperText,
-  FormGroup,
-  FormControlLabel,
-  FormControl,
   Typography,
   Grid,
   Box,
   LinearProgress
 } from '@material-ui/core';
 import { LinkContainer } from "react-router-bootstrap"
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core'
-import {red} from '@material-ui/core/colors'
 import RouterImage from '../img/router.jpg'
 
 

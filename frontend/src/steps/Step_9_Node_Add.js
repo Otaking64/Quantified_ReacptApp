@@ -2,12 +2,6 @@ import React, {Component} from "react";
 import "../containers/Home.css";
 import {
   Button,
-  Checkbox,
-  FormLabel,
-  FormHelperText,
-  FormGroup,
-  FormControlLabel,
-  FormControl,
   Typography,
   Grid,
   Box,

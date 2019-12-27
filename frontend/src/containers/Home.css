@@ -1,4 +1,31 @@
-*{
-  padding: 0px;
-  margin: 0px;
+#nodesList{
+  height: 380px;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 24px 14px;
+  overflow-y: scroll;
+}
+
+.nodeListNodeIcon{
+  height: 35px;
+  margin-left: 14px;
+}
+
+.offline{
+  background-color: #FF0000;
+}
+
+.online{
+  background-color: #00FF00;
+}
+
+.customNodeIcon{
+  width: 9px;
+  margin-right: 8px;
+  filter: invert(100%);
+}
+
+.nodeOptionsButton{
+  margin: 24px auto;
+  margin: 14px;
 }

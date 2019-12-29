@@ -77,7 +77,7 @@ export default function Home() {
 
   return (
     <div className="homePage">
-      <TopMenuBar block pageName="Home"/>
+      <TopMenuBar block pageName="Home" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
       <List id="nodesList" color="primary">
         <ListSubheader disableSticky='true'>Offline nodes</ListSubheader>
         {offlineNodes.map((node) =>

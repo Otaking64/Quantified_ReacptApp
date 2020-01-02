@@ -4,17 +4,17 @@ import Login from "./containers/Login";
 import NotFound from "./containers/NotFound";
 import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
-import Step1 from "./steps/Step_1_Welcome";
-import Step2 from "./steps/Step_2_Box";
-import Step3 from "./steps/Step_3_Box_Components";
-import Step4 from "./steps/Step_4_Gateway";
-import Step5 from "./steps/Step_5_Gateway_PowerSupply";
-import Step6 from "./steps/Step_6_Gateway_LAN";
-import Step7 from "./steps/Step_7_Node_Amount";
-import Step8 from "./steps/Step_8_Node_Grid";
-import Step9 from "./steps/Step_9_Node_Add";
-import Step10 from "./steps/Step_10_Node_PositionMount";
-import Step11 from "./steps/Step_11_End";
+import Step1 from "./Steps/Step_1_Welcome";
+import Step2 from "./Steps/Step_2_Box";
+import Step3 from "./Steps/Step_3_Box_Components";
+import Step4 from "./Steps/Step_4_Gateway";
+import Step5 from "./Steps/Step_5_Gateway_PowerSupply";
+import Step6 from "./Steps/Step_6_Gateway_LAN";
+import Step7 from "./Steps/Step_7_Node_Amount";
+import Step8 from "./Steps/Step_8_Node_Grid";
+import Step9 from "./Steps/Step_9_Node_Add";
+import Step10 from "./Steps/Step_10_Node_PositionMount";
+import Step11 from "./Steps/Step_11_End";
 
 export default function Routes({ appProps }) {
   return (

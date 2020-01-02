@@ -1,19 +1,34 @@
 import React, { useState } from "react";
 import "./TopMenuBar.css";
+import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
-import { PersonAdd as PersonAddIcon, Home as HomeIcon, Menu as MenuIcon, AccountBox as AccountBoxIcon, ExitToApp as ExitToAppIcon } from '@material-ui/icons';
+import { ArrowBack as ArrowBackIcon, Close as CloseIcon, PersonAdd as PersonAddIcon, Home as HomeIcon, Menu as MenuIcon, AccountBox as AccountBoxIcon, ExitToApp as ExitToAppIcon } from '@material-ui/icons';
 import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from '@material-ui/icons';
 
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
 
+const useStyles = makeStyles(theme => ({
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+}));
+
 export default function TopMenuBar({
   pageName,
+  hamburgerMenu,
+  closeButtonOnly,
+  closeWithPrompt,
+  backButton,
+  backRoutePage,
   ...props
 }) {
+  const classes = useStyles();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState({
     sideMenu: false,
   });
@@ -33,6 +48,14 @@ export default function TopMenuBar({
 
     props.history.push("/login");
   }
+
+  const handleClickExit = () => {
+    setOpen(true);
+  };
+
+  const handleClosePrompt = () => {
+    setOpen(false);
+  };
 
   const sideList = side => (
     <div
@@ -101,22 +124,63 @@ export default function TopMenuBar({
   return (
     <AppBar>
       <Toolbar>
+        { backButton ?
+          <LinkContainer to={backRoutePage}>
+            <IconButton edge="start" className={classes.menuButton} color="inherit">
+              <ArrowBackIcon className="icon"/>
+            </IconButton>
+          </LinkContainer>
+        : "" }
         <Typography variant="h6" className="topMenuTitle">
           {pageName}
         </Typography>
-        {isAuthenticated
-        ? <IconButton color="inherit" onClick={handleLogout}>Login</IconButton>
-        : <>
-        <div>
-          <IconButton color="inherit" onClick={toggleDrawer(true)}>
-            <MenuIcon className="icon"/>
-          </IconButton>
-          <Drawer anchor="right" open={state.sideMenu} onClose={toggleDrawer(false)}>
-            {sideList('right')}
-          </Drawer>
-        </div>
-        </>
-      }
+          <div>
+            { hamburgerMenu ?
+              <>
+                <IconButton color="inherit" onClick={toggleDrawer(true)}>
+                  <MenuIcon className="icon"/>
+                </IconButton>
+                <Drawer anchor="right" open={state.sideMenu} onClose={toggleDrawer(false)}>
+                  {sideList('right')}
+                </Drawer>
+              </>
+            : closeButtonOnly ?
+              <LinkContainer to="/">
+                <IconButton color="inherit">
+                  <CloseIcon className="icon"/>
+                </IconButton>
+              </LinkContainer>
+            : closeWithPrompt ?
+              <>
+                <IconButton color="inherit" onClick={handleClickExit}>
+                  <CloseIcon className="icon"/>
+                </IconButton>
+                <Dialog
+                  open={open}
+                  onClose={handleClosePrompt}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      Are you sure you want to leave the node installation?
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <LinkContainer to="/">
+                      <Button onClick={handleClosePrompt} color="primary">
+                        Exit
+                      </Button>
+                    </LinkContainer>
+                    <Button onClick={handleClosePrompt} color="primary" autoFocus>
+                      Cancel
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </>
+            : "" }
+          </div>
       </Toolbar>
     </AppBar>
   );

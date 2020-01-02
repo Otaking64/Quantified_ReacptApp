@@ -6,15 +6,14 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
 import Step1 from "./steps/Step_1_Welcome";
 import Step2 from "./steps/Step_2_Box";
-import Step3 from "./steps/Step_3_Box_Components";
-import Step4 from "./steps/Step_4_Gateway";
-import Step5 from "./steps/Step_5_Gateway_PowerSupply";
-import Step6 from "./steps/Step_6_Gateway_LAN";
-import Step7 from "./steps/Step_7_Node_Amount";
-import Step8 from "./steps/Step_8_Node_Grid";
-import Step9 from "./steps/Step_9_Node_Add";
-import Step10 from "./steps/Step_10_Node_PositionMount";
-import Step11 from "./steps/Step_11_End";
+import Step3 from "./steps/Step_3_Gateway";
+import Step4 from "./steps/Step_4_Gateway_PowerSupply";
+import Step5 from "./steps/Step_5_Gateway_LAN";
+import Step6 from "./steps/Step_6_Node_Amount";
+import Step7 from "./steps/Step_7_Node_Grid";
+import Step8 from "./steps/Step_8_Node_Add";
+import Step9 from "./steps/Step_9_Node_PositionMount";
+import Step10 from "./steps/Step_10_End";
 
 export default function Routes({ appProps }) {
   return (
@@ -42,8 +41,6 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/step9" exact component={Step9} appProps={appProps} />
       <Route path="/step10" exact component={Step10} />
       <AppliedRoute path="/step10" exact component={Step10} appProps={appProps} />
-      <Route path="/step11" exact component={Step11} />
-      <AppliedRoute path="/step11" exact component={Step11} appProps={appProps} />
 
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />

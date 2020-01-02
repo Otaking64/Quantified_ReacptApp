@@ -1,10 +1,16 @@
 import React from "react";
 import "../containers/Home.css";
-import {Button, Fade, CssBaseline, Checkbox, FormGroup, FormControlLabel, Typography, Grid, Box, LinearProgress} from '@material-ui/core';
+import {
+  Button,
+  Container,
+  Box,
+  Fade,
+  Typography,
+  Grid,
+  LinearProgress} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import { LinkContainer } from "react-router-bootstrap";
 import Image from '../img/dog.jpg';
-import LinearBar from '../components/ProgressBar.js';
 
 const useStyles = makeStyles(theme => ({
   alignItemsAndJustifyContent: {
@@ -23,11 +29,13 @@ const useStyles = makeStyles(theme => ({
 export default function Step1() {
   const classes = useStyles()
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Grid container direction="column" alignContent="center" alignItems="center" justify= "center">
+    <Container>
+      <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
         <Grid item xs={12}>
-          <LinearBar value={"40"} />
+          <Box width={300} align="center">
+            <Typography variant="overline">Progress</Typography>
+            <LinearProgress variant="determinate" value={10}/>
+          </Box>
         </Grid>
         <Grid item xs={12} align="center">
           <div className={classes.alignItemsAndJustifyContent}>
@@ -45,6 +53,6 @@ export default function Step1() {
             </LinkContainer>
           </Grid>
         </Grid>
-      </React.Fragment>
+      </Container>
     );
   }

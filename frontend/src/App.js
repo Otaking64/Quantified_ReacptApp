@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
+import { MuiThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core'
 import { Auth } from "aws-amplify";
 import "./App.css";
 import Routes from "./Routes";
@@ -47,6 +47,7 @@ function App(props) {
   return (
   !isAuthenticating &&
     <MuiThemeProvider theme={theme}>
+      <CssBaseline />
       <div className="root">
         <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
       </div>

@@ -2,6 +2,8 @@ import React from "react";
 import "../containers/Home.css";
 import {
   Avatar,
+  Container,
+  CssBaseline,
   Button,
   Typography,
   Grid,
@@ -32,11 +34,13 @@ const useStyles = makeStyles(theme => ({
 export default function Step2(){
   const classes = useStyles()
   return(
+    <Container>
+        <CssBaseline/>
         <Grid container alignItems="center" justify="center" direction="column" spacing={2}>
           <Grid item>
             <Box width={300} align="center">
               <Typography variant="overline">Progress</Typography>
-              <LinearProgress variant="determinate" value={66}/>
+              <LinearProgress variant="determinate" value={20}/>
             </Box>
           </Grid>
           <Grid item>
@@ -95,5 +99,6 @@ export default function Step2(){
             </LinkContainer>
           </Grid>
         </Grid>
+      </Container>
   );
 }

@@ -10,7 +10,6 @@ import {
   LinearProgress} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import { LinkContainer } from "react-router-bootstrap";
-import Image from '../img/dog.jpg';
 import LinearBar from '../components/ProgressBar.js';
 import TopMenuBar from "../components/TopMenuBar";
 
@@ -31,9 +30,8 @@ const useStyles = makeStyles(theme => ({
 export default function Step1() {
   const classes = useStyles()
   return (
-    <React.Fragment>
+    <Container>
       <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
-      <CssBaseline />
       <Grid container direction="column" alignContent="center" alignItems="center" justify= "center">
         <Grid item xs={12}>
           <Box width={300} align="center">

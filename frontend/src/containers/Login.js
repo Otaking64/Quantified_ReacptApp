@@ -4,6 +4,7 @@ import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import "./Login.css";
+import TopMenuBar from "../components/TopMenuBar";
 
 export default function Login(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +34,7 @@ export default function Login(props) {
 
   return (
     <div className="Login">
+      <TopMenuBar block pageName="Login" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="email" bsSize="large">
           <ControlLabel>Email</ControlLabel>

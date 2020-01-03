@@ -46,7 +46,7 @@ export default function TopMenuBar({
 
     userHasAuthenticated(false);
 
-    props.history.push("/login");
+    props.history.push('/login');
   }
 
   const handleClickExit = () => {
@@ -84,15 +84,6 @@ export default function TopMenuBar({
             <ListItemText primary="Login" />
           </ListItem>
         </LinkContainer>
-        <LinkContainer to="/logout">
-          <ListItem button key="Logout">
-            <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItem>
-        </LinkContainer>
-      </List>
-      <Divider />
-      <List>
         <LinkContainer to="/">
           <ListItem button key="Nodes">
             <ListItemIcon><HomeIcon /></ListItemIcon>
@@ -117,6 +108,13 @@ export default function TopMenuBar({
             <ListItemText primary="Step1" />
           </ListItem>
         </LinkContainer>
+      </List>
+      <Divider />
+      <List>
+        <ListItem button key="Logout" onClick={handleLogout}>
+          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
       </List>
     </div>
   );

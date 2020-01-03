@@ -19,6 +19,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import PowerIcon from '@material-ui/icons/Power';
 import RouterIcon from '@material-ui/icons/Router';
 import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
+import TopMenuBar from "../components/TopMenuBar";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -35,7 +36,7 @@ export default function Step2(){
   const classes = useStyles()
   return(
     <Container>
-        <CssBaseline/>
+        <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
         <Grid container alignItems="center" justify="center" direction="column" spacing={2}>
           <Grid item>
             <Box width={300} align="center">

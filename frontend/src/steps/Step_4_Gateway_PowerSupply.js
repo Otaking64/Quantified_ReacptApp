@@ -38,7 +38,12 @@ export default function Step4(){
         <Grid item>
           <Typography variant="h4" align="center">Gateway</Typography>
           <Typography display="block" variant="body1">
-          Connecting the power unit
+            Use the following steps to power on the gateway:
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="body1">
+
           </Typography>
         </Grid>
         <Grid item className={classes.button} align="center">

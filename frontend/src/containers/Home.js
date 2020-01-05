@@ -9,6 +9,7 @@ import BottomMenuBar from "../components/BottomMenuBar";
 
 const nodes = [
   {
+    id: '1FG5dh7h1',
     name: 'FakeNode 1',
     group: 'Tomatoes',
     status: 'Offline',
@@ -16,6 +17,7 @@ const nodes = [
     y: 45,
     z: 10
   },{
+    id: '1FG5dh7h2',
     name: 'FakeNode 2',
     group: 'Carrots',
     status: 'Online',
@@ -23,6 +25,7 @@ const nodes = [
     y: 45,
     z: 10
   },{
+    id: '1FG5dh7h3',
     name: 'FakeNode 3',
     group: 'Tomatoes',
     status: 'Online',
@@ -30,6 +33,7 @@ const nodes = [
     y: 55,
     z: 10
   },{
+    id: '1FG5dh7h4',
     name: 'FakeNode 4',
     group: 'Carrots',
     status: 'Online',
@@ -37,6 +41,7 @@ const nodes = [
     y: 55,
     z: 10
   },{
+    id: '1FG5dh7h5',
     name: 'FakeNode 5',
     group: 'Carrots',
     status: 'Offline',
@@ -44,6 +49,7 @@ const nodes = [
     y: 65,
     z: 10
   },{
+    id: '1FG5dh7h6',
     name: 'FakeNode 6',
     group: 'Tomatoes',
     status: 'Online',
@@ -51,6 +57,7 @@ const nodes = [
     y: 65,
     z: 10
   },{
+    id: '1FG5dh7h7',
     name: 'FakeNode 7',
     group: 'Tomatoes',
     status: 'Online',
@@ -81,25 +88,29 @@ export default function Home() {
       <List id="nodesList" color="primary">
         <ListSubheader disableSticky='true'>Offline nodes</ListSubheader>
         {offlineNodes.map((node) =>
-          <ListItem className="noPadding">
-            <ListItemAvatar>
-              <StyledBadge classes={{ badge: "offline" }} badgeContent=" ">
-                <img src={ nodeIcon } alt="nodeIcon" className="nodeListNodeIcon" />
-              </StyledBadge>
-            </ListItemAvatar>
-            <ListItemText primary={node.name} secondary={node.group} />
-          </ListItem>
+          <LinkContainer to={"/nodeInfo/"+node.id}>
+            <ListItem className="noPadding">
+              <ListItemAvatar>
+                <StyledBadge classes={{ badge: "offline" }} badgeContent=" ">
+                  <img src={ nodeIcon } alt="nodeIcon" className="nodeListNodeIcon" />
+                </StyledBadge>
+              </ListItemAvatar>
+              <ListItemText primary={node.name} secondary={node.group} />
+            </ListItem>
+          </LinkContainer>
         )}
         <ListSubheader disableSticky='true'>Online nodes</ListSubheader>
         {onlineNodes.map((node) =>
-          <ListItem className="noPadding">
-            <ListItemAvatar>
-              <StyledBadge classes={{ badge: "online" }} badgeContent=" ">
-                <img src={ nodeIcon } alt="nodeIcon" className="nodeListNodeIcon" />
-              </StyledBadge>
-            </ListItemAvatar>
-            <ListItemText primary={node.name} secondary={node.group} />
-          </ListItem>
+          <LinkContainer to={"/nodeInfo/"+node.id}>
+            <ListItem className="noPadding">
+              <ListItemAvatar>
+                <StyledBadge classes={{ badge: "online" }} badgeContent=" ">
+                  <img src={ nodeIcon } alt="nodeIcon" className="nodeListNodeIcon" />
+                </StyledBadge>
+              </ListItemAvatar>
+              <ListItemText primary={node.name} secondary={node.group} />
+            </ListItem>
+          </LinkContainer>
         )}
       </List>
       <Box className="contentCentered">

@@ -17,7 +17,6 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/nodeInfo/:nodeId" exact component={NodeInfo} appProps={appProps} />
       <Route path="/installation" exact component={Installation} />
       <AppliedRoute path="/installation" exact component={Installation} appProps={appProps} />
-
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />
     </Switch>

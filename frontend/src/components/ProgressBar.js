@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { MobileStepper, Button } from '@material-ui/core';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
 
-import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
 
 const useStyles = makeStyles(theme => ({
@@ -39,20 +38,16 @@ export default function ProgressBar({
       activeStep={activeStep}
       className={classes.ProgressBar}
       nextButton={
-        <LinkContainer to='/step2'>
-          <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
-            Next
-            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-          </Button>
-        </LinkContainer>
+        <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+          Next
+          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        </Button>
       }
       backButton={
-        <LinkContainer to='/step2'>
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            Back
-          </Button>
-        </LinkContainer>
+        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+          Back
+        </Button>
       }
     />
   );

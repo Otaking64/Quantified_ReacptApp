@@ -6,9 +6,7 @@ import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 
 import { LinkContainer } from "react-router-bootstrap";
 
-export default function TopMenuBar({
-  ...props
-}) {
+export default function BottomMenuBar() {
   const [value, setValue] = React.useState(0);
 
   return (

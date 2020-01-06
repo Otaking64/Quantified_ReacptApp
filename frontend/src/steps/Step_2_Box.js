@@ -18,7 +18,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import PowerIcon from '@material-ui/icons/Power';
 import RouterIcon from '@material-ui/icons/Router';
 import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
-import TopMenuBar from "../components/TopMenuBar";
 import NodeIcon from "../icons/icon_node.js";
 
 const useStyles = makeStyles(theme => ({
@@ -36,14 +35,7 @@ export default function Step2(){
   const classes = useStyles()
   return(
     <Container>
-        <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
         <Grid container alignItems="center" justify="center" direction="column" spacing={2}>
-          <Grid item>
-            <Box width={300} align="center">
-              <Typography variant="overline">Progress</Typography>
-              <LinearProgress variant="determinate" value={20}/>
-            </Box>
-          </Grid>
           <Grid item>
             <Typography variant="h4" align="center">Open the box</Typography>
             <Typography display="block" variant="body1">
@@ -85,19 +77,6 @@ export default function Step2(){
                 <ListItemText primary="Power Supply" secondary="To give the Gateway power" />
               </ListItem>
             </List>
-          </Grid>
-
-          <Grid item className={classes.button} align="center">
-            <LinkContainer to="/step3">
-              <Box pt={1}>
-                <Button size="large" variant="containedSecondary" color="primary">DONE</Button>
-              </Box>
-            </LinkContainer>
-            <LinkContainer to="/step1">
-              <Box p={1}>
-                <Button size="small" color="primary">Previous step</Button>
-              </Box>
-            </LinkContainer>
           </Grid>
         </Grid>
       </Container>

@@ -3,7 +3,6 @@ import "../containers/Home.css";
 import {
   Avatar,
   Container,
-  CssBaseline,
   Button,
   Typography,
   Grid,
@@ -19,6 +18,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import PowerIcon from '@material-ui/icons/Power';
 import RouterIcon from '@material-ui/icons/Router';
 import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
+import TopMenuBar from "../components/TopMenuBar";
+import NodeIcon from "../icons/icon_node.js";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -35,7 +36,7 @@ export default function Step2(){
   const classes = useStyles()
   return(
     <Container>
-        <CssBaseline/>
+        <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
         <Grid container alignItems="center" justify="center" direction="column" spacing={2}>
           <Grid item>
             <Box width={300} align="center">
@@ -62,7 +63,7 @@ export default function Step2(){
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatarColor}>
-                    <RouterIcon color="primary" />
+                      <NodeIcon width="24px" height="24px" color="primary"/>
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary="Nodes" secondary="The sensors that give you insights" />

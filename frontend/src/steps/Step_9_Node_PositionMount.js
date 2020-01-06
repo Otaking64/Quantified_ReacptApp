@@ -10,6 +10,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { LinkContainer } from "react-router-bootstrap"
+import TopMenuBar from "../components/TopMenuBar";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -26,12 +27,19 @@ export default function Step9(){
   const classes = useStyles()
   return(
     <Container>
+      <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
       <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
         <Grid item xs={12}>
           <Box width={300} align="center">
             <Typography variant="overline">Progress</Typography>
             <LinearProgress variant="determinate" value={90}/>
           </Box>
+        </Grid>
+        <Grid item>
+          <Typography variant="h4" align="center">Nodes</Typography>
+          <Typography display="block" variant="body1">
+          Verify the position of the node
+          </Typography>
         </Grid>
         <Grid item className={classes.button} align="center">
           <LinkContainer to="/step10">

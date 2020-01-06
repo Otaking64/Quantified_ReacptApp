@@ -39,7 +39,7 @@ export default function Step1() {
             <LinearProgress variant="determinate" value={10}/>
           </Box>
         </Grid>
-        <Grid item xs={12} align="center">
+        <Grid item align="center">
           <div className={classes.alignItemsAndJustifyContent}>
           <Fade in="true">
             <Typography variant="h3">Welcome</Typography>

@@ -102,10 +102,10 @@ export default function TopMenuBar({
             <ListItemText primary="FAQ" />
           </ListItem>
         </LinkContainer>
-        <LinkContainer to="/step1">
-          <ListItem button key="Step1">
+        <LinkContainer to="/installation">
+          <ListItem button key="Installation">
             <ListItemIcon><ContactSupportIcon /></ListItemIcon>
-            <ListItemText primary="Step1" />
+            <ListItemText primary="Installation" />
           </ListItem>
         </LinkContainer>
       </List>

@@ -22,6 +22,7 @@ export default function Step4(){
   const classes = useStyles()
   return(
     <Container>
+      <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
       <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
         <Grid item>
           <Typography variant="h4" align="center">Gateway</Typography>
@@ -30,8 +31,10 @@ export default function Step4(){
           </Typography>
         </Grid>
         <Grid item>
-          <Typography variant="body1">
-
+        <Typography variant="body1">
+          <Typography variant="h4" align="center">Gateway</Typography>
+          <Typography display="block" variant="body1">
+            Use the following steps to power on the gateway:
           </Typography>
         </Grid>
       </Grid>

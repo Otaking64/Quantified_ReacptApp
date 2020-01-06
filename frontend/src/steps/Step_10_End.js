@@ -19,6 +19,12 @@ const useStyles = makeStyles(theme => ({
     top: '50%',
     transform: 'translate(-50%, -50%)'
   },
+  alignItemsAndJustifyContent: {
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
   avatarColor:{
     backgroundColor:'#fff',
   },

@@ -1,21 +1,59 @@
-import React, {Component} from "react";
-import {LinearProgress, Box, Typography} from '@material-ui/core';
+import React, { useState } from "react";
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-class LinearBar extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      value: "0",
-    }
-  }
-  render(){
-    return(
-      <Box width={300} align="center">
-        <Typography variant="overline">Progress</Typography>
-        <LinearProgress variant="determinate" value={this.state.value}/>
-      </Box>
-    );
-  }
+import { MobileStepper, Button } from '@material-ui/core';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
+
+import { LinkContainer } from "react-router-bootstrap";
+import { Auth } from "aws-amplify";
+
+const useStyles = makeStyles(theme => ({
+  ProgressBar: {
+    maxWidth: 400,
+    flexGrow: 1,
+    width: '100%',
+  },
+}));
+
+export default function ProgressBar({
+  ...props
+}) {
+  const classes = useStyles();
+  const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
+
+  return (
+    <MobileStepper
+      variant="progress"
+      steps={6}
+      position="static"
+      activeStep={activeStep}
+      className={classes.ProgressBar}
+      nextButton={
+        <LinkContainer to='/step2'>
+          <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+            Next
+            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+          </Button>
+        </LinkContainer>
+      }
+      backButton={
+        <LinkContainer to='/step2'>
+          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+            Back
+          </Button>
+        </LinkContainer>
+      }
+    />
+  );
 }
-
-export default LinearBar;

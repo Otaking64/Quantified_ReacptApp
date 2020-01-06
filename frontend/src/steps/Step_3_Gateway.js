@@ -38,7 +38,7 @@ export default function Step3(){
         <Grid item>
           <Typography variant="h4" align="center">Gateway</Typography>
           <Typography display="block" variant="body1">
-          In the box are the following items:
+          The gateway is needed to connect the nodes to the system. In the following steps we will setup the gateway for use.
           </Typography>
         </Grid>
         <Grid item className={classes.button} align="center">

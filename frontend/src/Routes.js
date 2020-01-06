@@ -15,6 +15,7 @@ import Step7 from "./steps/Step_7_Node_Grid";
 import Step8 from "./steps/Step_8_Node_Add";
 import Step9 from "./steps/Step_9_Node_PositionMount";
 import Step10 from "./steps/Step_10_End";
+import FAQ_node from "./faq/FAQ_node";
 
 export default function Routes({ appProps }) {
   return (
@@ -44,7 +45,8 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/step9" exact component={Step9} appProps={appProps} />
       <Route path="/step10" exact component={Step10} />
       <AppliedRoute path="/step10" exact component={Step10} appProps={appProps} />
-
+      <Route path="/faqnodes" exact component={FAQ_node} />
+      <AppliedRoute path="/faqnodes" exact component={FAQ_node} appProps={appProps} />
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />
     </Switch>

@@ -3,18 +3,14 @@ import "../containers/Home.css";
 import {
   Avatar,
   Container,
-  Button,
   Typography,
   Grid,
-  Box,
-  LinearProgress,
   makeStyles,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
 } from '@material-ui/core';
-import { LinkContainer } from "react-router-bootstrap";
 import PowerIcon from '@material-ui/icons/Power';
 import RouterIcon from '@material-ui/icons/Router';
 import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';

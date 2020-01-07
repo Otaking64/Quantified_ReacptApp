@@ -1,24 +1,13 @@
 import React from "react";
 import "../containers/Home.css";
 import {
-  Button,
   Container,
   Typography,
   Grid,
-  Box,
-  LinearProgress,
   makeStyles,
 } from '@material-ui/core';
-import { LinkContainer } from "react-router-bootstrap"
-import TopMenuBar from "../components/TopMenuBar";
 
 const useStyles = makeStyles(theme => ({
-  alignItemsAndJustifyContent: {
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)'
-  },
   alignItemsAndJustifyContent: {
     position: 'absolute',
     left: '50%',

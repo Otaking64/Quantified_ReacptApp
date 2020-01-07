@@ -4,15 +4,25 @@ import {
   Container,
   Typography,
   Grid,
+  makeStyles,
 } from '@material-ui/core';
-import TopMenuBar from "../components/TopMenuBar";
+
+const useStyles = makeStyles(theme => ({
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  section1: {
+    margin: theme.spacing(3, 2),
+  },
+}));
 
 export default function Step3(){
+  const classes = useStyles()
   return(
     <Container>
-      <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
       <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
-        <Grid item>
+        <Grid item className={classes.section1}>
           <Typography variant="h4" align="center">Gateway</Typography>
           <Typography display="block" variant="body1">
           The gateway is needed to connect the nodes to the system. In the following steps we will setup the gateway for use.

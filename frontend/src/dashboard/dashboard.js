@@ -5,6 +5,7 @@ import {
   Grid,
 } from '@material-ui/core';
 import TopMenuBar from "../components/TopMenuBar";
+import BottomMenuBar from '../components/BottomMenuBar';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Dashboard extends Component {
           id: "basic-bar"
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 'hoi', 1999]
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
         }
       },
       series: [
@@ -30,6 +31,7 @@ class Dashboard extends Component {
   render() {
     return (
       <Container>
+      <br />
       <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
         <Grid container direction="column" alignItems="center">
           <Grid item>

@@ -6,12 +6,10 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
-import TopMenuBar from "../components/TopMenuBar";
 
 export default function Step5(){
   return(
     <Container>
-      <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
       <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
         <Grid item>
           <Typography variant="h4" align="center">Gateway</Typography>

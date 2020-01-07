@@ -17,14 +17,6 @@ export default function Step4(){
             Use the following steps to power on the gateway:
           </Typography>
         </Grid>
-        <Grid item>
-          <Typography variant="body1">
-            <Typography variant="h4" align="center">Gateway</Typography>
-            <Typography display="block" variant="body1">
-              Use the following steps to power on the gateway:
-            </Typography>
-          </Typography>
-        </Grid>
       </Grid>
     </Container>
   );

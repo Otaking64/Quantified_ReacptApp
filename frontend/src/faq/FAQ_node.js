@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimpleExpansionPanel() {
+export default function FAQnode() {
   const classes = useStyles();
 
   return (

@@ -114,10 +114,10 @@ export default function Home() {
         )}
       </List>
       <Box className="contentCentered">
-        <LinkContainer to="/step1">
+        <LinkContainer to="/installation">
           <Fab size="large" variant="extended" color="primary" className="nodeOptionsButton">
             <img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" />
-            Node options
+          Start Installation
           </Fab>
         </LinkContainer>
       </Box>

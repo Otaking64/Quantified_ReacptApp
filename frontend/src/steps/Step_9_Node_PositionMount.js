@@ -4,12 +4,10 @@ import {
   Typography,
   Grid,
 } from '@material-ui/core';
-import TopMenuBar from "../components/TopMenuBar";
 
 export default function Step9(){
   return(
     <Container>
-      <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
       <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
         <Grid item>
           <Typography variant="h4" align="center">Nodes</Typography>

@@ -35,12 +35,21 @@ class Dashboard extends Component {
       <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
         <Grid container direction="column" alignItems="center">
           <Grid item>
-            <div className="mixed-chart">
+            <div className="mixed-chart" align="center">
               <Chart
                 options={this.state.options}
                 series={this.state.series}
                 type="bar"
-                width="500"
+              />
+              <Chart
+                options={this.state.options}
+                series={this.state.series}
+                type="bar"
+              />
+              <Chart
+                options={this.state.options}
+                series={this.state.series}
+                type="bar"
               />
             </div>
           </Grid>

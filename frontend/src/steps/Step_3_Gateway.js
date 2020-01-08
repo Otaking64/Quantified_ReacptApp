@@ -23,8 +23,8 @@ export default function Step3(){
     <Container>
       <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
         <Grid item className={classes.section1}>
-          <Typography variant="h4" align="center">Gateway</Typography>
-          <Typography display="block" variant="body1">
+          <Typography variant="h3" align="center">Gateway</Typography>
+        <Typography display="block" variant="body1">
           The gateway is needed to connect the nodes to the system. In the following steps we will setup the gateway for use.
           </Typography>
         </Grid>

@@ -37,7 +37,7 @@ export default function Step2(){
     <Container>
         <Grid container alignItems="center" justify="center" direction="column">
           <Grid item className={classes.section1}>
-            <Typography variant="h4" align="center">Open the box</Typography>
+            <Typography variant="h3" align="center">Open the box</Typography>
             <Typography display="block" variant="body1">
             In the box are the following items:
             </Typography>

@@ -19,6 +19,9 @@ const useStyles = makeStyles(theme => ({
     avatarColor:{
         backgroundColor:'#fff',
     },
+    section1: {
+      margin: theme.spacing(3,2)
+    }
 }))
 
 let nodequant = 1;
@@ -38,8 +41,8 @@ export default function Step6(){
         <Container>
             <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
             <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
-                <Grid item>
-                    <Typography variant="h4" align="center">Nodes</Typography>
+                <Grid item className={classes.section1}>
+                    <Typography variant="h3" align="center">Nodes</Typography>
                     <Typography display="block" variant="body1">
                         Choose the amount of nodes you have
                     </Typography>

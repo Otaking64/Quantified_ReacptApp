@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme => ({
     avatarColor:{
         backgroundColor:'#fff',
     },
+    section1: {
+      margin: theme.spacing(3,2)
+    }
 }))
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
@@ -33,7 +36,7 @@ export default function step7() {
             <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
             <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
                 <Grid item>
-                    <Typography variant="h4" align="center">Nodes</Typography>
+                    <Typography variant="h3" align="center">Nodes</Typography>
                     <Typography display="block" variant="body1">
                         Position the nodes on the map
                     </Typography>

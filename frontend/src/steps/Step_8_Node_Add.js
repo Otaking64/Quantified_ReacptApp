@@ -13,6 +13,7 @@ import {
 import "../steps/Step.css"
 
 
+
 let qrwidth = "100%";
 
 export default class step8 extends Component {
@@ -44,7 +45,7 @@ export default class step8 extends Component {
 
                 <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
                     <Grid item>
-                        <Typography variant="h4" align="center">Nodes</Typography>
+                        <Typography variant="h3" align="center">Nodes</Typography>
                         <Typography display="block" variant="body1">
                             Scan the QR code to add the node to the system
                         </Typography>

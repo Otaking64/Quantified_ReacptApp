@@ -34,6 +34,9 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3),
     alignItems: "center",
   },
+  section3:{
+    margin: theme.spacing(1),
+  },
   avatarColor:{
     backgroundColor:'#fff',
   },
@@ -94,13 +97,14 @@ export default function FAQ() {
           </LinkContainer>
       </Card>
 
-      <Divider />
-      <div className={classes.section2}>
+      <Divider variant="middle"/>
+      <div className={classes.section2} align="center">
       <Typography variant="h5">Problem not found?</Typography>
       <ButtonGroup
         orientation="vertical"
         color="primary"
         aria-label="vertical outlined primary button group"
+        className={classes.section3}
       >
       <Button
         className={classes.button}

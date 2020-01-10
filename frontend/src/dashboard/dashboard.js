@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
-import {
-  Container,
-  Grid,
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from '../components/BottomMenuBar';
 
@@ -30,8 +27,7 @@ class Dashboard extends Component {
   }
   render() {
     return (
-      <Container>
-      <br />
+      <>
       <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
         <Grid container direction="column" alignItems="center">
           <Grid item>
@@ -54,7 +50,8 @@ class Dashboard extends Component {
             </div>
           </Grid>
         </Grid>
-      </Container>
+        <BottomMenuBar slectedIcon={1} block/>
+      </>
     );
   }
 }

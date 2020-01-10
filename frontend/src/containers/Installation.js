@@ -46,7 +46,7 @@ export default function Installation() {
 
   return (
     <Container>
-      <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
+      <TopMenuBar block pageName="" faqButton={true} hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
       {steps[activeStep]}
       <div className={classes.progressContainer}>
         <MobileStepper

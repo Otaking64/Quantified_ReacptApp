@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function TopMenuBar({
   pageName,
+  faqButton,
   hamburgerMenu,
   closeButtonOnly,
   closeWithPrompt,
@@ -128,6 +129,12 @@ export default function TopMenuBar({
               <ArrowBackIcon className="icon"/>
             </IconButton>
           </LinkContainer>
+        : faqButton ?
+          <LinkContainer to="/faq">
+            <IconButton edge="start" className={classes.menuButton} color="inherit">
+              <ContactSupportIcon className="icon"/>
+            </IconButton>
+          </LinkContainer>
         : "" }
         <Typography variant="h6" className="topMenuTitle">
           {pageName}
@@ -135,7 +142,7 @@ export default function TopMenuBar({
           <div>
             { hamburgerMenu ?
               <>
-                <IconButton color="inherit" onClick={toggleDrawer(true)}>
+                <IconButton edge="end" color="inherit" onClick={toggleDrawer(true)}>
                   <MenuIcon className="icon"/>
                 </IconButton>
                 <Drawer anchor="right" open={state.sideMenu} onClose={toggleDrawer(false)}>
@@ -144,13 +151,13 @@ export default function TopMenuBar({
               </>
             : closeButtonOnly ?
               <LinkContainer to="/">
-                <IconButton color="inherit">
+                <IconButton edge="end" color="inherit">
                   <CloseIcon className="icon"/>
                 </IconButton>
               </LinkContainer>
             : closeWithPrompt ?
               <>
-                <IconButton color="inherit" onClick={handleClickExit}>
+                <IconButton edge="end" color="inherit" onClick={handleClickExit}>
                   <CloseIcon className="icon"/>
                 </IconButton>
                 <Dialog

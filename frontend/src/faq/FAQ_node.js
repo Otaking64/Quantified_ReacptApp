@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
-  Container,
   Divider,
   Typography,
   Button,
@@ -12,6 +11,7 @@ import ExpansionCard from '../components/ExpansionPanel.js';
 import TopMenuBar from '../components/TopMenuBar.js'
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
+import BottomMenuBar from "../components/BottomMenuBar";
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -34,7 +34,7 @@ export default function FAQnode() {
   const classes = useStyles();
 
   return (
-    <Container fixed>
+    <>
       <TopMenuBar block pageName="Node FAQ" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
       <div className={classes.section1}>
         <ExpansionCard title="My node is not connecting" body="To connect your node, please follow the provided steps:" />
@@ -42,7 +42,7 @@ export default function FAQnode() {
       </div>
 
       <Divider variant="middle"/>
-    <div className={classes.section2} align="center">
+      <div className={classes.section2} align="center">
         <Typography variant="h5">Problem not found?</Typography>
         <ButtonGroup
           orientation="vertical"
@@ -61,7 +61,8 @@ export default function FAQnode() {
             Send us an email
           </Button>
         </ButtonGroup>
-        </div>
-    </Container>
+      </div>
+      <BottomMenuBar slectedIcon={2} block/>
+    </>
   );
 }

@@ -1,0 +1,29 @@
+.nodInfoPage p{
+  margin: 0;
+}
+
+.boldText{
+  font-weight: bold;
+}
+
+.bigText{
+  font-size: 1.4em;
+}
+
+.Offline{
+  background-color: #FF0000;
+}
+
+.Online{
+  background-color: #00FF00;
+}
+
+.customNodeIcon{
+  width: 9px;
+  margin-right: 8px;
+  filter: invert(100%);
+}
+
+.coordinates{
+  padding-left: 12px;
+}

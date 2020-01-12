@@ -14,6 +14,7 @@ import TopMenuBar from "../components/TopMenuBar";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import NodeIcon from "../icons/icon_node";
+import NumericInput from 'react-numeric-input';
 
 const useStyles = makeStyles(theme => ({
     avatarColor:{
@@ -49,7 +50,16 @@ export default function Step6(){
                 </Grid>
                 <Grid item>
 
-                    <input type="number" value={nodequant} name="quantity" min="1"  />
+                    <NumericInput
+                        className="form-control"
+                        value={ 1 }
+                        min={ 1 }
+                        max={ 1000 }
+                        step={ 1 }
+                        precision={ 0 }
+                        size={ 5 }
+                        mobile
+                    />
 
                 </Grid>
             </Grid>

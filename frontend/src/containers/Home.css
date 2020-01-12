@@ -29,3 +29,11 @@
   margin: 24px auto;
   margin: 14px;
 }
+
+.largeIcon .MuiSvgIcon-root{
+  font-size: 5em;
+}
+
+.mapholder{
+  width: 400px;
+}

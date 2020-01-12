@@ -6,6 +6,7 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
+import RouterIcon from "@material-ui/icons/Router";
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -26,6 +27,14 @@ export default function Step3(){
           <Typography variant="h3" align="center">Gateway</Typography>
         <Typography display="block" variant="body1">
           The gateway is needed to connect the nodes to the system. In the following steps we will setup the gateway for use.
+          </Typography>
+        </Grid>
+        <Grid item className="largeIcon">
+          <RouterIcon color="black" />
+        </Grid>
+        <Grid item>
+          <Typography display="block" variant="body1">
+            Locate the box marked with the following gateway Icon as seen above.
           </Typography>
         </Grid>
       </Grid>

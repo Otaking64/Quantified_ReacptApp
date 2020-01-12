@@ -12,6 +12,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 const useStyles = makeStyles(theme => ({
     avatarColor:{
@@ -22,15 +23,12 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const MyMapComponent = withScriptjs(withGoogleMap((props) =>
-    <GoogleMap
-        defaultZoom={8}
-        defaultCenter={{ }}
-    >
-        {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
-    </GoogleMap>
-))
-export default function step7() {
+
+function step7() {
+    const mapStyles = {
+        width: '400px',
+        height: '500px',
+    };
     return (
         <Container>
             <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
@@ -40,15 +38,20 @@ export default function step7() {
                     <Typography display="block" variant="body1">
                         Position the nodes on the map
                     </Typography>
-                    <MyMapComponent
-                        isMarkerShown
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{ height: '100%' }} />}
-                        containerElement={<div style={{ height: '500px' }} />}
-                        mapElement={<div style={{ height: '100%' }} />}
+                </Grid>
+                    <Grid item className="mapholder">
+                    <Map
+                        google={window.google}
+                        zoom={8}
+                        style={mapStyles}
+                        initialCenter={{ lat: 52.444, lng: 4.22}}
                     />
                 </Grid>
             </Grid>
         </Container>
     );
 }
+
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyASh-cM7S0mBbFiIItNyeEMjtJh8lD4oN0'
+})(step7);

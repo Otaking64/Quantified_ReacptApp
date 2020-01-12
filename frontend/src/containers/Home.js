@@ -121,7 +121,7 @@ export default function Home() {
           </Fab>
         </LinkContainer>
       </Box>
-      <BottomMenuBar block/>
+      <BottomMenuBar slectedIcon={0} block/>
     </div>
   );
 }

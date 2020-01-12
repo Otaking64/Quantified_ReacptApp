@@ -6,15 +6,14 @@ import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 
 import { LinkContainer } from "react-router-bootstrap";
 
-export default function BottomMenuBar() {
-  const [value, setValue] = React.useState(0);
+export default function BottomMenuBar({
+  slectedIcon,
+  ...props
+}) {
 
   return (
     <BottomNavigation
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
+      value={slectedIcon}
       showLabels
       className="bottomMenuBar"
     >

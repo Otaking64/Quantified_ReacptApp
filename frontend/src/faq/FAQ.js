@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
-  Container,
   Divider,
   Typography,
   Card,
@@ -21,6 +20,7 @@ import NodeIcon from "../icons/icon_node.js";
 import RouterIcon from '@material-ui/icons/Router';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneIcon from '@material-ui/icons/Phone';
+import BottomMenuBar from "../components/BottomMenuBar";
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -46,7 +46,7 @@ export default function FAQ() {
   const classes = useStyles();
 
   return (
-    <Container fixed>
+    <>
       <TopMenuBar block pageName="FAQ" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
       <Card className={classes.section1}>
       <LinkContainer to="/faq/node">
@@ -99,28 +99,28 @@ export default function FAQ() {
 
       <Divider variant="middle"/>
       <div className={classes.section2} align="center">
-      <Typography variant="h5">Problem not found?</Typography>
-      <ButtonGroup
-        orientation="vertical"
-        color="primary"
-        aria-label="vertical outlined primary button group"
-        className={classes.section3}
-      >
-      <Button
-        className={classes.button}
-        startIcon={<PhoneIcon />}
-      >
-        Call us
-      </Button>
-      <Button
-        className={classes.button}
-        startIcon={<PhoneIcon />}
-      >
-        Send us an email
-      </Button>
-      </ButtonGroup>
+        <Typography variant="h5">Problem not found?</Typography>
+        <ButtonGroup
+          orientation="vertical"
+          color="primary"
+          aria-label="vertical outlined primary button group"
+          className={classes.section3}
+        >
+        <Button
+          className={classes.button}
+          startIcon={<PhoneIcon />}
+        >
+          Call us
+        </Button>
+        <Button
+          className={classes.button}
+          startIcon={<PhoneIcon />}
+        >
+          Send us an email
+        </Button>
+        </ButtonGroup>
       </div>
-
-    </Container>
+      <BottomMenuBar slectedIcon={2} block/>
+    </>
   );
 }

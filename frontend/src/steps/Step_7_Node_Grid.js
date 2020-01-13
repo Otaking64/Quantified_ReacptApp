@@ -12,7 +12,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper } from 'react-google-maps';
 
 const useStyles = makeStyles(theme => ({
     avatarColor:{

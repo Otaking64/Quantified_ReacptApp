@@ -6,7 +6,6 @@ import {
     Grid,
     makeStyles,
 } from '@material-ui/core';
-import TopMenuBar from "../components/TopMenuBar";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
@@ -27,7 +26,6 @@ function step7() {
     };
     return (
         <Container>
-            <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
             <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
                 <Grid item>
                     <Typography variant="h3" align="center">Nodes</Typography>

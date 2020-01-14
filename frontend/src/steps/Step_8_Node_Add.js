@@ -40,9 +40,7 @@ export default class step8 extends Component {
 
     render() {
         return (
-
             <Container>
-
                 <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
                     <Grid item>
                         <Typography variant="h3" align="center">Nodes</Typography>

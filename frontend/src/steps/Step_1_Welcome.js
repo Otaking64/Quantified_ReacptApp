@@ -22,7 +22,9 @@ export default function Step1() {
             <Fade in="true">
               <Typography variant="h3">Welcome</Typography>
             </Fade>
-            <Typography variant="subtitle1">Let's get started</Typography>
+            <Fade in="true" style={{ transitionDelay:'200ms' }}>
+              <Typography variant="subtitle1">Let's get started</Typography>
+            </Fade>
           </div>
         </Grid>
       </Grid>

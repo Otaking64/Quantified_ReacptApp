@@ -5,7 +5,6 @@ import { Container, MobileStepper, Button } from '@material-ui/core';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
-import ProgressBar from "../components/ProgressBar";
 
 import Step_1_Welcome from "../steps/Step_1_Welcome";
 import Step_2_Box from "../steps/Step_2_Box";
@@ -20,7 +19,7 @@ import Step_10_End from "../steps/Step_10_End";
 
 const useStyles = makeStyles(theme => ({
   progressContainer: {
-    bottom: 20,
+    bottom: 0,
     position: 'fixed',
     margin: 0,
     width: '100%',

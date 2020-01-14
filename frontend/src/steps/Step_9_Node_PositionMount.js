@@ -4,6 +4,7 @@ import {
   Typography,
   Grid,
   makeStyles,
+  Fade
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -17,12 +18,14 @@ export default function Step9(){
   return(
     <Container>
       <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
-        <Grid item className={classes.section1}>
-          <Typography variant="h3" align="center">Nodes</Typography>
-          <Typography display="block" variant="body1">
-          Verify the position of the node
-          </Typography>
-        </Grid>
+        <Fade in="true" style={{ transitionDelay:'200ms' }}>
+          <Grid item className={classes.section1}>
+            <Typography variant="h3" align="center">Nodes</Typography>
+            <Typography display="block" variant="body1">
+              Verify the position of the node
+            </Typography>
+          </Grid>
+        </Fade>
       </Grid>
     </Container>
   );

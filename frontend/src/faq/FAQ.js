@@ -20,6 +20,7 @@ import NodeIcon from "../icons/icon_node.js";
 import RouterIcon from '@material-ui/icons/Router';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneIcon from '@material-ui/icons/Phone';
+import MailIcon from '@material-ui/icons/Mail';
 import BottomMenuBar from "../components/BottomMenuBar";
 
 const useStyles = makeStyles(theme => ({
@@ -109,12 +110,15 @@ export default function FAQ() {
         <Button
           className={classes.button}
           startIcon={<PhoneIcon />}
+          href="tel:+31651775925"
         >
           Call us
         </Button>
         <Button
           className={classes.button}
-          startIcon={<PhoneIcon />}
+          startIcon={<MailIcon />}
+          href="mailto:info@quantified.eu?Subject=App%20problem"
+          target="_top"
         >
           Send us an email
         </Button>

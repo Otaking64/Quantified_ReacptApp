@@ -10,7 +10,6 @@ import {
     makeStyles, Avatar,
 } from '@material-ui/core';
 import { LinkContainer } from "react-router-bootstrap"
-import TopMenuBar from "../components/TopMenuBar";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import NodeIcon from "../icons/icon_node";
@@ -40,7 +39,6 @@ export default function Step6(){
 
     return(
         <Container>
-            <TopMenuBar block pageName="Installation" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
             <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
                 <Grid item className={classes.section1}>
                     <Typography variant="h3" align="center">Nodes</Typography>

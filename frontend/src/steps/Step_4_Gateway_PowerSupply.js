@@ -15,6 +15,7 @@ import {
   ListItemText,
   Zoom,
   Snackbar,
+  SnackbarContent,
   Fade
 } from '@material-ui/core';
 import {green} from '@material-ui/core/colors';
@@ -48,6 +49,9 @@ const useStyles = makeStyles(theme => ({
   },
   snackbar: {
     bottom: 56,
+  },
+  snackColor: {
+    backgroundColor: "#00A49B"
   }
 }));
 
@@ -91,9 +95,14 @@ export default function Step4(){
 
         <Fade in="true">
           <Box m={1}>
-            <Typography variant="h3">Gateway</Typography>
-          <Typography display="block" variant="body1">
-              Use the following steps to power on the gateway:
+            <Typography variant="overline">
+              Installation &#10140; Gateway
+            </Typography>
+            <Typography variant="h4">
+              Connecting power
+            </Typography>
+            <Typography display="block" variant="body1">
+                Use the following steps to power on the gateway:
             </Typography>
           </Box>
         </Fade>
@@ -146,9 +155,13 @@ export default function Step4(){
             open={open}
             autoHideDuration={2000}
             onClose={handleClose}
-            message="Gateway is connected"
             className={classes.snackbar}
+          >
+          <SnackbarContent
+            message="Gateway is connected"
+            className={classes.snackColor}
           />
+          </Snackbar>
       </Box>
 
     </Container>

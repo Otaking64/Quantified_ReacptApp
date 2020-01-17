@@ -38,6 +38,9 @@ export default class step8 extends Component {
         return (
             <Container>
                 <Box m={1}>
+                  <Typography variant="overline">
+                    Installation &#10140; Nodes
+                  </Typography>
                     <Typography variant="h3">Nodes</Typography>
                     <Typography display="block" variant="body1">
                           Scan the QR code to add the node to the system

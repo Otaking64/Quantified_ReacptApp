@@ -36,7 +36,10 @@ export default function Step2(){
     <Container>
             < Fade in="true">
             <Box m={1}>
-              <Typography variant="h3">
+              <Typography variant="overline">
+              Installation &#10140; Box
+              </Typography>
+              <Typography variant="h4">
                 Open the box
               </Typography>
               <Typography variant="subtitle1" gutterBottom={true}>
@@ -44,14 +47,14 @@ export default function Step2(){
               </Typography>
             </Box>
             </Fade>
-            <Box>
+            <Box m={1}>
             <List>
               <Fade in={true} style={{ transitionDelay: '200ms' }}>
                 <ListItem>
                   <ListItemIcon>
                     <RouterIcon color="primary" size="large"/>
                   </ListItemIcon>
-                  <ListItemText primary="The Gateway" secondary="The connection between the Nodes and the Internet" />
+                  <ListItemText primary="Gateway" secondary="To connect the nodes" />
                 </ListItem>
               </Fade>
               <Fade in={true} style={{ transitionDelay: '500ms' }}>
@@ -67,7 +70,7 @@ export default function Step2(){
                   <ListItemIcon>
                     <SettingsEthernetIcon color="primary"/>
                   </ListItemIcon>
-                  <ListItemText primary="LAN cable" secondary="To connect the Gateway to the Internet" />
+                  <ListItemText primary="Ethernet cable" secondary="To connect the gateway to the internet" />
                 </ListItem>
               </Fade>
               <Fade in={true} style={{ transitionDelay:'1100ms' }}>
@@ -75,7 +78,7 @@ export default function Step2(){
                   <ListItemIcon>
                     <PowerIcon color="primary"/>
                   </ListItemIcon>
-                  <ListItemText primary="Power Supply" secondary="To give the Gateway power" />
+                  <ListItemText primary="Power cable" secondary="To give the gateway power" />
                 </ListItem>
               </Fade>
             </List>

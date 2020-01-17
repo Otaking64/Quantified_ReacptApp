@@ -13,7 +13,10 @@ export default function Step3(){
     <Container>
       <Fade in="true">
           <Box m={1}>
-            <Typography variant="h3">Gateway</Typography>
+            <Typography variant="overline">
+            Installation &#10140; Gateway
+            </Typography>
+            <Typography variant="h4">Gateway preparations</Typography>
             <Typography display="block" variant="body1">
               The gateway is needed to connect the nodes to the system. In the following steps we will setup the gateway for use.
             </Typography>

@@ -29,6 +29,9 @@ export default function Step5(){
     <Container>
         <Fade in="true">
           <Box m={1}>
+            <Typography variant="overline">
+            Installation &#10140; Gateway
+            </Typography>
             <Typography variant="h3">Gateway</Typography>
             <Typography display="block" variant="body1">
               Use the following steps to connect the internet to the gateway:

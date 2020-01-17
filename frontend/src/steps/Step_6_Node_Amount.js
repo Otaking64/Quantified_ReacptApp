@@ -24,6 +24,9 @@ export default function Step6(){
     return(
         <Container>
                 <Box m={1}>
+                <Typography variant="overline">
+                Installation &#10140; Nodes
+                </Typography>
                     <Typography variant="h3">Nodes</Typography>
                     <Typography display="block" variant="body1">
                         Choose the amount of nodes you have

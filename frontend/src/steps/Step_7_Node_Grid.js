@@ -17,10 +17,13 @@ function step7() {
     return (
         <Container>
           <Box m={1}>
-                    <Typography variant="h3">Nodes</Typography>
-                    <Typography display="block" variant="body1">
-                        Position the nodes on the map
-                    </Typography>
+            <Typography variant="overline">
+              Installation &#10140; Nodes
+            </Typography>
+            <Typography variant="h3">Nodes</Typography>
+            <Typography display="block" variant="body1">
+              Position the nodes on the map
+            </Typography>
           </Box>
           <Box m={1} className="mapholder">
             <Map

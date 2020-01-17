@@ -1,17 +1,15 @@
 import React from "react";
 import "../containers/Home.css";
 import {
-  Avatar,
+  Box,
   Container,
   Typography,
-  Grid,
   makeStyles,
   List,
   ListItem,
-  ListItemAvatar,
+  ListItemIcon,
   ListItemText,
   Fade,
-  Zoom
 } from '@material-ui/core';
 import PowerIcon from '@material-ui/icons/Power';
 import RouterIcon from '@material-ui/icons/Router';
@@ -36,60 +34,52 @@ export default function Step2(){
   const classes = useStyles()
   return(
     <Container>
-        <Grid container alignItems="center" justify="center" direction="column">
-          <Fade in="true">
-            <Grid item className={classes.section1}>
-              <Typography variant="h3" align="center">Open the box</Typography>
-              <Typography display="block" variant="body1">
-              In the box are the following items:
+            < Fade in="true">
+            <Box m={1}>
+              <Typography variant="h3">
+                Open the box
               </Typography>
-            </Grid>
-          </Fade>
-          <Grid item>
+              <Typography variant="subtitle1" gutterBottom={true}>
+                In the box are the following items:
+              </Typography>
+            </Box>
+            </Fade>
+            <Box>
             <List>
-              <Zoom in={true} style={{ transitionDelay: '200ms' }}>
+              <Fade in={true} style={{ transitionDelay: '200ms' }}>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatarColor}>
-                      <RouterIcon color="primary" size="large"/>
-                    </Avatar>
-                  </ListItemAvatar>
+                  <ListItemIcon>
+                    <RouterIcon color="primary" size="large"/>
+                  </ListItemIcon>
                   <ListItemText primary="The Gateway" secondary="The connection between the Nodes and the Internet" />
                 </ListItem>
-              </Zoom>
-              <Zoom in={true} style={{ transitionDelay: '500ms' }}>
+              </Fade>
+              <Fade in={true} style={{ transitionDelay: '500ms' }}>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatarColor}>
-                        <NodeIcon width="24px" height="24px" color="primary"/>
-                    </Avatar>
-                  </ListItemAvatar>
+                  <ListItemIcon>
+                    <NodeIcon width="24px" height="24px" color="primary"/>
+                  </ListItemIcon>
                   <ListItemText primary="Nodes" secondary="The sensors that give you insights" />
                 </ListItem>
-              </Zoom>
-              <Zoom in={true} style={{ transitionDelay: '800ms' }}>
+              </Fade>
+              <Fade in={true} style={{ transitionDelay: '800ms' }}>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatarColor}>
-                      <SettingsEthernetIcon color="primary"/>
-                    </Avatar>
-                  </ListItemAvatar>
+                  <ListItemIcon>
+                    <SettingsEthernetIcon color="primary"/>
+                  </ListItemIcon>
                   <ListItemText primary="LAN cable" secondary="To connect the Gateway to the Internet" />
                 </ListItem>
-              </Zoom>
-              <Zoom in={true} style={{ transitionDelay:'1100ms' }}>
+              </Fade>
+              <Fade in={true} style={{ transitionDelay:'1100ms' }}>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatarColor}>
-                      <PowerIcon color="primary"/>
-                    </Avatar>
-                  </ListItemAvatar>
+                  <ListItemIcon>
+                    <PowerIcon color="primary"/>
+                  </ListItemIcon>
                   <ListItemText primary="Power Supply" secondary="To give the Gateway power" />
                 </ListItem>
-              </Zoom>
+              </Fade>
             </List>
-          </Grid>
-        </Grid>
+            </Box>
       </Container>
   );
 }

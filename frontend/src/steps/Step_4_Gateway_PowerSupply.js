@@ -4,13 +4,12 @@ import "../containers/Home.css";
 import {
   Container,
   Typography,
-  Grid,
+  Box,
   Button,
   makeStyles,
   List,
   ListItem,
   CircularProgress,
-  Fab,
   ListItemAvatar,
   Avatar,
   ListItemText,
@@ -18,8 +17,6 @@ import {
   Snackbar,
   Fade
 } from '@material-ui/core';
-import CheckIcon from '@material-ui/icons/Check';
-import SaveIcon from '@material-ui/icons/Save';
 import {green} from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
@@ -27,8 +24,8 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 2),
   },
   wrapper: {
-    margin: theme.spacing(1),
     position: 'relative',
+    align: 'left'
   },
   avatarColor:{
     backgroundColor: "#599AD5"
@@ -45,11 +42,12 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: '50%',
     left: '50%',
+    align: 'left',
     marginTop: -12,
     marginLeft: -12,
   },
   snackbar: {
-    bottom: 48,
+    bottom: 56,
   }
 }));
 
@@ -90,16 +88,16 @@ export default function Step4(){
 
   return(
     <Container>
-      <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
+
         <Fade in="true">
-          <Grid item className={classes.section1}>
-            <Typography variant="h3" align="center">Gateway</Typography>
+          <Box m={1}>
+            <Typography variant="h3">Gateway</Typography>
           <Typography display="block" variant="body1">
               Use the following steps to power on the gateway:
             </Typography>
-          </Grid>
+          </Box>
         </Fade>
-        <Grid item>
+        <Box>
           <List>
             <Zoom in={true} style={{ transitionDelay:'200ms' }}>
               <ListItem>
@@ -132,13 +130,12 @@ export default function Step4(){
               </ListItem>
             </Zoom>
           </List>
-        </Grid>
-        <Grid item>
-          <div className={classes.wrapper}>
+          </Box>
+          <Box className={classes.wrapper} m={1}>
           <Button
             variant="contained"
             color="primary"
-            className={buttonClassname}
+            className={classes.buttonClassname}
             disabled={loading}
             onClick={handleButtonClick}
             >
@@ -152,9 +149,8 @@ export default function Step4(){
             message="Gateway is connected"
             className={classes.snackbar}
           />
-      </div>
-        </Grid>
-      </Grid>
+      </Box>
+
     </Container>
   );
 }

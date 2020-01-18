@@ -3,7 +3,6 @@ import "./Installation.css";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Container, MobileStepper, Button } from '@material-ui/core';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
-import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
 
 import Step_1_Welcome from "../steps/Step_1_Welcome";
@@ -23,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     position: 'fixed',
     margin: 0,
     width: '100%',
-    left: 0
+    left: 0,
   },
 }));
 
@@ -52,6 +51,7 @@ export default function Installation() {
           variant="progress"
           steps={steps.length}
           position="static"
+          elevation="8"
           activeStep={activeStep}
           className={classes.ProgressBar}
           nextButton={

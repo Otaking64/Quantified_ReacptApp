@@ -3,7 +3,7 @@ import "../containers/Home.css";
 import {
   Container,
   Typography,
-  Grid,
+  Box,
   makeStyles,
   List,
   ListItem,
@@ -27,16 +27,18 @@ export default function Step5(){
   const classes = useStyles()
   return(
     <Container>
-      <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
         <Fade in="true">
-          <Grid item className={classes.section1}>
-            <Typography variant="h3" align="center">Gateway</Typography>
+          <Box m={1}>
+            <Typography variant="overline">
+            Installation &#10140; Gateway
+            </Typography>
+            <Typography variant="h3">Gateway</Typography>
             <Typography display="block" variant="body1">
               Use the following steps to connect the internet to the gateway:
             </Typography>
-          </Grid>
+          </Box>
         </Fade>
-        <Grid item>
+        <Box m={1}>
           <List>
             <Zoom in={true} style={{ transitionDelay:'200ms' }}>
               <ListItem>
@@ -69,8 +71,7 @@ export default function Step5(){
               </ListItem>
             </Zoom>
           </List>
-        </Grid>
-      </Grid>
+        </Box>
     </Container>
   );
 }

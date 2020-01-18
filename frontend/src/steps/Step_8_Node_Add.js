@@ -2,13 +2,9 @@ import React, { Component } from 'react'
 import QrReader from 'react-qr-reader'
 import "../containers/Home.css";
 import {
-    Button,
     Container,
     Typography,
-    Grid,
     Box,
-    LinearProgress,
-    makeStyles,
 } from '@material-ui/core';
 import "../steps/Step.css"
 
@@ -41,14 +37,16 @@ export default class step8 extends Component {
     render() {
         return (
             <Container>
-                <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
-                    <Grid item>
-                        <Typography variant="h3" align="center">Nodes</Typography>
-                        <Typography display="block" variant="body1">
-                            Scan the QR code to add the node to the system
-                        </Typography>
-                    </Grid>
-                    <Grid style={{width: "55%"}}>
+                <Box m={1}>
+                  <Typography variant="overline">
+                    Installation &#10140; Nodes
+                  </Typography>
+                    <Typography variant="h3">Nodes</Typography>
+                    <Typography display="block" variant="body1">
+                          Scan the QR code to add the node to the system
+                    </Typography>
+                </Box>
+                <Box style={{width: "55%"}}>
                         <div>
                             <QrReader
                                 delay={300}
@@ -59,8 +57,7 @@ export default class step8 extends Component {
                             />
                             <p>{this.state.result}</p>
                         </div>
-                    </Grid>
-                </Grid>
+                </Box>
             </Container>
 
         )

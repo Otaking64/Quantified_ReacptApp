@@ -1,9 +1,9 @@
 import React from "react";
-import { useState } from 'react';
 import TopMenuBar from "../components/TopMenuBar";
 import firebase from "../firebase/";
+import Firebase from "firebase";
 
-function ForgotPassword(){
+function ForgotPassword(props){
     const [resetPasswordEmail, setResetPasswordEmail] = React.useState('')
     const [isPasswordReset, setIsPasswordReset] = React.useState(false)
     const [passwordResetError, setPasswordResetError] = React.useState(null)
@@ -19,9 +19,19 @@ function ForgotPassword(){
     }
     }
 
+    Firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("User is signed in");
+            props.history.push("/")
+        } else {
+            console.log("User is not signed in");
+
+        }
+    });
+
     return(
         <div>
-            <TopMenuBar block pageName="Login" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
+            <TopMenuBar block pageName="Forgot password" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/login"/>
 
             <h2>Forgot your password?</h2>
             <p> We got you! Fill in your e-mail address and we send you an email to reset it.</p>

@@ -3,7 +3,7 @@ import validateLogin from "./validateLogin";
 import useFormValidation from "./useFormValidation";
 import TopMenuBar from "../components/TopMenuBar";
 import firebase from "../firebase";
-import useAuth from "./useAuth";
+import Firebase from 'firebase'
 
 
 
@@ -19,6 +19,18 @@ function Login(props) {
         validateLogin,
         authenticateUser
     );
+
+
+    Firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("User is signed in");
+            props.history.push("/")
+        } else {
+            console.log("User is not signed in");
+
+        }
+    });
+
 
     const[login, setLogin] = React.useState(true);
     const [firebaseError, setFirebaseError] = React.useState(null)

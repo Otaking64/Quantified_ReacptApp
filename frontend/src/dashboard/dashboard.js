@@ -3,11 +3,20 @@ import Chart from "react-apexcharts";
 import { Grid } from '@material-ui/core';
 import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from '../components/BottomMenuBar';
+import firebase from "firebase";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log("User is signed in");
 
+      } else {
+        console.log("User is not signed in");
+        props.history.push("/login")
+      }
+    });
     this.state = {
       options: {
         chart: {

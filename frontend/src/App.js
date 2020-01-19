@@ -4,6 +4,8 @@ import { MuiThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core
 import { Auth } from "aws-amplify";
 import "./App.css";
 import Routes from "./Routes";
+import useAuth from "./auth/useAuth";
+import { FirebaseContext } from 'firebase'
 
 const theme = createMuiTheme({
   palette: {
@@ -44,7 +46,9 @@ function App(props) {
     setIsAuthenticating(false);
   }
 
+
   return (
+
   !isAuthenticating &&
     <MuiThemeProvider theme={theme}>
       <CssBaseline />

@@ -6,6 +6,7 @@ import "./Home.css";
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from "../components/BottomMenuBar";
+import firebase from "firebase";
 
 const nodes = [
   {
@@ -78,9 +79,20 @@ const StyledBadge = withStyles(theme => ({
   },
 }))(Badge);
 
-export default function Home() {
+export default function Home(props) {
+
   const offlineNodes = nodes.filter((node) => node.status === 'Offline');
   const onlineNodes = nodes.filter((node) => node.status === 'Online');
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("User is signed in");
+
+    } else {
+      console.log("User is not signed in");
+      props.history.push("/login")
+    }
+  });
 
   return (
     <div className="homePage">

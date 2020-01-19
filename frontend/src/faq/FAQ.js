@@ -22,6 +22,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
 import BottomMenuBar from "../components/BottomMenuBar";
+import firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -43,8 +44,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function FAQ() {
+export default function FAQ(props) {
   const classes = useStyles();
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("User is signed in");
+
+        } else {
+            console.log("User is not signed in");
+            props.history.push("/login")
+        }
+    });
 
   return (
     <>

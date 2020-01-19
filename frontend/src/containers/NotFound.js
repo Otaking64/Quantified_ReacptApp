@@ -1,7 +1,17 @@
 import React from "react";
 import "./NotFound.css";
+import firebase from "firebase";
 
-export default function NotFound() {
+export default function NotFound(props) {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("User is signed in");
+
+        } else {
+            console.log("User is not signed in");
+            props.history.push("/login")
+        }
+    });
   return (
     <div className="NotFound">
       <h3>Sorry, page not found!</h3>

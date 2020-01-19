@@ -10,6 +10,7 @@ import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from
 
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
+import firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -50,6 +51,11 @@ export default function TopMenuBar({
     props.history.push('/login');
   }
 
+  async function signout(){
+    firebase.auth().signOut()
+
+  }
+
   const handleClickExit = () => {
     setOpen(true);
   };
@@ -71,18 +77,6 @@ export default function TopMenuBar({
           <ListItem button key="Profile">
             <ListItemIcon><AccountBoxIcon /></ListItemIcon>
             <ListItemText primary="Profile" />
-          </ListItem>
-        </LinkContainer>
-        <LinkContainer to="/signup">
-          <ListItem button key="Signup">
-            <ListItemIcon><PersonAddIcon /></ListItemIcon>
-            <ListItemText primary="Signup" />
-          </ListItem>
-        </LinkContainer>
-        <LinkContainer to="/login">
-          <ListItem button key="Login">
-            <ListItemIcon><AccountBoxIcon /></ListItemIcon>
-            <ListItemText primary="Login" />
           </ListItem>
         </LinkContainer>
         <LinkContainer to="/">
@@ -112,7 +106,7 @@ export default function TopMenuBar({
       </List>
       <Divider />
       <List>
-        <ListItem button key="Logout" onClick={handleLogout}>
+        <ListItem button key="Logout" onClick={signout}>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItem>

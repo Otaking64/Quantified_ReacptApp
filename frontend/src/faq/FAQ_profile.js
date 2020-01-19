@@ -12,6 +12,7 @@ import TopMenuBar from '../components/TopMenuBar.js'
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
 import BottomMenuBar from "../components/BottomMenuBar";
+import firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -30,9 +31,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function FAQnode() {
+export default function FAQnode(props) {
   const classes = useStyles();
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("User is signed in");
 
+    } else {
+      console.log("User is not signed in");
+      props.history.push("/login")
+    }
+  });
   return (
     <>
       <TopMenuBar block pageName="Node FAQ"

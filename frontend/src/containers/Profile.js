@@ -6,8 +6,18 @@ import dashboardIcon from './icons/dashboard_18dp.png';
 import supportIcon from './icons/support_18dp.png';
 import profileIcon from './icons/account_18dp.png';
 import "./Profile.css";
+import firebase from "firebase";
 
-export default function Profile() {
+export default function Profile(props) {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("User is signed in");
+
+        } else {
+            console.log("User is not signed in");
+            props.history.push("/login")
+        }
+    });
   return (
     <div className="App">
       <header className="header">

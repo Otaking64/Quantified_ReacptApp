@@ -6,6 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input } from '@material-ui/core';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
   inputFieldText: {
@@ -25,6 +26,15 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 export default function NodeInfo(props) {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("User is signed in");
+
+    } else {
+      console.log("User is not signed in");
+      props.history.push("/login")
+    }
+  });
   let nodeId = props.match.params.nodeId;
   const nodes = [
     {

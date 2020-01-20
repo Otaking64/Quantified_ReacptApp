@@ -10,6 +10,9 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import TopMenuBar from "../components/TopMenuBar";
+import firebase from 'firebase';
+import ChartTemp from './ChartTemp'
+import NodeTable from './nodeTable'
 
 const useStyles = makeStyles(theme => ({
   root: {

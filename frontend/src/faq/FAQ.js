@@ -17,7 +17,6 @@ import RouterIcon from '@material-ui/icons/Router';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
-import BottomMenuBar from "../components/BottomMenuBar";
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -120,7 +119,6 @@ export default function FAQ() {
         </Button>
         </ButtonGroup>
       </div>
-      <BottomMenuBar slectedIcon={2} block/>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import nodeIcon from '../icons/node.png';
-import { Grid, Paper, Button, Fab, Box } from '@material-ui/core';
+import { Grid, Paper, Button, Fab, Box, Container } from '@material-ui/core';
 import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from '@material-ui/icons';
 import { withStyles, makeStyles  } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
@@ -107,8 +107,9 @@ export default function Home() {
   return (
     <div className={classes.home}>
       <TopMenuBar block pageName="Home" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
+    <Container>
       <Paper className={classes.homePaper}>
-        <Grid container spacing={0}>
+        <Grid container spacing={0} justify="space-evenly" alignItems="stretch">
           <Grid item xs={6} className={classes.rightBorder}>
             <LinkContainer to="/nodes">
               <Button component="span" className={classes.nodeCount}>
@@ -143,7 +144,7 @@ export default function Home() {
         <Grid item xs={6}>
           <LinkContainer to="/dashboard">
             <Button variant="contained" color="primary" className={classes.button}>
-              <Grid container spacing={0} className={classes.buttonGird}>
+              <Grid container spacing={0} className={classes.buttonGrid}>
                 <Grid item xs={12}>
                   <DashboardIcon className="icon"/>
                 </Grid>
@@ -177,6 +178,7 @@ export default function Home() {
         </LinkContainer>
         </Grid>
       </Grid>
+      </Container>
     </div>
   );
 }

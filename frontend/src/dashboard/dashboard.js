@@ -10,7 +10,6 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import TopMenuBar from "../components/TopMenuBar";
-import BottomMenuBar from '../components/BottomMenuBar';
 import NodeTable from './nodeTable';
 import ChartTemp from './ChartTemp';
 
@@ -46,11 +45,11 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-        <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false}/>
+    <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
       <main className={classes.content}>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <Paper className={fixedHeightPaper}>
                 <Box p={2}>
                   <Typography variant="h6" component="h2">Today</Typography>
@@ -82,7 +81,6 @@ export default function Dashboard() {
           </Grid>
         </Container>
       </main>
-      <BottomMenuBar slectedIcon={1} block/>
     </div>
 
     );

@@ -17,7 +17,7 @@ export default function BottomMenuBar({
       showLabels
       className="bottomMenuBar"
     >
-      <LinkContainer to="/">
+      <LinkContainer to="/nodes">
         <BottomNavigationAction label="Nodes" icon={<HomeIcon className="icon" />} />
       </LinkContainer>
       <LinkContainer to="/dashboard">

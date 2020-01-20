@@ -67,28 +67,16 @@ export default function TopMenuBar({
      color="primary"
     >
       <List>
+        <LinkContainer to="/">
+          <ListItem button key="Home">
+            <ListItemIcon><HomeIcon /></ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </LinkContainer>
         <LinkContainer to="/profile">
           <ListItem button key="Profile">
             <ListItemIcon><AccountBoxIcon /></ListItemIcon>
             <ListItemText primary="Profile" />
-          </ListItem>
-        </LinkContainer>
-        <LinkContainer to="/signup">
-          <ListItem button key="Signup">
-            <ListItemIcon><PersonAddIcon /></ListItemIcon>
-            <ListItemText primary="Signup" />
-          </ListItem>
-        </LinkContainer>
-        <LinkContainer to="/login">
-          <ListItem button key="Login">
-            <ListItemIcon><AccountBoxIcon /></ListItemIcon>
-            <ListItemText primary="Login" />
-          </ListItem>
-        </LinkContainer>
-        <LinkContainer to="/">
-          <ListItem button key="Nodes">
-            <ListItemIcon><HomeIcon /></ListItemIcon>
-            <ListItemText primary="Nodes" />
           </ListItem>
         </LinkContainer>
         <LinkContainer to="/dashboard">

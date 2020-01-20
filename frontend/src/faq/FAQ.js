@@ -48,7 +48,7 @@ export default function FAQ() {
 
   return (
     <>
-      <TopMenuBar block pageName="FAQ" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false}/>
+      <TopMenuBar block pageName="FAQ" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
       <Card className={classes.section1}>
       <LinkContainer to="/faq/node">
         <CardActionArea>

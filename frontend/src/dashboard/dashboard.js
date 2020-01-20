@@ -10,8 +10,6 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import TopMenuBar from "../components/TopMenuBar";
-import NodeTable from './nodeTable';
-import ChartTemp from './ChartTemp';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,7 +35,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log("User is signed in");
+
+      } else {
+        console.log("User is not signed in");
+        props.history.push("/login")
+      }
+  });
   const classes = useStyles();
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)

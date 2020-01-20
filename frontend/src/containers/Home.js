@@ -6,6 +6,7 @@ import { withStyles, makeStyles  } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from "../components/BottomMenuBar";
+import firebase from "firebase";
 
 const nodes = [
   {
@@ -99,10 +100,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Home() {
+export default function Home(props) {
+
   const offlineNodes = nodes.filter((node) => node.status === 'Offline');
   const onlineNodes = nodes.filter((node) => node.status === 'Online');
   const classes = useStyles();
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("User is signed in");
+
+    } else {
+      console.log("User is not signed in");
+      props.history.push("/login")
+    }
+  });
 
   return (
     <div className={classes.home}>

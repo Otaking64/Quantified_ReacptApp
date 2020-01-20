@@ -8,6 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.39",
     "aws-amplify": "^1.2.4",
     "axios": "^0.19.0",
+    "firebase": "^7.7.0",
     "google-maps-react": "^2.0.2",
     "leaflet": "^1.6.0",
     "material-icons": "^0.3.1",

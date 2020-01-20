@@ -15,6 +15,7 @@ import Step_7_Node_Grid from "../steps/Step_7_Node_Grid";
 import Step_8_Node_Add from "../steps/Step_8_Node_Add";
 import Step_9_Node_PositionMount from "../steps/Step_9_Node_PositionMount";
 import Step_10_End from "../steps/Step_10_End";
+import firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
   progressContainer: {
@@ -26,12 +27,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Installation() {
+export default function Installation(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("User is signed in");
 
+    } else {
+      console.log("User is not signed in");
+      props.history.push("/login")
+    }
+  });
   const steps = [<Step_1_Welcome/>, <Step_2_Box/>, <Step_3_Gateway/>, <Step_4_Gateway_PowerSupply/>, <Step_5_Gateway_LAN/>, <Step_6_Node_Amount/>, <Step_7_Node_Grid/>, <Step_8_Node_Add/>, <Step_9_Node_PositionMount/>, <Step_10_End/>];
 
   const handleNext = () => {

@@ -1,19 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Box,
   Divider,
   Typography,
   Card,
   CardHeader,
-  CardContent,
-  CardActions,
   CardActionArea,
   Avatar,
   Button,
   ButtonGroup,
 } from '@material-ui/core';
-import ExpansionCard from '../components/ExpansionPanel.js';
 import TopMenuBar from '../components/TopMenuBar.js'
 import {LinkContainer} from 'react-router-bootstrap';
 import NodeIcon from "../icons/icon_node.js";
@@ -21,7 +17,6 @@ import RouterIcon from '@material-ui/icons/Router';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
-import BottomMenuBar from "../components/BottomMenuBar";
 import firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +53,7 @@ export default function FAQ(props) {
 
   return (
     <>
-      <TopMenuBar block pageName="FAQ" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false}/>
+      <TopMenuBar block pageName="FAQ" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
       <Card className={classes.section1}>
       <LinkContainer to="/faq/node">
         <CardActionArea>
@@ -134,7 +129,6 @@ export default function FAQ(props) {
         </Button>
         </ButtonGroup>
       </div>
-      <BottomMenuBar slectedIcon={2} block/>
     </>
   );
 }

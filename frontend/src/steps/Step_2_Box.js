@@ -1,22 +1,24 @@
 import React from "react";
 import "../containers/Home.css";
 import {
-  Avatar,
+  Box,
   Container,
   Typography,
-  Grid,
   makeStyles,
   List,
   ListItem,
-  ListItemAvatar,
+  ListItemIcon,
   ListItemText,
   Fade,
-  Zoom
+  ButtonGroup,
+  Button,
 } from '@material-ui/core';
 import PowerIcon from '@material-ui/icons/Power';
 import RouterIcon from '@material-ui/icons/Router';
 import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
 import NodeIcon from "../icons/icon_node.js";
+import PhoneIcon from '@material-ui/icons/Phone';
+import MailIcon from '@material-ui/icons/Mail';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -36,60 +38,73 @@ export default function Step2(){
   const classes = useStyles()
   return(
     <Container>
-        <Grid container alignItems="center" justify="center" direction="column">
-          <Fade in="true">
-            <Grid item className={classes.section1}>
-              <Typography variant="h3" align="center">Open the box</Typography>
-              <Typography display="block" variant="body1">
-              In the box are the following items:
+            <Box m={1}>
+              <Typography variant="overline">
+              Installation &#10140; Box
               </Typography>
-            </Grid>
-          </Fade>
-          <Grid item>
+              <Typography variant="h4">
+                Open the box
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom={true}>
+                In the plug and play box are these items:
+              </Typography>
+            </Box>
+            <Fade in={true}>
+            <Box m={1}>
             <List>
-              <Zoom in={true} style={{ transitionDelay: '200ms' }}>
+
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatarColor}>
-                      <RouterIcon color="primary" size="large"/>
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="The Gateway" secondary="The connection between the Nodes and the Internet" />
+                  <ListItemIcon>
+                    <RouterIcon color="primary" size="large"/>
+                  </ListItemIcon>
+                  <ListItemText primary="Gateway" secondary="To connect the nodes" />
                 </ListItem>
-              </Zoom>
-              <Zoom in={true} style={{ transitionDelay: '500ms' }}>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatarColor}>
-                        <NodeIcon width="24px" height="24px" color="primary"/>
-                    </Avatar>
-                  </ListItemAvatar>
+                  <ListItemIcon>
+                    <NodeIcon width="24px" height="24px" color="primary"/>
+                  </ListItemIcon>
                   <ListItemText primary="Nodes" secondary="The sensors that give you insights" />
                 </ListItem>
-              </Zoom>
-              <Zoom in={true} style={{ transitionDelay: '800ms' }}>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatarColor}>
-                      <SettingsEthernetIcon color="primary"/>
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="LAN cable" secondary="To connect the Gateway to the Internet" />
+                  <ListItemIcon>
+                    <SettingsEthernetIcon color="primary"/>
+                  </ListItemIcon>
+                  <ListItemText primary="Ethernet cable" secondary="To connect the gateway to the internet" />
                 </ListItem>
-              </Zoom>
-              <Zoom in={true} style={{ transitionDelay:'1100ms' }}>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatarColor}>
-                      <PowerIcon color="primary"/>
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="Power Supply" secondary="To give the Gateway power" />
+                  <ListItemIcon>
+                    <PowerIcon color="primary"/>
+                  </ListItemIcon>
+                  <ListItemText primary="Power cable" secondary="To give the gateway power" />
                 </ListItem>
-              </Zoom>
             </List>
-          </Grid>
-        </Grid>
+            </Box>
+            </Fade>
+            <Box m={1} align="center">
+              <Typography variant="body1">
+                Is any item missing or not functional?
+              </Typography>
+              <ButtonGroup
+                orientation="horizontal"
+                color="primary"
+                aria-label="vertical outlined primary button group"
+                className={classes.section3}
+              >
+                <Button
+                  startIcon={<PhoneIcon />}
+                  href="tel:+31651775925"
+                >
+                  Call us
+                </Button>
+                <Button
+                  startIcon={<MailIcon />}
+                  href="mailto:info@quantified.eu?Subject=App%20problem"
+                  target="_top"
+                >
+                  Mail us
+                </Button>
+              </ButtonGroup>
+            </Box>
       </Container>
   );
 }

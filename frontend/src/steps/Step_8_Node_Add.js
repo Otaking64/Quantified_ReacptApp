@@ -2,13 +2,9 @@ import React, { Component } from 'react'
 import QrReader from 'react-qr-reader'
 import "../containers/Home.css";
 import {
-    Button,
     Container,
     Typography,
-    Grid,
     Box,
-    LinearProgress,
-    makeStyles,
 } from '@material-ui/core';
 import "../steps/Step.css"
 import firebase from "../firebase";
@@ -81,6 +77,7 @@ export default class step8 extends Component {
                         </Typography>
                     </Grid>
                     <Grid style={{width: "50%"}}>
+
                         <div>
                             <QrReader
                                 delay={300}
@@ -90,7 +87,6 @@ export default class step8 extends Component {
                             />
                             <p>{this.state.result}</p>
                         </div>
-                    </Grid>
                 </Grid>
             </Container>
 

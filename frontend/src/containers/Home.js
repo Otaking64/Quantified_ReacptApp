@@ -1,8 +1,8 @@
 import React from "react";
 import nodeIcon from '../icons/node.png';
-import { Fab, List, ListItem, ListItemText, ListItemAvatar, ListSubheader, Badge, Box } from '@material-ui/core';
-import { withStyles  } from '@material-ui/core/styles';
-import "./Home.css";
+import { Grid, Paper, Button, Fab, Box, Container } from '@material-ui/core';
+import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from '@material-ui/icons';
+import { withStyles, makeStyles  } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from "../components/BottomMenuBar";
@@ -68,21 +68,43 @@ const nodes = [
   },
 ];
 
-const StyledBadge = withStyles(theme => ({
-  badge: {
-    right: -3,
-    top: 30,
-    border: `2px solid ${theme.palette.background.paper}`,
-    padding: '0 2px',
-    height: '15px',
-    minWidth: '15px',
+const useStyles = makeStyles(theme => ({
+  home: {
+    height: '100%'
   },
-}))(Badge);
+  homePaper: {
+    margin: '24px 14px 14px 14px',
+    height: '380px'
+  },
+  buttonGrid: {
+    padding: '0px 14px',
+    textAlign: 'center'
+  },
+  button: {
+    width: '100%',
+    height: '100%'
+  },
+  nodeCount: {
+    width: '100%',
+    textAlign: 'center',
+    fontSize: '2em',
+    color: 'gray',
+    borderBottom: '1px solid #CCCCCC',
+    borderRadius: '0'
+  },
+  rightBorder: {
+    borderRight: '1px solid #CCCCCC',
+  },
+  nodesCountTitle: {
+    fontSize: '0.4em'
+  }
+}));
 
 export default function Home(props) {
 
   const offlineNodes = nodes.filter((node) => node.status === 'Offline');
   const onlineNodes = nodes.filter((node) => node.status === 'Online');
+  const classes = useStyles();
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -95,45 +117,80 @@ export default function Home(props) {
   });
 
   return (
-    <div className="homePage">
+    <div className={classes.home}>
       <TopMenuBar block pageName="Home" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
-      <List id="nodesList" color="primary">
-        <ListSubheader disableSticky='true'>Offline nodes</ListSubheader>
-        {offlineNodes.map((node) =>
-          <LinkContainer to={"/nodeInfo/"+node.id}>
-            <ListItem className="noPadding">
-              <ListItemAvatar>
-                <StyledBadge classes={{ badge: "offline" }} badgeContent=" ">
-                  <img src={ nodeIcon } alt="nodeIcon" className="nodeListNodeIcon" />
-                </StyledBadge>
-              </ListItemAvatar>
-              <ListItemText primary={node.name} secondary={node.group} />
-            </ListItem>
+    <Container>
+      <Paper className={classes.homePaper}>
+        <Grid container spacing={0} justify="space-evenly" alignItems="stretch">
+          <Grid item xs={6} className={classes.rightBorder}>
+            <LinkContainer to="/nodes">
+              <Button component="span" className={classes.nodeCount}>
+                <Grid container spacing={0} className={classes.buttonGrid}>
+                  <Grid item xs={12}>
+                    {onlineNodes.length}/{nodes.length}
+                  </Grid>
+                  <Grid item xs={12} className={classes.nodesCountTitle}>
+                    Online nodes
+                  </Grid>
+                </Grid>
+              </Button>
+            </LinkContainer>
+          </Grid>
+          <Grid item xs={6}>
+            <LinkContainer to="/nodes">
+              <Button component="span" className={classes.nodeCount}>
+                <Grid container spacing={0} className={classes.buttonGrid}>
+                  <Grid item xs={12}>
+                    {offlineNodes.length}/{nodes.length}
+                  </Grid>
+                  <Grid item xs={12} className={classes.nodesCountTitle}>
+                    Offline nodes
+                  </Grid>
+                </Grid>
+              </Button>
+            </LinkContainer>
+          </Grid>
+        </Grid>
+      </Paper>
+      <Grid container spacing={1} className={classes.buttonGrid}>
+        <Grid item xs={6}>
+          <LinkContainer to="/dashboard">
+            <Button variant="contained" color="primary" className={classes.button}>
+              <Grid container spacing={0} className={classes.buttonGrid}>
+                <Grid item xs={12}>
+                  <DashboardIcon className="icon"/>
+                </Grid>
+                <Grid item xs={12}>
+                  Dashboard
+                </Grid>
+              </Grid>
+            </Button>
           </LinkContainer>
-        )}
-        <ListSubheader disableSticky='true'>Online nodes</ListSubheader>
-        {onlineNodes.map((node) =>
-          <LinkContainer to={"/nodeInfo/"+node.id}>
-            <ListItem className="noPadding">
-              <ListItemAvatar>
-                <StyledBadge classes={{ badge: "online" }} badgeContent=" ">
-                  <img src={ nodeIcon } alt="nodeIcon" className="nodeListNodeIcon" />
-                </StyledBadge>
-              </ListItemAvatar>
-              <ListItemText primary={node.name} secondary={node.group} />
-            </ListItem>
+        </Grid>
+        <Grid item xs={6}>
+          <LinkContainer to="/faq">
+            <Button variant="contained" color="primary" className={classes.button}>
+              <Grid container spacing={0} className={classes.buttonGrid}>
+                <Grid item xs={12}>
+                  <ContactSupportIcon className="icon"/>
+                </Grid>
+                <Grid item xs={12}>
+                  FAQ
+                </Grid>
+              </Grid>
+            </Button>
           </LinkContainer>
-        )}
-      </List>
-      <Box className="contentCentered">
+        </Grid>
+        <Grid item xs={12}>
         <LinkContainer to="/installation">
-          <Fab size="large" variant="extended" color="primary" className="nodeOptionsButton">
+          <Button variant="contained" size="large" color="primary" color="primary" className={classes.button}>
             <img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" />
-          Start Installation
-          </Fab>
+            Start Installation
+          </Button>
         </LinkContainer>
-      </Box>
-      <BottomMenuBar slectedIcon={0} block/>
+        </Grid>
+      </Grid>
+      </Container>
     </div>
   );
 }

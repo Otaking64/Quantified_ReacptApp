@@ -1,11 +1,42 @@
 import React from "react";
 import validateLogin from "./validateLogin";
+import {LinkContainer} from 'react-router-bootstrap';
 import useFormValidation from "./useFormValidation";
 import TopMenuBar from "../components/TopMenuBar";
 import firebase from "../firebase";
 import Firebase from 'firebase'
+import {
+  Button,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Typography,
+  Container,
+  makeStyles,
+  Grid,
+  Link,
+  CssBaseline
+} from '@material-ui/core';
 
-
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 const INITIAL_STATE ={
     name: "",
@@ -14,6 +45,7 @@ const INITIAL_STATE ={
 }
 
 function Login(props) {
+    const classes = useStyles();
     const {handleSubmit, handleBlur, handleChange, values, errors, isSubmitting} = useFormValidation(
         INITIAL_STATE,
         validateLogin,
@@ -34,7 +66,7 @@ function Login(props) {
 
     const[login, setLogin] = React.useState(true);
     const [firebaseError, setFirebaseError] = React.useState(null)
-    
+
     async function authenticateUser() {
         const {name, email, password} = values
 
@@ -52,52 +84,92 @@ function Login(props) {
     }
     return (
 
-        <div>
-            <TopMenuBar block pageName="Login" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
-            <h2 className="mv3">{login ? "login" : "Create Account"}</h2>
-            <form  onSubmit={handleSubmit} className="flex flex-column">
-                {!login && (<input
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+            <TopMenuBar block pageName="Quantified Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
+
+            <div className={classes.paper}>
+            <Typography component="h1" variant="h5">{login ? "Sign in" : "Create Account"}</Typography>
+            <form  onSubmit={handleSubmit} className={classes.form} noValidate>
+                {!login && (<TextField
                     onChange={handleChange}
                     value={values.name}
                     name="name"
+                    variant="outlined"
                     type="text"
-                    placeholder="Your name"
+                    label="Your name"
                     autoComplete="on"
+                    fullWidth
+                    margin="normal"
+                    required
+                    autoFocus
                 />)}
-                <input
+                <TextField
                     onChange={handleChange}
                     onBlur={handleBlur}
                     name="email"
+                    variant="outlined"
+                    label="Email Address"
+                    id="email"
+                    fullWidth
+                    margin="normal"
+                    required
                     value={values.email}
                     type="email"
-                    className={errors.email && 'error-input'}
-                    placeholder="Your email"
-                    autoComplete="on"
+                    autoComplete="email"
+                    autoFocus
+                    error={errors.email}
+                    helperText={errors.email ? errors.email : ' '}
                 />
-                {errors.email && <p className="error-text">{errors.email}</p>}
-                <input
+                <TextField
                     onChange={handleChange}
                     name="password"
+                    variant="outlined"
+                    id="password"
+                    margin="normal"
+                    label="Password"
+                    fullWidth
+                    required
+                    type="password"
                     onBlur={handleBlur}
                     value={values.password}
-                    type="password"
-                    className={errors.password && 'error-input'}
-                    placeholder="Choose a secure password"
-
+                    autoComplete="current-password"
+                    error={errors.password}
+                    helperText={errors.password ? errors.password : ' '}
                 />
-                {errors.password && <p className="error-text">{errors.password}</p>}
                 {firebaseError && <p className="error-text">{firebaseError}</p> }
-                <div className="flex mt3">
-                    <button type="submit" className="button pointer mr2" disabled={isSubmitting} style={{ background : isSubmitting ? "grey" : "orange"}}>
-                        Submit
-                    </button>
-                    <button type="button" className="pointer button"
-                            onClick={() => setLogin(prevLogin => !prevLogin)}>
-                        {login ? "Register" : "Already have an account?"}
-                    </button>
-                </div>
+                {login && (<FormControlLabel
+                  control={<Checkbox value="remember" color="primary"/>}
+                  label="Remember me"
+                />)}
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  disabled={isSubmitting}
+                  className={classes.submit}
+                >
+                    Submit
+                </Button>
+                    <Grid container>
+                      <Grid item xs>
+                        <LinkContainer to="/forgotpassword">
+                          <Link variant="body2">
+                              Forgot password?
+                          </Link>
+                        </LinkContainer>
+                      </Grid>
+                      <Grid item xs>
+                        <Link variant="body2"
+                                onClick={() => setLogin(prevLogin => !prevLogin)}>
+                            {login ? "Register" : "Already have an account?"}
+                        </Link>
+                      </Grid>
+                    </Grid>
             </form>
-        </div>
+          </div>
+        </Container>
     );
 }
 

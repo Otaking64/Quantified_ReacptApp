@@ -4,11 +4,10 @@ import "../containers/Home.css";
 import {
     Container,
     Typography,
-    Box,
     Grid
 } from '@material-ui/core';
 import "../steps/Step.css"
-import firebase from "firebase";
+import firebase from "../firebase";
 import Firebase from "firebase"
 
 export default class step8 extends Component {

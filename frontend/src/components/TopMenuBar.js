@@ -5,8 +5,8 @@ import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
-import { ArrowBack as ArrowBackIcon, Close as CloseIcon, PersonAdd as PersonAddIcon, Home as HomeIcon, Menu as MenuIcon, AccountBox as AccountBoxIcon, ExitToApp as ExitToAppIcon } from '@material-ui/icons';
-import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from '@material-ui/icons';
+import { ArrowBack as ArrowBackIcon, Close as CloseIcon, Home as HomeIcon, Menu as MenuIcon, AccountBox as AccountBoxIcon, ExitToApp as ExitToAppIcon } from '@material-ui/icons';
+import { ContactSupport as ContactSupportIcon } from '@material-ui/icons';
 
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
@@ -83,24 +83,6 @@ export default function TopMenuBar({
           <ListItem button key="Profile">
             <ListItemIcon><AccountBoxIcon /></ListItemIcon>
             <ListItemText primary="Profile" />
-          </ListItem>
-        </LinkContainer>
-        <LinkContainer to="/">
-          <ListItem button key="Nodes">
-            <ListItemIcon><HomeIcon /></ListItemIcon>
-            <ListItemText primary="Nodes" />
-          </ListItem>
-        </LinkContainer>
-        <LinkContainer to="/dashboard">
-          <ListItem button key="Dashboard">
-            <ListItemIcon><DashboardIcon /></ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-        </LinkContainer>
-        <LinkContainer to="/faq">
-          <ListItem button key="FAQ">
-            <ListItemIcon><ContactSupportIcon /></ListItemIcon>
-            <ListItemText primary="FAQ" />
           </ListItem>
         </LinkContainer>
         <LinkContainer to="/installation">

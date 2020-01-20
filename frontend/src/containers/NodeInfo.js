@@ -2,7 +2,6 @@ import React from "react";
 import "./NodeInfo.css";
 import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from "../components/BottomMenuBar";
-import { LinkContainer } from "react-router-bootstrap";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";

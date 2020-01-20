@@ -125,7 +125,7 @@ export default function Nodes() {
       </Paper>
       <Box className="buttonContainer">
         <LinkContainer to="/installation">
-          <Button variant="contained" size="large" color="primary" color="primary" className={classes.button}>
+          <Button variant="contained" size="large" color="primary" className={classes.button}>
             <img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" />
             Start Installation
           </Button>

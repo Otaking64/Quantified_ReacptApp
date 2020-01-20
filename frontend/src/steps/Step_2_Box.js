@@ -10,6 +10,7 @@ import {
   ListItemIcon,
   ListItemText,
   Fade,
+  Divider,
   ButtonGroup,
   Button,
 } from '@material-ui/core';
@@ -80,10 +81,13 @@ export default function Step2(){
             </List>
             </Box>
             </Fade>
-            <Box m={1} align="center">
-              <Typography variant="body1">
+            <Divider />
+            <Box m={1}>
+              <Typography variant="body2">
                 Is any item missing or not functional?
               </Typography>
+            </Box>
+            <Box m={1}>
               <ButtonGroup
                 orientation="horizontal"
                 color="primary"

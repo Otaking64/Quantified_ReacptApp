@@ -12,7 +12,8 @@ import FAQgeneral from "./faq/FAQ";
 import FAQnode from "./faq/FAQ_node"
 import firebase, { FirebaseContext } from "firebase";
 import useAuth from "./auth/useAuth";
-import forgot from "./auth/forgotpass"
+import forgot from "./auth/forgotpass";
+import Profile from './containers/Profile';
 
 export default function Routes({ appProps }) {
     const user = useAuth()
@@ -24,19 +25,20 @@ export default function Routes({ appProps }) {
       <Route path="/nodes" exact component={Nodes} />
       <Route path="/login" exact component={Login} />
       <AppliedRoute path="/login" exact component={Login} appProps={appProps} />
-        <Route path="/forgotpassword" exact component={forgot} />
-        <AppliedRoute path="/forgotpassword" exact component={forgot} appProps={appProps} />
+      <Route path="/forgotpassword" exact component={forgot} />
+      <AppliedRoute path="/forgotpassword" exact component={forgot} appProps={appProps} />
       <Route path="/nodeInfo/:nodeId" exact component={NodeInfo} />
       <AppliedRoute path="/nodeInfo/:nodeId" exact component={NodeInfo} appProps={appProps} />
       <Route path="/installation" exact component={Installation} />
       <AppliedRoute path="/installation" exact component={Installation} appProps={appProps} />
       <Route path="/dashboard" exact component={Dashboard} />
       <AppliedRoute path="/dashboard" exact component={Dashboard} appProps={appProps} />
-    <Route path="/faq" exact component={FAQgeneral} />
-    <AppliedRoute path="/faq" exact component={FAQgeneral} appProps={appProps} />
-  <Route path="/faq/node" exact component={FAQnode} />
-<AppliedRoute path="/faq/node" exact component={FAQnode} appProps={appProps} />
-
+      <Route path="/faq" exact component={FAQgeneral} />
+      <AppliedRoute path="/faq" exact component={FAQgeneral} appProps={appProps} />
+      <Route path="/faq/node" exact component={FAQnode} />
+      <AppliedRoute path="/faq/node" exact component={FAQnode} appProps={appProps} />
+    <Route path="/profile" exact component={Profile} />
+  <AppliedRoute path="/profile" exact component={Profile} appProps={appProps} />
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />
     </Switch>

@@ -5,20 +5,7 @@ import {
     Typography,
     Box,
 } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import NodeIcon from "../icons/icon_node";
 import NumericInput from 'react-numeric-input';
-
-let nodequant = 1;
-
-const quanthandler = (direction) => {
-    if(direction === "up"){
-        nodequant += 1;
-    }else{
-        nodequant -= 1;
-    }
-}
 
 export default function Step6(){
     return(

@@ -1,11 +1,10 @@
-import React, {Component} from "react";
+import React from "react";
 import "../containers/Home.css";
 import {
     Container,
     Typography,
     Box,
 } from '@material-ui/core';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 

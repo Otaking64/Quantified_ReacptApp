@@ -6,7 +6,6 @@ import { withStyles, makeStyles  } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from "../components/BottomMenuBar";
-import firebase from "firebase";
 
 const nodes = [
   {
@@ -73,7 +72,6 @@ const useStyles = makeStyles(theme => ({
     height: '100%'
   },
   homePaper: {
-    margin: '24px 14px 14px 14px',
     height: '380px'
   },
   buttonGrid: {
@@ -100,26 +98,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Home(props) {
-
+export default function Home() {
   const offlineNodes = nodes.filter((node) => node.status === 'Offline');
   const onlineNodes = nodes.filter((node) => node.status === 'Online');
   const classes = useStyles();
 
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      console.log("User is signed in");
-
-    } else {
-      console.log("User is not signed in");
-      props.history.push("/login")
-    }
-  });
-
   return (
-    <div className={classes.home}>
-      <TopMenuBar block pageName="Home" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
     <Container>
+      <TopMenuBar block pageName="Home" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
       <Paper className={classes.homePaper}>
         <Grid container spacing={0} justify="space-evenly" alignItems="stretch">
           <Grid item xs={6} className={classes.rightBorder}>
@@ -156,7 +142,7 @@ export default function Home(props) {
         <Grid item xs={6}>
           <LinkContainer to="/dashboard">
             <Button variant="contained" color="primary" className={classes.button}>
-              <Grid container spacing={0} className={classes.buttonGrid}>
+              <Grid container spacing={0} className={classes.buttonGird}>
                 <Grid item xs={12}>
                   <DashboardIcon className="icon"/>
                 </Grid>
@@ -191,6 +177,5 @@ export default function Home(props) {
         </Grid>
       </Grid>
       </Container>
-    </div>
   );
 }

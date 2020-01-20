@@ -32,9 +32,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#599AD5"
   },
   buttonSuccess: {
-    backgroundColor: green[500],
+    backgroundColor: '#00A49B',
     '&:hover': {
-      backgroundColor: green[700],
+      backgroundColor: '#00A49B',
     },
     //disabled: 'true'
   },
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 export default function Step4(){
   const classes = useStyles()
   const [loading, setLoading] = React.useState(false);
-  const [succes, setSucces] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
   const timer = React.useRef();
   const [open, setOpen] = React.useState(false);
 
@@ -69,7 +69,7 @@ export default function Step4(){
 
 
   const buttonClassname = clsx({
-    [classes.buttonSuccess]: succes,
+    [classes.buttonSuccess]: success,
   });
 
   React.useEffect(() => {
@@ -80,12 +80,12 @@ export default function Step4(){
 
   const handleButtonClick = () => {
     if(!loading){
-      setSucces(false);
+      setSuccess(false);
       setLoading(true);
       timer.current = setTimeout(() =>{
-        setSucces(true);
+        setSuccess(true);
         setLoading(false);
-        setOpen(false)
+        setOpen(true);
       }, 2000);
     }
   };
@@ -109,7 +109,7 @@ export default function Step4(){
         </Fade>
         <Box>
           <List>
-            <Zoom in={true} style={{ transitionDelay:'200ms' }}>
+            <Zoom in={true}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatarColor}>
@@ -119,7 +119,7 @@ export default function Step4(){
                 <ListItemText primary="Pick up the power supply in the provided box" />
               </ListItem>
             </Zoom>
-            <Zoom in={true} style={{ transitionDelay:'500ms' }}>
+            <Zoom in={true}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatarColor}>
@@ -129,7 +129,7 @@ export default function Step4(){
                 <ListItemText primary="Plug the power supply in your local power outlet" />
               </ListItem>
             </Zoom>
-            <Zoom in={true} style={{ transitionDelay:'800ms' }}>
+            <Zoom in={true}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatarColor}>
@@ -149,7 +149,8 @@ export default function Step4(){
             disabled={loading}
             onClick={handleButtonClick}
             >
-            Check gateway power
+            {!success && 'Check gateway power' }
+            {success && 'Gateway is connected' }
           </Button>
           {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
           <Snackbar
@@ -159,7 +160,7 @@ export default function Step4(){
             className={classes.snackbar}
           >
           <SnackbarContent
-            message="Gateway is connected"
+            message="Gateway powered on"
             className={classes.snackColor}
           />
           </Snackbar>

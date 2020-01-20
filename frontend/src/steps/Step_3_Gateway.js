@@ -16,16 +16,15 @@ export default function Step3(){
             <Typography variant="overline">
             Installation &#10140; Gateway
             </Typography>
-            <Typography variant="h4">Gateway preparations</Typography>
+            <Typography variant="h4" gutterBottom>Gateway preparations</Typography>
             <Typography display="block" variant="body1">
-              The gateway is needed to connect the nodes to the system. In the following steps we will setup the gateway for use.
+              Before we are going to connect the gateway, make sure that you have set-up the following in your local network:
             </Typography>
-            <RouterIcon color="black" />
           </Box>
         </Fade>
           <Box m={1}>
             <Typography variant="body1">
-              Locate the box marked with the following gateway Icon as seen above.
+
             </Typography>
           </Box>
     </Container>

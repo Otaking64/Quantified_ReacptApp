@@ -35,7 +35,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: green[500],
     '&:hover': {
       backgroundColor: green[700],
-    }
+    },
+    //disabled: 'true'
   },
   buttonProgress: {
     color: green[500],
@@ -84,8 +85,8 @@ export default function Step4(){
       timer.current = setTimeout(() =>{
         setSucces(true);
         setLoading(false);
-        setOpen(true)
-      }, 2000)
+        setOpen(false)
+      }, 2000);
     }
   };
 
@@ -144,7 +145,7 @@ export default function Step4(){
           <Button
             variant="contained"
             color="primary"
-            className={classes.buttonClassname}
+            className={buttonClassname}
             disabled={loading}
             onClick={handleButtonClick}
             >

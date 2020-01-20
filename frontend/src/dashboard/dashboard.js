@@ -1,59 +1,89 @@
-import React, { Component } from "react";
-import Chart from "react-apexcharts";
-import { Grid } from '@material-ui/core';
+import React from "react";
+import clsx from 'clsx';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import {
+  Container,
+  Box,
+  Grid,
+  Paper,
+  Typography,
+  makeStyles,
+} from '@material-ui/core';
 import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from '../components/BottomMenuBar';
+import NodeTable from './nodeTable';
+import ChartTemp from './ChartTemp';
 
-class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      options: {
-        chart: {
-          id: "basic-bar"
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-        }
-      },
-      series: [
-        {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91]
-        }
-      ]
-    };
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+  },
+  fixedHeight: {
+    height: 240
+  },
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
   }
-  render() {
-    return (
-      <>
-      <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false}/>
-        <Grid container direction="column" alignItems="center">
-          <Grid item>
-            <div className="mixed-chart" align="center">
-              <Chart
-                options={this.state.options}
-                series={this.state.series}
-                type="bar"
-              />
-              <Chart
-                options={this.state.options}
-                series={this.state.series}
-                type="bar"
-              />
-              <Chart
-                options={this.state.options}
-                series={this.state.series}
-                type="bar"
-              />
-            </div>
+}));
+
+export default function Dashboard() {
+  const classes = useStyles();
+
+  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
+
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+        <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false}/>
+      <main className={classes.content}>
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Paper className={fixedHeightPaper}>
+                <Box p={2}>
+                  <Typography variant="h6" component="h2">Today</Typography>
+                  <ChartTemp />
+                </Box>
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper className={fixedHeightPaper}>
+                <Box p={2}>
+                  <Typography variant="h6" component="h2">Node status</Typography>
+
+                </Box>
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper className={fixedHeightPaper}>
+                  <Box p={1}>
+                  </Box>
+                </Paper>
+              </Grid>
+            <Grid item xs={6}>
+              <Paper className={fixedHeightPaper}>
+                <Box p={1}>
+                  <NodeTable />
+                </Box>
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
-        <BottomMenuBar slectedIcon={1} block/>
-      </>
+        </Container>
+      </main>
+      <BottomMenuBar slectedIcon={1} block/>
+    </div>
+
     );
   }
-}
-
-export default Dashboard;

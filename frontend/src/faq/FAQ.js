@@ -1,19 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Box,
   Divider,
   Typography,
   Card,
   CardHeader,
-  CardContent,
-  CardActions,
   CardActionArea,
   Avatar,
   Button,
   ButtonGroup,
 } from '@material-ui/core';
-import ExpansionCard from '../components/ExpansionPanel.js';
 import TopMenuBar from '../components/TopMenuBar.js'
 import {LinkContainer} from 'react-router-bootstrap';
 import NodeIcon from "../icons/icon_node.js";

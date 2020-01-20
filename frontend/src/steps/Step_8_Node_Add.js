@@ -25,9 +25,29 @@ export default class step8 extends Component {
 
     handleScan = data => {
         if (data) {
-            this.setState({
-                result: data
-            })
+            try {
+                var nodedata = JSON.parse(data);
+                console.log(nodedata);
+                if(nodedata.hasOwnProperty("quantified")){
+                    console.log("Quantified")
+                    this.setState({
+                        result: "Node Scanned!"
+                    });
+
+
+                }else{
+                    this.setState({
+                        result: "Can't find node QR code"
+                    });
+                }
+            }catch (e) {
+                console.log(e);
+                this.setState({
+                    result: "Can't find node QR code"
+                });
+            }
+
+
             setTimeout(() => {qrwidth = "0%"}, 2000);
         }
     }

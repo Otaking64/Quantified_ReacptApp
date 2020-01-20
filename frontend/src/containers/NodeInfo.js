@@ -4,12 +4,21 @@ import TopMenuBar from "../components/TopMenuBar";
 import BottomMenuBar from "../components/BottomMenuBar";
 import { LinkContainer } from "react-router-bootstrap";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input } from '@material-ui/core';
+import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 const useStyles = makeStyles(theme => ({
   inputFieldText: {
     fontSize: "1em"
+  },
+  saveButton: {
+    marginRight: '16px',
+    marginTop: '10px'
+  },
+  deleteButton: {
+    color: '#FF0000',
+    borderColor: '#FF0000',
+    marginTop: '10px'
   }
 }));
 
@@ -101,9 +110,17 @@ export default function NodeInfo(props) {
     //update the database by sending the new value to the API
   }
 
+  async function deleteNode() {
+    //Delete the node in the database
+  };
+
+  async function saveNode() {
+    //Delete the node in the database
+  };
+
   return (
     <div className="nodInfoPage">
-      <TopMenuBar block pageName={"Node info"} hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
+      <TopMenuBar block pageName={"Node info"} hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/nodes"/>
       <BottomMenuBar slectedIcon={0} block/>
       <List>
         <ListItem>
@@ -112,13 +129,13 @@ export default function NodeInfo(props) {
         <ListItem>
           <FormControl>
             <InputLabel htmlFor="component-simple">Name</InputLabel>
-            <Input id="component-simple" value={selectedNode.name} className={classes.inputFieldText} onChange={handleChange} />
+            <Input id="component-simple" defaultValue={selectedNode.name} className={classes.inputFieldText} />
           </FormControl>
         </ListItem>
         <ListItem>
           <FormControl>
             <InputLabel htmlFor="component-simple">Group</InputLabel>
-            <Input id="component-simple" value={selectedNode.group} className={classes.inputFieldText} onChange={handleChange} />
+            <Input id="component-simple" defaultValue={selectedNode.group} className={classes.inputFieldText} />
           </FormControl>
         </ListItem>
         <ListItem>
@@ -137,6 +154,14 @@ export default function NodeInfo(props) {
               mapElement={<div style={{ height: '100%' }} />}
           />
           <p className="coordinates">X:{selectedNode.x} Y:{selectedNode.y} Z:{selectedNode.z}</p>
+        </ListItem>
+        <ListItem>
+          <Button variant="contained" color="primary" className={classes.saveButton} onClick={saveNode()}>
+            Save
+          </Button>
+          <Button variant="outlined" className={classes.deleteButton} onClick={deleteNode()}>
+            Delete
+          </Button>
         </ListItem>
       </List>
     </div>

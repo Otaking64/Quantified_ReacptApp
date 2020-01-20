@@ -28,7 +28,7 @@ class Dashboard extends Component {
   render() {
     return (
       <>
-      <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={false}/>
+      <TopMenuBar block pageName="Dashboard" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
         <Grid container direction="column" alignItems="center">
           <Grid item>
             <div className="mixed-chart" align="center">

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./TopMenuBar.css";
-import nodeIcon from '../icons/node.png';
+import NodeIcon from '../icons/icon_node';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
 import { ArrowBack as ArrowBackIcon, Close as CloseIcon, Home as HomeIcon, Menu as MenuIcon, AccountBox as AccountBoxIcon, ExitToApp as ExitToAppIcon } from '@material-ui/icons';
-import { ContactSupport as ContactSupportIcon } from '@material-ui/icons';
+import HelpIcon from '@material-ui/icons/Help';
+import BuildIcon from '@material-ui/icons/Build';
 
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
@@ -88,13 +89,19 @@ export default function TopMenuBar({
         </LinkContainer>
         <LinkContainer to="/installation">
           <ListItem button key="Add nodes">
-            <ListItemIcon><img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" /></ListItemIcon>
+            <ListItemIcon><NodeIcon color="black"/></ListItemIcon>
             <ListItemText primary="Add nodes" />
+          </ListItem>
+        </LinkContainer>
+        <LinkContainer to="/installation">
+          <ListItem button key="Installation">
+            <ListItemIcon><BuildIcon color="black"/></ListItemIcon>
+          <ListItemText primary="Installation" />
           </ListItem>
         </LinkContainer>
         <LinkContainer to="/faq">
           <ListItem button key="FAQ">
-            <ListItemIcon><ContactSupportIcon /></ListItemIcon>
+            <ListItemIcon><HelpIcon /></ListItemIcon>
             <ListItemText primary="FAQ" />
           </ListItem>
         </LinkContainer>
@@ -106,6 +113,7 @@ export default function TopMenuBar({
           <ListItemText primary="Logout" />
         </ListItem>
       </List>
+
     </div>
   );
 
@@ -170,7 +178,7 @@ export default function TopMenuBar({
             : faqButton ?
               <LinkContainer to="/faq">
                 <IconButton edge="end" color="inherit">
-                  <ContactSupportIcon className="icon"/>
+                  <HelpIcon className="icon"/>
                 </IconButton>
               </LinkContainer>
             : "" }

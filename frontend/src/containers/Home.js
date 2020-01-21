@@ -1,11 +1,12 @@
 import React from "react";
-import nodeIcon from '../icons/node.png';
-import { Grid, Paper, Button, Fab, Box, Container } from '@material-ui/core';
+import "./Installation.css";
+import NodeIcon from '../icons/icon_node';
+import { Grid, Paper, Button, Fab, Box, Divider, Container, Typography } from '@material-ui/core';
 import { Dashboard as DashboardIcon } from '@material-ui/icons';
-import { withStyles, makeStyles  } from '@material-ui/core/styles';
+import { makeStyles  } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
-import BottomMenuBar from "../components/BottomMenuBar";
+import FakeTemp from "../components/fakeTemp";
 
 const nodes = [
   {
@@ -68,33 +69,59 @@ const nodes = [
 ];
 
 const useStyles = makeStyles(theme => ({
-  home: {
-    height: '100%'
+  root:{
+    flexGrow: 1,
+    minHeight: '100vh',
+    minWidth: '100vw',
+    display: 'flex',
+    position: 'absolute',
+    bottom: 0,
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    alignContent: 'stretch',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
-  homePaper: {
-    height: '380px'
-  },
-  buttonGrid: {
-    padding: '0px 14px',
-    textAlign: 'center'
-  },
-  button: {
+  height: {
+    height: '100%',
     width: '100%',
-    height: '100%'
+    margin: 0,
+    padding: 0,
+    zIndex: 0,
   },
-  nodeCount: {
+  width:{
+    maxWidth:'100%',
     width: '100%',
-    textAlign: 'center',
-    fontSize: '2em',
-    color: 'gray',
-    borderBottom: '1px solid #CCCCCC',
-    borderRadius: '0'
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    padding: theme.spacing(2)
   },
-  rightBorder: {
-    borderRight: '1px solid #CCCCCC',
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch'
   },
-  nodesCountTitle: {
-    fontSize: '0.4em'
+  stretchGrid: {
+    height: '100%',
+    width: '100%',
+  },
+  topButton:{
+    minWidth: '100%',
+    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(10),
+  },
+  allButton:{
+    marginBottom: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2)
+  },
+  remMargin: {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
+  largeIcon: {
+    width:'35px',
+    height: '35px'
   }
 }));
 
@@ -104,70 +131,72 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <Container>
-      <TopMenuBar block pageName="Home" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
-      <Paper className={classes.homePaper}>
-        <Grid container spacing={0} justify="space-evenly" alignItems="stretch">
-          <Grid item xs={6} className={classes.rightBorder}>
-            <LinkContainer to="/nodes">
-              <Button component="span" className={classes.nodeCount}>
-                <Grid container spacing={0} className={classes.buttonGrid}>
-                  <Grid item xs={12}>
-                    {onlineNodes.length}/{nodes.length}
+    <main>
+    <header>
+      <TopMenuBar
+      block pageName="Home" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
+      </header>
+      <body className={classes.height}>
+        <div className={classes.root}>
+          <Box display="flex"
+            flexGrow={3}
+            className={classes.topButton}
+            >
+              <Paper className={classes.width}>
+                <Box p={1}>
+                  <Typography align="center" variant="h5" gutterBottom>
+                    OVERVIEW
+                  </Typography>
+                    <Divider fullWidth/>
+                  <Typography variant="h6">
+                    Actual temperature:
+                  </Typography>
+                  <Typography variant="body2" gutterBottom>
+                    <FakeTemp />
+                  </Typography>
+                  <Typography variant="h6">
+                    Online nodes:
+                  </Typography>
+                  <Typography variant="body2">
+                    15 nodes online
+                  </Typography>
+                </Box>
+              </Paper>
+            </Box>
+            <Box
+              display="flex"
+              flexGrow={1}
+              style={{width: '100vw',
+                    maxWidth: '100%',
+                    }}
+              >
+                <Grid container>
+                  <Grid item container xs={12} spacing={2} className={classes.allButton}>
+                    <Grid item xs={6} md={12} lg={12} align="center">
+                      <LinkContainer to="/dashboard">
+                        <Button variant="outlined" color="primary" className={classes.stretchGrid}>
+                          <div>
+                          <DashboardIcon fontSize="large"/>
+                          <Typography variant="h6">Dashboard</Typography>
+                          </div>
+                        </Button>
+                        </LinkContainer>
+                      </Grid>
+                    <Grid item xs={6} md={12} lg={12} align="center">
+                      <LinkContainer to="/nodes">
+                        <Button variant="outlined" size="large" color="primary" className={classes.stretchGrid}>
+                          <div>
+                          <NodeIcon className={classes.largeIcon}/>
+                          <Typography variant="h6">Nodes</Typography>
+                          </div>
+                        </Button>
+                      </LinkContainer>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12} className={classes.nodesCountTitle}>
-                    Online nodes
-                  </Grid>
                 </Grid>
-              </Button>
-            </LinkContainer>
-          </Grid>
-          <Grid item xs={6}>
-            <LinkContainer to="/nodes">
-              <Button component="span" className={classes.nodeCount}>
-                <Grid container spacing={0} className={classes.buttonGrid}>
-                  <Grid item xs={12}>
-                    {offlineNodes.length}/{nodes.length}
-                  </Grid>
-                  <Grid item xs={12} className={classes.nodesCountTitle}>
-                    Offline nodes
-                  </Grid>
-                </Grid>
-              </Button>
-            </LinkContainer>
-          </Grid>
-        </Grid>
-      </Paper>
-      <Grid container spacing={1} className={classes.buttonGrid}>
-        <Grid item xs={6}>
-          <LinkContainer to="/dashboard">
-            <Button variant="contained" color="primary" className={classes.button}>
-              <Grid container spacing={0} className={classes.buttonGrid}>
-                <Grid item xs={12}>
-                  <DashboardIcon className="icon"/>
-                </Grid>
-                <Grid item xs={12}>
-                  Dashboard
-                </Grid>
-              </Grid>
-            </Button>
-          </LinkContainer>
-        </Grid>
-        <Grid item xs={6}>
-          <LinkContainer to="/installation">
-            <Button variant="contained" color="primary" className={classes.button}>
-              <Grid container spacing={0} className={classes.buttonGrid}>
-                <Grid item xs={12}>
-                  <img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" />
-                </Grid>
-                <Grid item xs={12}>
-                  Add nodes
-                </Grid>
-              </Grid>
-            </Button>
-          </LinkContainer>
-        </Grid>
-      </Grid>
-      </Container>
+              </Box>
+          </div>
+      </body>
+      </main>
   );
 }

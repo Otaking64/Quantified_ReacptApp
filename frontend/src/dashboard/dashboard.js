@@ -7,12 +7,15 @@ import {
   Grid,
   Paper,
   Typography,
+  Divider,
   makeStyles,
 } from '@material-ui/core';
 import TopMenuBar from "../components/TopMenuBar";
 import firebase from 'firebase';
 import ChartTemp from './ChartTemp'
 import NodeTable from './nodeTable'
+import FakeTemp from '../components/fakeTemp'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,6 +38,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
+  },
+  divider: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   }
 }));
 
@@ -48,6 +55,7 @@ export default function Dashboard(props) {
         props.history.push("/login")
       }
   });
+
   const classes = useStyles();
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
@@ -59,29 +67,34 @@ export default function Dashboard(props) {
       <main className={classes.content}>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <Grid item md={6} xs={12}>
+            <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <Box p={2}>
-                  <Typography variant="h6" component="h2">Today</Typography>
                   <ChartTemp />
-                </Box>
               </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <Paper className={fixedHeightPaper}>
-                <Box p={2}>
-                  <Typography variant="h6" component="h2">Node status</Typography>
-
+                <Box p={1}>
+                  <Typography variant="h6" component="h2">Current temperature</Typography>
+                  <Typography variant="h2"><FakeTemp />&#x2103;</Typography>
+                  <Divider className={classes.divider}/>
+                  <Typography variant="h6">Advice</Typography>
+                  <Typography variant="body2">Temperature is too high</Typography>
                 </Box>
               </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <Paper className={fixedHeightPaper}>
                   <Box p={1}>
+                    <Typography variant="h6" component="h2">Light strenght</Typography>
+                    <Typography variant="h2">8000 lux</Typography>
+                    <Divider className={classes.divider}/>
+                    <Typography variant="h6">Advice</Typography>
+                    <Typography variant="body2">Light is optimal</Typography>
                   </Box>
                 </Paper>
               </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
                 <Box p={1}>
                   <NodeTable />

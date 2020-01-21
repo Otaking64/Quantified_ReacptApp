@@ -51,6 +51,10 @@ export default function Installation(props) {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
+  const hadleExit = () => {
+    props.history.push('/');
+  };
+
   return (
     <Container>
       <TopMenuBar block pageName="" faqButton={true} hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={true} backButton={false} backRoutePage="/"/>
@@ -64,10 +68,15 @@ export default function Installation(props) {
           activeStep={activeStep}
           className={classes.ProgressBar}
           nextButton={
-            <Button size="small" onClick={handleNext} disabled={activeStep === (steps.length-1)}>
-              Next
-              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </Button>
+            activeStep+1 == steps.length ?
+              <Button size="small" onClick={hadleExit} style={{color:'red'}}>
+                Exit
+              </Button>
+            :
+              <Button size="small" onClick={handleNext} disabled={activeStep === (steps.length-1)}>
+                Next
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              </Button>
           }
           backButton={
             <Button size="small" onClick={handleBack} disabled={activeStep === 0}>

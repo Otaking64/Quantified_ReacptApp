@@ -5,25 +5,40 @@ import {
     Container,
     Typography,
     Box,
-    Grid,
-    SnackbarContent,
-    Snackbar
+    Grid, SnackbarContent, Snackbar, TextField, Button
 } from '@material-ui/core';
 import "../steps/Step.css"
-import firebase from "../firebase";
-import Firebase from "firebase"
+import firebase from "firebase";
+import Firebase from "firebase";
+
 
 let isScanned = false;
+let nid;
 
 export default class step8 extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {nodesName: '', nodesGroup: ''}
+
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeGroup = this.handleChangeGroup.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
     state = {
         result: ''
     };
 
-
-    handleAddNode(node) {
-
+    handleChangeName(event){
+        this.setState({nodesName: event.target.value});
     }
+
+    handleChangeGroup(event){
+        this.setState({nodesGroup: event.target.value});
+    }
+
 
     handleScan = data => {
         var user = Firebase.auth().currentUser;
@@ -36,7 +51,7 @@ export default class step8 extends Component {
                 if(nodedata.hasOwnProperty("quantified") || nodedata.hasOwnProperty("Quantified")){
                     console.log("Quantified");
 
-                    const nid = nodedata.quantified.id;
+                    nid = nodedata.quantified.id;
                     if (user) {
                         const uid = user.uid;
                         Firebase.firestore().collection(uid).doc(nid).get()
@@ -54,8 +69,7 @@ export default class step8 extends Component {
                                         result: "Node Scanned!"
                                     });
                                     isScanned = true;
-                                    //move to next step
-
+                                    console.log(isScanned)
                                 }
                             });
 
@@ -77,6 +91,49 @@ export default class step8 extends Component {
             }
         }
     };
+
+
+
+
+    handleSubmit = (event) =>{
+        event.preventDefault();
+        const nodesGroup = this.state.nodesGroup;
+        const nodesName = this.state.nodesName;
+
+
+        var user = Firebase.auth().currentUser;
+        if (user) {
+            const uid = user.uid;
+            console.log("uid: "+ uid);
+            console.log("nid: " + nid);
+            Firebase.firestore().collection(uid).doc(nid).get()
+                .then((docSnapshot) =>{
+                    if (docSnapshot.exists){
+                        Firebase.firestore().collection(uid).doc(nid).update({
+                            name: nodesName,
+                            group: nodesGroup
+                        }).then(function () {
+                            console.log("Written to firestore");
+                        });
+
+                        //move to next step
+
+                    }else {
+
+
+                    }
+                });
+
+
+        }else{
+            console.log("No user");
+            this.props.history.push("/login")
+        }
+    }
+
+
+
+
     handleError = err => {
         console.error(err);
         this.setState({
@@ -91,7 +148,8 @@ export default class step8 extends Component {
                     <Grid item>
                         <Typography variant="h3" align="center">Nodes</Typography>
                         <Typography display="block" variant="body1">
-                            Scan the QR code to add the node to the system
+                            {!isScanned && ("Scan the QR code to add the node to the system")}
+                            {isScanned && ("Give the node a name and assign it to a group")}
                         </Typography>
                     </Grid>
                     {!isScanned && (
@@ -106,6 +164,45 @@ export default class step8 extends Component {
                                 <p>{this.state.result}</p>
                             </div>
                         </Grid>)}
+                        {isScanned && (
+                    <Grid>
+                        <form onSubmit={this.handleSubmit}>
+                        <div>
+
+                            <TextField
+                                name="nodesName"
+                                variant="outlined"
+                                label="Node name"
+                                id="nodesName"
+                                fullWidth
+                                margin="normal"
+                                required
+                                type="text"
+                                autoFocus
+                                onChange={this.handleChangeName}
+                            />
+                            <TextField
+                                name="nodesGroup"
+                                variant="outlined"
+                                label="Node group"
+                                id="nodesGroup"
+                                fullWidth
+                                margin="normal"
+                                required
+                                type="text"
+                                onChange={this.handleChangeGroup}
+                            />
+                        </div>
+                        <div>
+                            <Button type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary">
+                                Save
+                            </Button>
+                        </div>
+                        </form>
+                    </Grid>)}
                 </Grid>
             </Container>
 

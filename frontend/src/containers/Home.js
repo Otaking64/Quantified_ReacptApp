@@ -1,5 +1,5 @@
 import React from "react";
-import nodeIcon from '../icons/node.png';
+import NodeIcon from '../icons/icon_node';
 import { Grid, Paper, Button, Fab, Box, Container } from '@material-ui/core';
 import { Dashboard as DashboardIcon } from '@material-ui/icons';
 import { withStyles, makeStyles  } from '@material-ui/core/styles';
@@ -158,7 +158,7 @@ export default function Home() {
             <Button variant="contained" color="primary" className={classes.button}>
               <Grid container spacing={0} className={classes.buttonGrid}>
                 <Grid item xs={12}>
-                  <img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" />
+                  <NodeIcon color="white"/>
                 </Grid>
                 <Grid item xs={12}>
                   Add nodes

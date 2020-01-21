@@ -5,7 +5,13 @@ import {
     Container,
     Typography,
     Box,
-    Grid, SnackbarContent, Snackbar, TextField, Button
+    Grid,
+    SnackbarContent,
+    Snackbar,
+    TextField,
+    Button,
+    Input,
+    withStyles
 } from '@material-ui/core';
 import "../steps/Step.css"
 import firebase from "firebase";
@@ -19,8 +25,7 @@ export default class step8 extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {nodesName: '', nodesGroup: ''}
-
+        this.state = {nodesName: '', nodesGroup: '', isOpen: false}
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeGroup = this.handleChangeGroup.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,13 +37,16 @@ export default class step8 extends Component {
     };
 
     handleChangeName(event){
-        this.setState({nodesName: event.target.value});
+      this.setState({nodesName: event.target.value});
     }
 
     handleChangeGroup(event){
-        this.setState({nodesGroup: event.target.value});
+      this.setState({nodesGroup: event.target.value});
     }
 
+    handleClose = () =>{
+      this.setState({isOpen:false})
+    }
 
     handleScan = data => {
         var user = Firebase.auth().currentUser;
@@ -80,7 +88,7 @@ export default class step8 extends Component {
                     }
                 }else{
                     this.setState({
-                        result: "Can't find node QR code"
+                        isOpen: true
                     });
                 }
             }catch (e) {
@@ -136,6 +144,7 @@ export default class step8 extends Component {
 
     handleError = err => {
         console.error(err);
+        this.setState({isOpen:true})
         this.setState({
             result: "Something went wrong! Did you use the QR code?"
         })
@@ -161,18 +170,26 @@ export default class step8 extends Component {
                                     onScan={this.handleScan}
                                     facingMode={"environment"}
                                 />
-                                <p>{this.state.result}</p>
+                                <Snackbar
+                                  open={this.isOpen}
+                                  autoHideDuration={2000}
+                                  onClose={this.handleClose}
+                                >
+                                <SnackbarContent
+                                  message={this.state.result}
+                                />
+                                </Snackbar>
                             </div>
                         </Grid>)}
                         {isScanned && (
-                    <Grid>
+                    <Grid item>
                         <form onSubmit={this.handleSubmit}>
                         <div>
-
-                            <TextField
+                          <Box m={1}>
+                            <Typography component="h1" variant="h6">Node Name</Typography>
+                          <Input
                                 name="nodesName"
-                                variant="outlined"
-                                label="Node name"
+                                placeholder="Node name"
                                 id="nodesName"
                                 fullWidth
                                 margin="normal"
@@ -181,10 +198,12 @@ export default class step8 extends Component {
                                 autoFocus
                                 onChange={this.handleChangeName}
                             />
-                            <TextField
+                        </Box>
+                          <Box m={1}>
+                          <Typography component="h1" variant="h6">Node Group</Typography>
+                          <Input
                                 name="nodesGroup"
-                                variant="outlined"
-                                label="Node group"
+                                placeholder="Node group"
                                 id="nodesGroup"
                                 fullWidth
                                 margin="normal"
@@ -192,6 +211,7 @@ export default class step8 extends Component {
                                 type="text"
                                 onChange={this.handleChangeGroup}
                             />
+                        </Box>
                         </div>
                         <div>
                             <Button type="submit"

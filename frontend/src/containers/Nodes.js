@@ -11,67 +11,9 @@ let offlineNodes;
 let onlineNodes;
 let isLoaded = false;
 
-const nodes = [{
-  id: '1FG5dh7h1',
-  name: 'FakeNode 1',
-  group: 'Tomatoes',
-  status: 'Offline',
-  x: 65,
-  y: 45,
-  z: 10
-},{
-  id: '1FG5dh7h2',
-  name: 'FakeNode 2',
-  group: 'Carrots',
-  status: 'Online',
-  x: 45,
-  y: 45,
-  z: 10
-},{
-  id: '1FG5dh7h3',
-  name: 'FakeNode 3',
-  group: 'Tomatoes',
-  status: 'Online',
-  x: 65,
-  y: 55,
-  z: 10
-},{
-  id: '1FG5dh7h4',
-  name: 'FakeNode 4',
-  group: 'Carrots',
-  status: 'Online',
-  x: 45,
-  y: 55,
-  z: 10
-},{
-  id: '1FG5dh7h5',
-  name: 'FakeNode 5',
-  group: 'Carrots',
-  status: 'Offline',
-  x: 45,
-  y: 65,
-  z: 10
-},{
-  id: '1FG5dh7h6',
-  name: 'FakeNode 6',
-  group: 'Tomatoes',
-  status: 'Online',
-  x: 65,
-  y: 65,
-  z: 10
-},{
-  id: '1FG5dh7h7',
-  name: 'FakeNode 7',
-  group: 'Tomatoes',
-  status: 'Online',
-  x: 65,
-  y: 75,
-  z: 10
-},];
+const nodes = [];
 
-const nodeloader = () =>{
 
-}
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -91,8 +33,12 @@ const StyledBadge = withStyles(theme => ({
   },
 }))(Badge);
 
-export default function Nodes() {
-  nodeloader()
+export default function Nodes(props) {
+
+  const[loaded, isItLoaded] = React.useState(false);
+
+
+
   var user = Firebase.auth().currentUser;
 
   if (user) {
@@ -101,19 +47,19 @@ export default function Nodes() {
     Firebase.firestore().collection(uid).get().then(function(querySnapshot){
       querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+        //console.log(doc.id, " => ", doc.data());
         let nodedata = doc.data();
         let idn = nodedata.quantified.id;
         let groupn = nodedata.group;
         let namen = nodedata.name;
         let statusn = "Online"; //nodedata.status
-        let xn = 65; //nodedata.x
-        let yn = 75; //nodedata.y
-        let zn = 10; //nodedata.z
-
+        let xn = nodedata.x;
+        let yn = nodedata.y;
+        let zn = nodedata.z;
+        let nodeExists = false;
         let newNode = {
           id: idn,
-          //key: idn,
+          key: idn,
           name: namen,
           group: groupn,
           status: statusn,
@@ -122,21 +68,31 @@ export default function Nodes() {
           z: zn
         };
 
-        nodes.push(newNode);
+        nodes.forEach(function (n) {
+          if(n.key === idn){
+             nodeExists = true;
+          }else{
+            //nothing, node is already in the list
+          }
+        })
+
+        if (!nodeExists){
+          nodes.push(newNode);
+        }
+
+
+
 
       });
       offlineNodes= nodes.filter((node) => node.status === 'Offline');
       onlineNodes = nodes.filter((node) => node.status === 'Online');
       isLoaded = true;
-      console.log(isLoaded)
+      isItLoaded(true);
     })
 
   }else{
 
   }
-  console.log(nodes);
-  console.log(offlineNodes);
-  console.log(onlineNodes);
   const classes = useStyles();
 
 
@@ -148,7 +104,6 @@ export default function Nodes() {
         <Paper id="nodesList">
           <List color="primary">
             <ListSubheader disableSticky='true'>Offline nodes</ListSubheader>
-            {console.log("Here now")}
             {isLoaded && offlineNodes.map((node) =>
                 <LinkContainer to={"/nodeInfo/" + node.id}>
                   <ListItem className="noPadding">

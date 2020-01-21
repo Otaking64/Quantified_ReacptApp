@@ -21,7 +21,6 @@ export default function Profile(props) {
   return (
     <Container>
       <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
-
     <Box m={1}>
         <Typography component="h1" variant="h6">Name</Typography>
         <Typography variant="body1">Quenten Zandvliet</Typography>

@@ -142,7 +142,7 @@ export default function Home() {
         <Grid item xs={6}>
           <LinkContainer to="/dashboard">
             <Button variant="contained" color="primary" className={classes.button}>
-              <Grid container spacing={0} className={classes.buttonGird}>
+              <Grid container spacing={0} className={classes.buttonGrid}>
                 <Grid item xs={12}>
                   <DashboardIcon className="icon"/>
                 </Grid>

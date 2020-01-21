@@ -1,7 +1,7 @@
 import React from "react";
 import nodeIcon from '../icons/node.png';
 import { Grid, Paper, Button, Fab, Box, Container } from '@material-ui/core';
-import { ContactSupport as ContactSupportIcon, Dashboard as DashboardIcon } from '@material-ui/icons';
+import { Dashboard as DashboardIcon } from '@material-ui/icons';
 import { withStyles, makeStyles  } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
@@ -154,26 +154,18 @@ export default function Home() {
           </LinkContainer>
         </Grid>
         <Grid item xs={6}>
-          <LinkContainer to="/faq">
+          <LinkContainer to="/installation">
             <Button variant="contained" color="primary" className={classes.button}>
               <Grid container spacing={0} className={classes.buttonGrid}>
                 <Grid item xs={12}>
-                  <ContactSupportIcon className="icon"/>
+                  <img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" />
                 </Grid>
                 <Grid item xs={12}>
-                  FAQ
+                  Add nodes
                 </Grid>
               </Grid>
             </Button>
           </LinkContainer>
-        </Grid>
-        <Grid item xs={12}>
-        <LinkContainer to="/installation">
-          <Button variant="contained" size="large" color="primary" color="primary" className={classes.button}>
-            <img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" />
-            Start Installation
-          </Button>
-        </LinkContainer>
         </Grid>
       </Grid>
       </Container>

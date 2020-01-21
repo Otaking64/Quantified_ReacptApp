@@ -1,7 +1,6 @@
 import React from "react";
 import "./NodeInfo.css";
 import TopMenuBar from "../components/TopMenuBar";
-import BottomMenuBar from "../components/BottomMenuBar";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
@@ -130,7 +129,6 @@ export default function NodeInfo(props) {
   return (
     <div className="nodInfoPage">
       <TopMenuBar block pageName={"Node info"} hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/nodes"/>
-      <BottomMenuBar slectedIcon={0} block/>
       <List>
         <ListItem>
           <p className="boldText bigText">Node ID {selectedNode.id}</p>

@@ -5,7 +5,6 @@ import { Button, List, ListItem, ListItemText, ListItemAvatar, ListSubheader, Ba
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
-import BottomMenuBar from "../components/BottomMenuBar";
 
 const nodes = [
   {
@@ -127,11 +126,10 @@ export default function Nodes() {
         <LinkContainer to="/installation">
           <Button variant="contained" size="large" color="primary" className={classes.button}>
             <img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" />
-            Start Installation
+            Add nodes
           </Button>
         </LinkContainer>
       </Box>
-      <BottomMenuBar slectedIcon={0} block/>
     </div>
   );
 }

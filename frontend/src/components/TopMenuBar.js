@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./TopMenuBar.css";
+import nodeIcon from '../icons/node.png';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
@@ -86,9 +87,15 @@ export default function TopMenuBar({
           </ListItem>
         </LinkContainer>
         <LinkContainer to="/installation">
-          <ListItem button key="Installation">
+          <ListItem button key="Add nodes">
+            <ListItemIcon><img src={ nodeIcon } alt="nodeIcon" className="customNodeIcon" /></ListItemIcon>
+            <ListItemText primary="Add nodes" />
+          </ListItem>
+        </LinkContainer>
+        <LinkContainer to="/faq">
+          <ListItem button key="FAQ">
             <ListItemIcon><ContactSupportIcon /></ListItemIcon>
-            <ListItemText primary="Installation" />
+            <ListItemText primary="FAQ" />
           </ListItem>
         </LinkContainer>
       </List>
@@ -111,12 +118,41 @@ export default function TopMenuBar({
               <ArrowBackIcon className="icon"/>
             </IconButton>
           </LinkContainer>
-        : faqButton ?
-          <LinkContainer to="/faq">
-            <IconButton edge="start" className={classes.menuButton} color="inherit">
-              <ContactSupportIcon className="icon"/>
+        : closeButtonOnly ?
+          <LinkContainer to="/">
+            <IconButton edge="start" color="inherit">
+              <CloseIcon className="icon"/>
             </IconButton>
           </LinkContainer>
+        : closeWithPrompt ?
+          <>
+            <IconButton edge="start" color="inherit" onClick={handleClickExit}>
+              <CloseIcon className="icon"/>
+            </IconButton>
+            <Dialog
+              open={open}
+              onClose={handleClosePrompt}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure you want to leave the node installation?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <LinkContainer to="/">
+                  <Button onClick={handleClosePrompt} color="primary">
+                    Exit
+                  </Button>
+                </LinkContainer>
+                <Button onClick={handleClosePrompt} color="primary" autoFocus>
+                  Cancel
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </>
         : "" }
         <Typography variant="h6" className="topMenuTitle">
           {pageName}
@@ -131,41 +167,12 @@ export default function TopMenuBar({
                   {sideList('right')}
                 </Drawer>
               </>
-            : closeButtonOnly ?
-              <LinkContainer to="/">
+            : faqButton ?
+              <LinkContainer to="/faq">
                 <IconButton edge="end" color="inherit">
-                  <CloseIcon className="icon"/>
+                  <ContactSupportIcon className="icon"/>
                 </IconButton>
               </LinkContainer>
-            : closeWithPrompt ?
-              <>
-                <IconButton edge="end" color="inherit" onClick={handleClickExit}>
-                  <CloseIcon className="icon"/>
-                </IconButton>
-                <Dialog
-                  open={open}
-                  onClose={handleClosePrompt}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      Are you sure you want to leave the node installation?
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <LinkContainer to="/">
-                      <Button onClick={handleClosePrompt} color="primary">
-                        Exit
-                      </Button>
-                    </LinkContainer>
-                    <Button onClick={handleClosePrompt} color="primary" autoFocus>
-                      Cancel
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </>
             : "" }
           </div>
       </Toolbar>

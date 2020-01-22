@@ -7,19 +7,26 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from '../components/Title';
+import Firebase from "firebase";
+
+
+
 
 // Generate Order Data
 function createData(id, name, group, lastSeen, temp) {
   return { id, name, group, lastSeen, temp };
 }
 
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
 const rows = [
-  createData(0, 'Node1', 'Tomaten', '3 mins ago', 20.3),
-  createData(1, 'Node2', 'Graan', '5 mins ago', 20.5),
-  createData(2, 'Node3', 'Tomaten', 'just now', 21.3),
-  createData(3, 'Node4', 'Komkommer', 'just now', 20.4),
-  createData(4, 'Node5', 'Bruce Springsteen', '1 hour ago', 21.5),
 ];
+
+
+
+
 
 function preventDefault(event) {
   event.preventDefault();
@@ -32,6 +39,49 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NodeTable() {
+  const[loaded, isItLoaded] = React.useState(false);
+  var user = Firebase.auth().currentUser;
+
+  if (user) {
+    const uid = user.uid;
+
+    Firebase.firestore().collection(uid).get().then(function(querySnapshot){
+      querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        //console.log(doc.id, " => ", doc.data());
+        let nodedata = doc.data();
+        let idn = nodedata.quantified.id;
+        let groupn = nodedata.group;
+        let namen = nodedata.name;
+        let statusn = "Online"; //nodedata.status
+        let temp = getRndInteger(25,30)
+        let nodeExists = false;
+
+
+        let newnode = createData(idn, namen, groupn, statusn, temp)
+        rows.forEach(function (n) {
+          if(n.id === idn){
+            nodeExists = true;
+          }else{
+            //nothing, node is already in the list
+          }
+        })
+
+        if (!nodeExists){
+          rows.push(newnode);
+        }
+
+
+      });
+      isItLoaded(true)
+    })
+
+  }else{
+
+  }
+
+
+
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -41,7 +91,7 @@ export default function NodeTable() {
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell>Group</TableCell>
-            <TableCell>Last seen</TableCell>
+            <TableCell>Status</TableCell>
             <TableCell align="right">Temp</TableCell>
           </TableRow>
         </TableHead>

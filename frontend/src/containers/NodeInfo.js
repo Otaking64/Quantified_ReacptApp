@@ -2,11 +2,12 @@ import React from "react";
 import "./NodeInfo.css";
 import TopMenuBar from "../components/TopMenuBar";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input, Button } from '@material-ui/core';
+import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import Firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
+
   inputFieldText: {
     fontSize: "1em"
   },
@@ -33,6 +34,7 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 export default function NodeInfo(props) {
+  const[itLoaded, isItLoaded] = React.useState(false);
 
   Firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -44,115 +46,84 @@ export default function NodeInfo(props) {
     }
   });
   let nodeId = props.match.params.nodeId;
-  const nodes = [
-    {
-      id: '1FG5dh7h1',
-      name: 'FakeNode 1',
-      group: 'Tomatoes',
-      status: 'Offline',
-      x: 65,
-      y: 45,
-      z: 10
-    },{
-      id: '1FG5dh7h2',
-      name: 'FakeNode 2',
-      group: 'Carrots',
-      status: 'Online',
-      x: 45,
-      y: 45,
-      z: 10
-    },{
-      id: '1FG5dh7h3',
-      name: 'FakeNode 3',
-      group: 'Tomatoes',
-      status: 'Online',
-      x: 65,
-      y: 55,
-      z: 10
-    },{
-      id: '1FG5dh7h4',
-      name: 'FakeNode 4',
-      group: 'Carrots',
-      status: 'Online',
-      x: 45,
-      y: 55,
-      z: 10
-    },{
-      id: '1FG5dh7h5',
-      name: 'FakeNode 5',
-      group: 'Carrots',
-      status: 'Offline',
-      x: 45,
-      y: 65,
-      z: 10
-    },{
-      id: '1FG5dh7h6',
-      name: 'FakeNode 6',
-      group: 'Tomatoes',
-      status: 'Online',
-      x: 65,
-      y: 65,
-      z: 10
-    },{
-      id: '1FG5dh7h7',
-      name: 'FakeNode 7',
-      group: 'Tomatoes',
-      status: 'Online',
-      x: 65,
-      y: 75,
-      z: 10
-    },
-  ];
+  const nodes = [];
+  let selectedNode;
+  let loaded = false;
 
-    var user = Firebase.auth().currentUser;
+  var user = Firebase.auth().currentUser;
 
-    if (user) {
-      const uid = user.uid;
+  if (user) {
+    const uid = user.uid;
 
-      Firebase.firestore().collection(uid).get().then(function(querySnapshot){
-        querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-          let nodedata = doc.data();
-          let idn = nodedata.quantified.id;
-          let groupn = nodedata.group;
-          let namen = nodedata.name;
-          let statusn = "Online"; //nodedata.status
-          let xn = 65; //nodedata.x
-          let yn = 75; //nodedata.y
-          let zn = 10; //nodedata.z
+    Firebase.firestore().collection(uid).get().then(function(querySnapshot){
+      querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        //console.log(doc.id, " => ", doc.data());
+        let nodedata = doc.data();
+        let idn = nodedata.quantified.id;
+        let groupn = nodedata.group;
+        let namen = nodedata.name;
+        let statusn = "Online"; //nodedata.status
+        let xn = nodedata.x;
+        let yn = nodedata.y;
+        let zn = nodedata.z;
+        let nodeExists = false;
+        let newNode = {
+          id: idn,
+          key: idn,
+          name: namen,
+          group: groupn,
+          status: statusn,
+          x: xn,
+          y: yn,
+          z: zn
+        };
 
-          let newNode = {
-            id: idn,
-            //key: idn,
-            name: namen,
-            group: groupn,
-            status: statusn,
-            x: xn,
-            y: yn,
-            z: zn
-          };
-
-          nodes.push(newNode);
-
+        nodes.forEach(function (n) {
+          if(n.key === idn){
+            nodeExists = true;
+          }else{
+            //nothing, node is already in the list
+          }
         });
-      })
 
-    }else{
+        if (!nodeExists){
+          nodes.push(newNode);
+        }
+        console.log(loaded);
+        selectedNode = nodes.filter((node) => node.id === nodeId)[0];
+        console.log(selectedNode);
+        if (selectedNode){
+          console.log(selectedNode)
 
-    }
 
-  const selectedNode = nodes.filter((node) => node.id === nodeId)[0];
+        }
+        console.log(nodeId)
+
+      });
+
+      isItLoaded(true);
+      if(isItLoaded){
+        loaded = true;
+      }
+      console.log(loaded)
+      console.log(itLoaded)
+    })
+
+  }else{
+
+  }
+
   const classes = useStyles();
 
-  const MyMapComponent = withScriptjs(withGoogleMap((props) =>
-      <GoogleMap
-          defaultZoom={8}
-          defaultCenter={{ }}
-      >
-          {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
-      </GoogleMap>
-  ))
+  //const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+  //    <GoogleMap
+  //       defaultZoom={8}
+  //       defaultCenter={{ }}
+  //  >
+  //        {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+  //    </GoogleMap>
+  //))
 
   async function handleChange() {
     //update the database by sending the new value to the API
@@ -169,38 +140,33 @@ export default function NodeInfo(props) {
   return (
     <div className="nodInfoPage">
       <TopMenuBar block pageName={"Node info"} hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/nodes"/>
-      <List>
+      {loaded && (<List>{console.log("rendering")}
         <ListItem>
-          <p className="boldText bigText">Node ID {selectedNode.id}</p>
+          <Typography variant="body1" className="boldText bigText">Node ID {loaded && (selectedNode.id)}</Typography>
         </ListItem>
         <ListItem>
           <FormControl>
             <InputLabel htmlFor="component-simple">Name</InputLabel>
-            <Input id="component-simple" defaultValue={selectedNode.name} className={classes.inputFieldText} />
+            <Input id="component-simple" defaultValue={loaded && (selectedNode.name)} className={classes.inputFieldText}/>
           </FormControl>
+          {console.log("rendering again")}
+          {console.log(selectedNode.id)}
         </ListItem>
         <ListItem>
           <FormControl>
             <InputLabel htmlFor="component-simple">Group</InputLabel>
-            <Input id="component-simple" defaultValue={selectedNode.group} className={classes.inputFieldText} />
+            <Input id="component-simple" defaultValue={loaded && (selectedNode.group)} className={classes.inputFieldText} />
           </FormControl>
         </ListItem>
         <ListItem>
           <ListItemAvatar>
-            <StyledBadge classes={{ badge: selectedNode.status }} badgeContent=" ">
-              <p>{selectedNode.status === "Online"?"Online":"Offline"}</p>
+            <StyledBadge classes={loaded && ({ badge: selectedNode.status })} badgeContent=" ">
+              <p>{loaded && (selectedNode.status === "Online"?"Online":"Offline")}</p>
             </StyledBadge>
           </ListItemAvatar>
         </ListItem>
         <ListItem>
-          <MyMapComponent
-              isMarkerShown
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-              loadingElement={<div style={{ height: '100%' }} />}
-              containerElement={<div style={{ height: '70px', width: '70px' }} />}
-              mapElement={<div style={{ height: '100%' }} />}
-          />
-          <p className="coordinates">X:{selectedNode.x} Y:{selectedNode.y} Z:{selectedNode.z}</p>
+           <Typography variant="body1" className="coordinates">X:{loaded && (selectedNode.x)} Y:{loaded && (selectedNode.y)} Z:{loaded && (selectedNode.z)}</Typography>
         </ListItem>
         <ListItem>
           <Button variant="contained" color="primary" className={classes.saveButton} onClick={saveNode()}>
@@ -210,7 +176,7 @@ export default function NodeInfo(props) {
             Delete
           </Button>
         </ListItem>
-      </List>
+      </List>)}
     </div>
   );
 }

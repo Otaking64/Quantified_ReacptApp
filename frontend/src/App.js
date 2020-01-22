@@ -48,10 +48,12 @@ function App(props) {
 
 
   return (
+
+  !isAuthenticating &&
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <div className="root">
-        <Routes />
+        <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
       </div>
     </MuiThemeProvider>
   );

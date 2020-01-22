@@ -219,8 +219,8 @@ export default class step8 extends Component {
                             {this.state.isDone && ("Move on to the next step")}
                         </Typography>
                     </Box>
-                {!isScanned && (
-                        <Box m={1}>
+                    {!isScanned && (
+                        <Box>
                                 <QrReader
                                     delay={300}
                                     onError={this.handleError}
@@ -270,9 +270,19 @@ export default class step8 extends Component {
                             <Button type="submit"
                                     fullWidth
                                     variant="contained"
-                                    color="primary">
+                                    color="primary"
+                                    >
                                 Save
                             </Button>
+                            <Snackbar
+                              open={this.isOpen}
+                              autoHideDuration={2000}
+                              onClose={this.handleClose}
+                            >
+                            <SnackbarContent
+                              message="Node added"
+                            />
+                            </Snackbar>
                         </div>
                         </form>)}
                     </Box>)}

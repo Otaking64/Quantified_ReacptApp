@@ -47,7 +47,7 @@ export default function Step2(){
                 Open the box
               </Typography>
               <Typography variant="subtitle1" gutterBottom={true}>
-                In the plug and play box are these items:
+                In the plug and play box are the following items:
               </Typography>
             </Box>
             <Fade in={true}>

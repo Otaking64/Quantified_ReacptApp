@@ -153,17 +153,18 @@ export default class step8 extends Component {
     render() {
         return (
             <Container>
-                <Grid container direction="column" alignItems="center" justify= "center" spacing={2}>
-                    <Grid item>
-                        <Typography variant="h3" align="center">Nodes</Typography>
+                <Box m={1}>
+                        <Typography variant="overline">
+                          Installation &#10140; Nodes
+                        </Typography>
+                        <Typography variant="h4">Nodes</Typography>
                         <Typography display="block" variant="body1">
                             {!isScanned && ("Scan the QR code to add the node to the system")}
                             {isScanned && ("Give the node a name and assign it to a group")}
                         </Typography>
-                    </Grid>
+                    </Box>
                     {!isScanned && (
-                        <Grid style={{width: "50%"}}>
-                            <div>
+                        <Box m={1}>
                                 <QrReader
                                     delay={300}
                                     onError={this.handleError}
@@ -179,10 +180,9 @@ export default class step8 extends Component {
                                   message={this.state.result}
                                 />
                                 </Snackbar>
-                            </div>
-                        </Grid>)}
+                        </Box>)}
                         {isScanned && (
-                    <Grid item>
+                    <Box m={1}>
                         <form onSubmit={this.handleSubmit}>
                         <div>
                           <Box m={1}>
@@ -222,8 +222,8 @@ export default class step8 extends Component {
                             </Button>
                         </div>
                         </form>
-                    </Grid>)}
-                </Grid>
+                    </Box>)}
+
             </Container>
 
         )

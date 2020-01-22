@@ -13,20 +13,14 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText,
-  Zoom,
   Snackbar,
   SnackbarContent,
-  Fade
 } from '@material-ui/core';
 import {green} from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
   section1: {
     margin: theme.spacing(3, 2),
-  },
-  wrapper: {
-    position: 'relative',
-    align: 'left'
   },
   avatarColor:{
     backgroundColor: "#599AD5"
@@ -93,8 +87,6 @@ export default function Step4(){
 
   return(
     <Container>
-
-        <Fade in="true">
           <Box m={1}>
             <Typography variant="overline">
               Installation &#10140; Gateway
@@ -106,10 +98,8 @@ export default function Step4(){
                 Use the following steps to power on the gateway:
             </Typography>
           </Box>
-        </Fade>
-        <Box>
+        <Box m={1}>
           <List>
-            <Zoom in={true}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatarColor}>
@@ -118,8 +108,6 @@ export default function Step4(){
                 </ListItemAvatar>
                 <ListItemText primary="Pick up the power supply in the provided box" />
               </ListItem>
-            </Zoom>
-            <Zoom in={true}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatarColor}>
@@ -128,8 +116,6 @@ export default function Step4(){
                 </ListItemAvatar>
                 <ListItemText primary="Plug the power supply in your local power outlet" />
               </ListItem>
-            </Zoom>
-            <Zoom in={true}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar className={classes.avatarColor}>
@@ -138,7 +124,6 @@ export default function Step4(){
                 </ListItemAvatar>
                 <ListItemText primary="Plug the other end in the provided gateway" />
               </ListItem>
-            </Zoom>
           </List>
           </Box>
           <Box className={classes.wrapper} m={1}>
@@ -160,7 +145,7 @@ export default function Step4(){
             className={classes.snackbar}
           >
           <SnackbarContent
-            message="Gateway powered on"
+            message="Gateway power connected"
             className={classes.snackColor}
           />
           </Snackbar>

@@ -5,16 +5,15 @@ import { Container, MobileStepper, Button } from '@material-ui/core';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
 import TopMenuBar from "../components/TopMenuBar";
 
-import Step_1_Welcome from "../steps/Step_1_Welcome";
-import Step_2_Box from "../steps/Step_2_Box";
-import Step_3_Gateway from "../steps/Step_3_Gateway";
-import Step_4_Gateway_PowerSupply from "../steps/Step_4_Gateway_PowerSupply";
-import Step_5_Gateway_LAN from "../steps/Step_5_Gateway_LAN";
-import Step_6_Node_Amount from "../steps/Step_6_Node_Amount";
-import Step_7_Node_Grid from "../steps/Step_7_Node_Grid";
-import Step_8_Node_Add from "../steps/Step_8_Node_Add";
-import Step_9_Node_PositionMount from "../steps/Step_9_Node_PositionMount";
-import Step_10_End from "../steps/Step_10_End";
+import Step1 from "../steps/Step_1_Welcome";
+import Step2 from "../steps/Step_2_Box";
+import Step3 from "../steps/Step_3_Gateway";
+import Step4 from "../steps/Step_4_Gateway_PowerSupply";
+import Step5 from "../steps/Step_5_Gateway_LAN";
+import Step6 from "../steps/Step_6_Node_Amount";
+import Step7 from "../steps/Step_7_Node_Add";
+import Step8 from "../steps/Step_8_Node_PositionMount";
+import Step9 from "../steps/Step_9_End";
 import firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
@@ -41,7 +40,7 @@ export default function Installation(props) {
       props.history.push("/login")
     }
   });
-  const steps = [<Step_1_Welcome/>, <Step_2_Box/>, <Step_3_Gateway/>, <Step_4_Gateway_PowerSupply/>, <Step_5_Gateway_LAN/>, <Step_6_Node_Amount/>, <Step_7_Node_Grid/>, <Step_8_Node_Add/>, <Step_9_Node_PositionMount/>, <Step_10_End/>];
+  const steps = [<Step1/>, <Step2/>, <Step3/>, <Step4/>, <Step5/>, <Step6/>, <Step7/>, <Step8/>, <Step9/>];
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -69,7 +68,7 @@ export default function Installation(props) {
           className={classes.ProgressBar}
           nextButton={
             activeStep+1 == steps.length ?
-              <Button size="small" onClick={hadleExit} style={{color:'red'}}>
+              <Button size="small" onClick={hadleExit} style={{color:'green'}}>
                 Exit
               </Button>
             :

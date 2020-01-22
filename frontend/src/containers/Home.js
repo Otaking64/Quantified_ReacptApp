@@ -11,6 +11,7 @@ import Firebase from "firebase";
 
 
 let amountOfNodes = 0;
+let nodeIdList = [];
 
 const useStyles = makeStyles(theme => ({
   root:{
@@ -71,7 +72,8 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Home(props) {
-  let nodeIdList = [];
+  console.log(nodeIdList);
+
   const classes = useStyles();
 
   const[isloaded, isItLoaded] = React.useState(false);
@@ -86,7 +88,7 @@ export default function Home(props) {
         // doc.data() is never undefined for query doc snapshots
         //console.log(doc.id, " => ", doc.data());
         let nodedata = doc.data();
-        let idn = nodedata.quantified.id;
+        let idn = doc.id;
         let nodeExists = false;
 
         let newNode ={
@@ -95,7 +97,9 @@ export default function Home(props) {
 
 
         nodeIdList.forEach(function (n) {
-          if(n.key === idn){
+          if(n.id === idn){
+            nodeExists = true;
+          }else if (idn ==="nodes"){
             nodeExists = true;
           }else{
             //nothing, node is already in the list
@@ -119,9 +123,12 @@ export default function Home(props) {
       if(loaded){
         console.log(amountOfNodes);
         isItLoaded(true);
+
       }
     })
-
+    if(amountOfNodes === 0){
+      props.history.push("/installation")
+    }
 
   }else {
     //props.history.push('/login');

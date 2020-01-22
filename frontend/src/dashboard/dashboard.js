@@ -63,7 +63,7 @@ export default function Dashboard(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-    <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
+    <TopMenuBar block pageName="Dashboard" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12}>

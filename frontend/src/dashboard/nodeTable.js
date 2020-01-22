@@ -50,7 +50,7 @@ export default function NodeTable() {
         // doc.data() is never undefined for query doc snapshots
         //console.log(doc.id, " => ", doc.data());
         let nodedata = doc.data();
-        let idn = nodedata.quantified.id;
+        let idn = doc.id;
         let groupn = nodedata.group;
         let namen = nodedata.name;
         let statusn = "Online"; //nodedata.status
@@ -61,6 +61,8 @@ export default function NodeTable() {
         let newnode = createData(idn, namen, groupn, statusn, temp)
         rows.forEach(function (n) {
           if(n.id === idn){
+            nodeExists = true;
+          }else if (idn ==="nodes"){
             nodeExists = true;
           }else{
             //nothing, node is already in the list

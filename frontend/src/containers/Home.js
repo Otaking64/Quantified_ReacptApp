@@ -11,6 +11,7 @@ import Firebase from "firebase";
 
 
 let amountOfNodes = 0;
+let nodeIdList = [];
 
 const useStyles = makeStyles(theme => ({
   root:{
@@ -71,7 +72,8 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Home(props) {
-  let nodeIdList = [];
+  console.log(nodeIdList);
+
   const classes = useStyles();
 
   const[isloaded, isItLoaded] = React.useState(false);
@@ -95,7 +97,7 @@ export default function Home(props) {
 
 
         nodeIdList.forEach(function (n) {
-          if(n.key === idn){
+          if(n.id === idn){
             nodeExists = true;
           }else{
             //nothing, node is already in the list

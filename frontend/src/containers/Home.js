@@ -125,6 +125,7 @@ export default function Home(props) {
         isItLoaded(true);
         if(amountOfNodes === 0){
           props.history.push("/installation")
+
         }
 
       }

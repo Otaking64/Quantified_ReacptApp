@@ -4,7 +4,9 @@ import {
   Divider,
   Typography,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  Box,
+  Container
 } from '@material-ui/core';
 import ExpansionCard from '../components/ExpansionPanel.js';
 import TopMenuBar from '../components/TopMenuBar.js'
@@ -42,7 +44,7 @@ export default function FAQnode(props) {
     }
   });
   return (
-    <>
+    <Container>
       <TopMenuBar block pageName="Node FAQ"
       hamburgerMenu={false}
       closeButtonOnly={false}
@@ -50,10 +52,8 @@ export default function FAQnode(props) {
       backButton={true}
       backRoutePage="/faq"/>
       <div className={classes.section1}>
-        <ExpansionCard title="My node is not connecting" body="To connect your node, please follow the provided steps:" />
-      <ExpansionCard title="The node position is wrong" body="To see the location of your nodes, go to the nodes page on your profile" />
+        <ExpansionCard title="How can I change my password?" body="To change your password. Go to top right button on the homescreen > profile > change password" />
       </div>
-
       <Divider variant="middle"/>
       <div className={classes.section2} align="center">
         <Typography variant="h5">Problem not found?</Typography>
@@ -78,7 +78,6 @@ export default function FAQnode(props) {
           </Button>
         </ButtonGroup>
       </div>
-      <BottomMenuBar slectedIcon={2} block/>
-    </>
+    </Container>
   );
 }

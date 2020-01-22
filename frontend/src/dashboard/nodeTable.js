@@ -27,7 +27,7 @@ const rows = [
 
 
 
-
+//make sure page doesn't get refreshed on submit
 function preventDefault(event) {
   event.preventDefault();
 }
@@ -44,7 +44,7 @@ export default function NodeTable() {
 
   if (user) {
     const uid = user.uid;
-
+    //load nodes from firestore
     Firebase.firestore().collection(uid).get().then(function(querySnapshot){
       querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
@@ -57,8 +57,9 @@ export default function NodeTable() {
         let temp = getRndInteger(25,30)
         let nodeExists = false;
 
-
+        //node object that gets loaded into rows
         let newnode = createData(idn, namen, groupn, statusn, temp)
+        //check if node is already in the list
         rows.forEach(function (n) {
           if(n.id === idn){
             nodeExists = true;

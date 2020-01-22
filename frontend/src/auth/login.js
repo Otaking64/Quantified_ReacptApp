@@ -38,6 +38,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+//This is both the loging and the register page
+
+
 const INITIAL_STATE ={
     name: "",
     email: "",
@@ -53,6 +56,8 @@ function Login(props) {
     );
 
 
+
+    //check if user is logged in, if so push to home
     Firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log("User is signed in");
@@ -67,6 +72,7 @@ function Login(props) {
     const[login, setLogin] = React.useState(true);
     const [firebaseError, setFirebaseError] = React.useState(null)
 
+    //async function that logs in or registers an user
     async function authenticateUser() {
         const {name, email, password} = values
 

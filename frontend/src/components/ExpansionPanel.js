@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+//component for FAQ
 const ExpansionCard = ({
   title = "This is a title",
   body = "This is a body",

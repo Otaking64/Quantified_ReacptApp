@@ -56,7 +56,7 @@ export default function Step4(){
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef();
   const [open, setOpen] = React.useState(false);
-
+//closes snackbar
   const handleClose = () => {
     setOpen(false);
   };
@@ -72,6 +72,7 @@ export default function Step4(){
     }
   }, []);
 
+  //handles button click checking for gateway
   const handleButtonClick = () => {
     if(!loading){
       setSuccess(false);

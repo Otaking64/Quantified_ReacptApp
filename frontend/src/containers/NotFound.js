@@ -3,6 +3,8 @@ import "./NotFound.css";
 import firebase from "firebase";
 
 export default function NotFound(props) {
+
+    //if there's no user push to login page
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log("User is signed in");

@@ -10,6 +10,7 @@ import FakeTemp from "../components/fakeTemp";
 import Firebase from "firebase";
 
 
+
 let amountOfNodes = 0;
 let nodeIdList = [];
 
@@ -79,6 +80,8 @@ export default function Home(props) {
   const[isloaded, isItLoaded] = React.useState(false);
   let loaded = false;
 
+
+  //check if user is logged in
   Firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log("User is signed in");
@@ -93,6 +96,7 @@ export default function Home(props) {
 
   if (user) {
     const uid = user.uid;
+    //check amount of nodes that user has
     Firebase.firestore().collection(uid).get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         // doc.data() is never undefined for query doc snapshots
@@ -107,6 +111,7 @@ export default function Home(props) {
 
 
         nodeIdList.forEach(function (n) {
+          //check if node is already in list
           if(n.id === idn){
             nodeExists = true;
           }else if (idn ==="nodes"){
@@ -115,7 +120,7 @@ export default function Home(props) {
             //nothing, node is already in the list
           }
         });
-
+        //if node is not in list, add it
         if (!nodeExists){
           nodeIdList.push(newNode);
           if(amountOfNodes){
@@ -129,11 +134,12 @@ export default function Home(props) {
 
 
       });
-
+      //if there are no nodes, push to installation (new user)
       if(amountOfNodes === 0){
         props.history.push("/installation")
 
       }
+      //trigger rerender
       if(loaded){
         console.log(amountOfNodes);
         isItLoaded(true);

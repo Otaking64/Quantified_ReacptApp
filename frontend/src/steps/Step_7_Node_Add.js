@@ -26,6 +26,8 @@ let xn;
 let yn;
 let isitdone = false;
 
+
+//get user location and save user location
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
         yn = position.coords.latitude;
@@ -46,7 +48,7 @@ export default class step8 extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.setAmount()
     }
-
+    //set amoutn of nodes that will be added
     setAmount =() =>{
         var user = Firebase.auth().currentUser;
         if (user) {
@@ -63,23 +65,23 @@ export default class step8 extends Component {
     state = {
         result: ''
     };
-
+    //handle input node name
     handleChangeName(event){
       this.setState({nodesName: event.target.value});
     }
-
+    //handle input node group
     handleChangeGroup(event){
       this.setState({nodesGroup: event.target.value});
     }
-
+ //close snackbar
     handleClose = () =>{
       this.setState({isOpen: false});
     }
-
+//lazy way of opening snackbar
     handleOpen = () =>{
         this.setState({isOpen:true})
     }
-
+    //handle QR scan
     handleScan = data => {
         var user = Firebase.auth().currentUser;
         if (data) {
@@ -94,10 +96,13 @@ export default class step8 extends Component {
                         isOpen: true,
                         snackbarmessage: "Node was already added. Try another one!"
                     });
+                    //set node id
                     nid = nodedata.quantified.id;
-
+                    //check if user exists
                     if (user) {
+                        //get user id
                         const uid = user.uid;
+                        //check if node is already in database
                         Firebase.firestore().collection(uid).doc(nid).get()
                             .then((docSnapshot) =>{
                                 if (docSnapshot.exists){
@@ -105,7 +110,7 @@ export default class step8 extends Component {
                                         isOpen: true,
                                         snackbarmessage: "Node was already added. Try another one!"
                                     });
-
+                                    //if node is not already in database add it!
                                 }else {
                                     Firebase.firestore().collection(uid).doc(nid).set(nodedata).then(function () {
                                         console.log("Written to firestore");
@@ -124,6 +129,7 @@ export default class step8 extends Component {
 
 
                     }else{
+                        //apparently there is no user, push back to login
                         console.log("No user");
                         this.props.history.push("/login")
                     }
@@ -133,6 +139,7 @@ export default class step8 extends Component {
                     });
                 }
             }catch (e) {
+                //error from qr scan module (error details are logged in console)
                 console.error(e);
                 this.setState({
                     isOpen: true,
@@ -144,7 +151,7 @@ export default class step8 extends Component {
 
 
 
-
+//handle submit of group and name of new node also submits user location
     handleSubmit = (event) =>{
         event.preventDefault();
         const nodesGroup = this.state.nodesGroup;
@@ -171,14 +178,17 @@ export default class step8 extends Component {
 
 
                         });
+
+                        //if there's more than 1 node remove 1 node from amount of nodes that has to be done
                         if(nodeAmount > 1){
                             nodeAmount--;
                             isScanned = false;
                             this.setState({isOpen: false})
                         }else{
+                            //1 or less node means that we are done adding nodes
                             this.setState({isDone: true, isOpen: true ,snackbarmessage: "data saved!" });
                         }
-                        //move to next step
+                        //move to next step - auto move to next page is yet to implemented
 
                     }else {
 
@@ -188,6 +198,7 @@ export default class step8 extends Component {
 
 
         }else{
+            //if there's no user push to login page
             console.log("No user");
             this.props.history.push("/login")
         }
@@ -195,7 +206,7 @@ export default class step8 extends Component {
 
 
 
-
+    //handle error of using a non json parseble QR code or json object that contains no quantified object
     handleError = err => {
         console.error(err);
         this.setState({isOpen:true})
@@ -214,12 +225,13 @@ export default class step8 extends Component {
                         </Typography>
                         <Typography variant="h4">Nodes</Typography>
                         <Typography display="block" variant="body1">
+                            //different instructions on this step
                             {!isScanned && ("Scan the QR code to add the node to the system")}
                             {isScanned & !this.state.isDone && ("Give the node a name and assign it to a group")}
                             {this.state.isDone && ("Move on to the next step")}
                         </Typography>
                     </Box>
-                    {!isScanned && (
+                    {!isScanned && (//actual QR object
                         <Box>
                                 <QrReader
                                     delay={300}

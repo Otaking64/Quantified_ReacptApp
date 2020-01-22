@@ -1,6 +1,10 @@
 export default function validateLogin(values) {
     let errors = {};
 
+
+    //page checks for errors in login form; make sure password is longer than 6 characters and email is an actual email
+
+
     // Email Errors
     if (!values.email) {
         errors.email = "Email required";

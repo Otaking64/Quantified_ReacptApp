@@ -3,6 +3,9 @@ import { useTheme } from '@material-ui/core/styles';
 import { AreaChart, Area, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from '../components/Title';
 
+
+//js file with dummy data for old temperatures
+
 // Generate Sales Data
 function createData(time, amount) {
   return { time, amount };

@@ -24,6 +24,8 @@ export default class Step6 extends Component{
         var user = Firebase.auth().currentUser;
         this.handleChangeAmount = this.handleChangeAmount.bind(this);
         this.state = {nodesAmount: 1};
+
+        //in case user clicks next without actually setting an amount, sets amount to 1
         if(user){
             const uid = user.uid;
             Firebase.firestore().collection(uid).doc("nodes").set(newnodesAmountObject).then(function () {
@@ -31,15 +33,16 @@ export default class Step6 extends Component{
 
         }
     }
-
+    //handle amount input in form
     handleChangeAmount = (event) => {
         this.setState({nodesAmount: event.target.value});
     }
-
+    //in case user clicks save while form is empty it is set to 1
     setAmount = () => {
         this.setState({nodesAmount:1})
     };
 
+    //handle the submitting of the amount to firestore
     handleSubmit = (event) => {
         event.preventDefault();
         let amountOfNodes = this.state.nodesAmount;

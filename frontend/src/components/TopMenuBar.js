@@ -87,7 +87,7 @@ export default function TopMenuBar({
             <ListItemText primary="Profile" />
           </ListItem>
         </LinkContainer>
-        <LinkContainer to="/installation">
+        <LinkContainer to="/installnode">
           <ListItem button key="Add nodes">
             <ListItemIcon><NodeIcon color="black"/></ListItemIcon>
             <ListItemText primary="Add nodes" />

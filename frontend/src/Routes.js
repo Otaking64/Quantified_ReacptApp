@@ -7,6 +7,7 @@ import Home from "./containers/Home";
 import Nodes from "./containers/Nodes";
 import NodeInfo from "./containers/NodeInfo";
 import Installation from "./containers/Installation";
+import InstallNodes from "./containers/InstallNode";
 import Dashboard from "./dashboard/dashboard";
 import FAQgeneral from "./faq/FAQ";
 import FAQnode from "./faq/FAQ_node"
@@ -44,7 +45,9 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/faq/profile" exact component={FAQprofile} appProps={appProps} />
       <Route path="/faq/gateway" exact component={FAQgateway} />
       <AppliedRoute path="/faq/gateway" exact component={FAQgateway} appProps={appProps} />
-    <Route path="/profile" exact component={Profile} />
+    <Route path="/installnode" exact component={InstallNodes} />
+  <AppliedRoute path="/installnode" exact component={InstallNodes} appProps={appProps} />
+  <Route path="/profile" exact component={Profile} />
   <AppliedRoute path="/profile" exact component={Profile} appProps={appProps} />
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />

@@ -131,7 +131,7 @@ export default function Nodes(props) {
           </List>
         </Paper>
         <Box className="buttonContainer">
-          <LinkContainer to="/installation">
+          <LinkContainer to="/installnode">
             <Button variant="contained" size="large" color="primary" className={classes.button}>
               <img src={nodeIcon} alt="nodeIcon" className="customNodeIcon"/>
               Add nodes

@@ -71,7 +71,7 @@ export default class Step6 extends Component{
                     </Typography>
                     <Typography variant="h4">Nodes</Typography>
                     <Typography display="block" variant="body1">
-                        {!sentAmount && ("Choose the amount of nodes provided in your plug-and-play box")}
+                        {!sentAmount && ("Choose the amount of nodes you want to add")}
                         {sentAmount && ("Press next to continue to the next step")}
                     </Typography>
                 </Box>
@@ -86,11 +86,13 @@ export default class Step6 extends Component{
                                 onChange={this.handleChangeAmount}
                                 InputLabelProps={{shrink: true,}}
                             />
+                          <Box mt={1}>
                             <Button type="submit"
                                     variant="contained"
                                     color="primary">
                                 Save
-                            </Button></form>)}
+                            </Button>
+                          </Box></form>)}
 
 
                 </Box>

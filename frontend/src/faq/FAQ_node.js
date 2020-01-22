@@ -47,6 +47,7 @@ export default function FAQnode(props) {
     <Container>
       <TopMenuBar block pageName="Node FAQ" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/faq"/>
       <div className={classes.section1}>
+        all FAQ for node
         <ExpansionCard title="My node is not connecting" body="To connect your node, please make sure the gateway is connected and your LoRa network is active" />
         <ExpansionCard title="The node position is wrong" body="To see the location of your nodes, go to the nodes page on your profile" />
         <ExpansionCard title="I want to change a node position" body="This functionality is currently not supported. You can delete a node and add it on the requested position" />

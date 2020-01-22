@@ -8,6 +8,7 @@ function ForgotPassword(props){
     const [isPasswordReset, setIsPasswordReset] = React.useState(false)
     const [passwordResetError, setPasswordResetError] = React.useState(null)
 
+    //async function that send an reset password function
     async function handleResetPassword(){
     try{
         await firebase.resetPassword(resetPasswordEmail)
@@ -18,7 +19,7 @@ function ForgotPassword(props){
         setIsPasswordReset(false)
     }
     }
-
+//check if user is logged in and if so, push to home
     Firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log("User is signed in");
@@ -46,6 +47,7 @@ function ForgotPassword(props){
                     Reset Password
                 </button>
             </div>
+            //handle page after password is reset
             {isPasswordReset && <p>Check your email to reset your password</p>}
             {passwordResetError && <p className="error-text">{passwordResetError}</p>}
         </div>

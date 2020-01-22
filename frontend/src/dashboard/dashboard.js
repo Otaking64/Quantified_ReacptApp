@@ -16,7 +16,7 @@ import ChartTemp from './ChartTemp'
 import NodeTable from './nodeTable'
 import FakeTemp from '../components/fakeTemp'
 
-
+//dashboard template, loads all the dashboard components into it
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -46,6 +46,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Dashboard(props) {
+  //check if user is signed in
   firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         console.log("User is signed in");

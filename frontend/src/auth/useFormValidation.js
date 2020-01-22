@@ -5,6 +5,9 @@ function useFormValidation(initialState, validate, authenticate) {
     const [errors, setErrors] = React.useState({});
     const [isSubmitting, setSubmitting] = React.useState(false);
 
+
+    //This is a hook used for login.js to handle the functions on that page
+
     React.useEffect(() => {
         if (isSubmitting) {
             const noErrors = Object.keys(errors).length === 0;

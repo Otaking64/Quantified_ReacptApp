@@ -6,6 +6,34 @@ import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input, 
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import Firebase from "firebase";
 
+
+
+
+
+
+
+
+
+//Curently not implemented!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const useStyles = makeStyles(theme => ({
 
   inputFieldText: {

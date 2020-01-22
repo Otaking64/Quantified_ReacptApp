@@ -38,6 +38,7 @@ export default function FAQnode() {
     <Container>
       <TopMenuBar block pageName="Node FAQ" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/faq"/>
       <div className={classes.section1}>
+        //all FAQ for gateway
         <ExpansionCard title="The gateway is not powering on" body="Please make sure you have a active connection to the internet, a connection to yoir power outlet and the prepared network settings. If this does not work, please contact us below." />
         <ExpansionCard title="The gateway is on but not connected to the internet" body="Make sure you have setup your local network for the gateway. Is this not working? Please contact us below." />
         <ExpansionCard title="The gateway is connected but is not sending data to the application" body="The gateway uses the LoRa network to communicate with the nodes. Try to see if your local LoRa network is online. Is this not the case? Please contact us below." />

@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Glyphicon } from "react-bootstrap";
 import "./LoaderButton.css";
 
+//loader button used in installation steps
+
 export default function LoaderButton({
   isLoading,
   className = "",

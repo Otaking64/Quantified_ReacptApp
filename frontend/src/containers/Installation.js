@@ -31,6 +31,8 @@ export default function Installation(props) {
   const theme = useTheme();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
+
+  //check if user is logged in, if not push to login
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log("User is signed in");
@@ -40,16 +42,20 @@ export default function Installation(props) {
       props.history.push("/login")
     }
   });
+
+  //list of steps
   const steps = [<Step1/>, <Step2/>, <Step3/>, <Step4/>, <Step5/>, <Step6/>, <Step7/>, <Step8/>, <Step9/>];
 
+
+  //handles next step button clic
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
-
+//handles previous step button click
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
-
+//handles exit button and pushes uset to home when clicked
   const hadleExit = () => {
     props.history.push('/');
   };

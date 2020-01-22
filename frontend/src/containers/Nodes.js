@@ -43,7 +43,7 @@ export default function Nodes(props) {
 
   if (user) {
     const uid = user.uid;
-
+    //add nodes to nodes list
     Firebase.firestore().collection(uid).get().then(function(querySnapshot){
       querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
@@ -67,7 +67,7 @@ export default function Nodes(props) {
           y: yn,
           z: zn
         };
-
+        //check if node is already in list
         nodes.forEach(function (n) {
           if(n.key === idn) {
             nodeExists = true;
@@ -78,7 +78,7 @@ export default function Nodes(props) {
             }
 
         })
-
+        //if node is not in list push it into the list
         if (!nodeExists){
           nodes.push(newNode);
         }
@@ -87,6 +87,7 @@ export default function Nodes(props) {
 
 
       });
+      //map offline and online nodes
       offlineNodes= nodes.filter((node) => node.status === 'Offline');
       onlineNodes = nodes.filter((node) => node.status === 'Online');
       isLoaded = true;

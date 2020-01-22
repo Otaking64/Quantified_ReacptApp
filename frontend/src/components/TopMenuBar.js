@@ -44,7 +44,7 @@ export default function TopMenuBar({
 
     setState({ ...state, sideMenu: open });
   };
-
+  //logout set up for AWS
   async function handleLogout() {
     await Auth.signOut();
 
@@ -54,18 +54,19 @@ export default function TopMenuBar({
   }
 
   async function signout(props){
+    //logout firebase edition
     firebase.auth().signOut();
 
   }
-
+//click exit to go back home
   const handleClickExit = () => {
     setOpen(true);
   };
-
+//close menu
   const handleClosePrompt = () => {
     setOpen(false);
   };
-
+//list menu items
   const sideList = side => (
     <div
      className="slideMenu"

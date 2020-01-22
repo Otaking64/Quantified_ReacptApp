@@ -20,6 +20,11 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
 import firebase from "firebase";
 
+
+
+//this page contains the links to the individual FAQ topics.
+
+
 const useStyles = makeStyles(theme => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -39,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor:'#fff',
   },
 }));
-
+// check if user is logged in, if not push to login page
 export default function FAQ(props) {
   const classes = useStyles();
     firebase.auth().onAuthStateChanged(function(user) {

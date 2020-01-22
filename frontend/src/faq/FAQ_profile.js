@@ -52,6 +52,7 @@ export default function FAQnode(props) {
       backButton={true}
       backRoutePage="/faq"/>
       <div className={classes.section1}>
+        //All FAQ for profile
         <ExpansionCard title="How can I change my password?" body="To change your password. Go to top right button on the homescreen > profile > change password" />
       </div>
       <Divider variant="middle"/>

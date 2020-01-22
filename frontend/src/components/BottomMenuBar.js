@@ -6,6 +6,9 @@ import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 
 import { LinkContainer } from "react-router-bootstrap";
 
+//depracated bottom menu bar
+
+
 export default function BottomMenuBar({
   slectedIcon,
   ...props

@@ -18,10 +18,13 @@ import firebase from "firebase";
 import Firebase from "firebase";
 
 
+
 let isScanned = false;
+let nodeAmount;
 let nid;
 let xn;
 let yn;
+let isitdone = false;
 
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -37,12 +40,25 @@ export default class step8 extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {nodesName: '', nodesGroup: '', isOpen: false}
+        this.state = {nodesName: '', nodesGroup: '', isOpen: false, isDone: false, snackbarmessage: "closed"};
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeGroup = this.handleChangeGroup.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.setAmount()
     }
 
+    setAmount =() =>{
+        var user = Firebase.auth().currentUser;
+        if (user) {
+            const uid = user.uid;
+            Firebase.firestore().collection(uid).doc("nodes").get().then(function(querySnapshot){
+                nodeAmount = parseInt(querySnapshot.data().amount)
+                console.log(nodeAmount)
+                });
+
+
+        }
+    };
 
     state = {
         result: ''
@@ -57,7 +73,11 @@ export default class step8 extends Component {
     }
 
     handleClose = () =>{
-      this.setState({isOpen:false})
+      this.setState({isOpen: false});
+    }
+
+    handleOpen = () =>{
+        this.setState({isOpen:true})
     }
 
     handleScan = data => {
@@ -70,7 +90,10 @@ export default class step8 extends Component {
                 //if JSON check for quantified object (if not then bad QR code)
                 if(nodedata.hasOwnProperty("quantified") || nodedata.hasOwnProperty("Quantified")){
                     console.log("Quantified");
-
+                    this.setState({
+                        isOpen: true,
+                        snackbarmessage: "Node was already added. Try another one!"
+                    });
                     nid = nodedata.quantified.id;
 
                     if (user) {
@@ -79,7 +102,8 @@ export default class step8 extends Component {
                             .then((docSnapshot) =>{
                                 if (docSnapshot.exists){
                                     this.setState({
-                                        result: "Node was already added. Try another one!"
+                                        isOpen: true,
+                                        snackbarmessage: "Node was already added. Try another one!"
                                     });
 
                                 }else {
@@ -87,12 +111,16 @@ export default class step8 extends Component {
                                         console.log("Written to firestore");
                                     });
                                     this.setState({
-                                        result: "Node Scanned!"
+                                        isOpen: true,
+                                        snackbarmessage: "Node Scanned"
                                     });
                                     isScanned = true;
                                     console.log(isScanned)
+
                                 }
+
                             });
+                        this.setState({isOpen: false});
 
 
                     }else{
@@ -107,7 +135,8 @@ export default class step8 extends Component {
             }catch (e) {
                 console.error(e);
                 this.setState({
-                    result: "Can't find node QR code"
+                    isOpen: true,
+                    snackbarmessage: "Can't find node QR code"
                 });
             }
         }
@@ -138,8 +167,17 @@ export default class step8 extends Component {
                             z: 1
                         }).then(function () {
                             console.log("Written to firestore");
-                        });
+                            isitdone = true;
 
+
+                        });
+                        if(nodeAmount > 1){
+                            nodeAmount--;
+                            isScanned = false;
+                            this.setState({isOpen: false})
+                        }else{
+                            this.setState({isDone: true, isOpen: true ,snackbarmessage: "data saved!" });
+                        }
                         //move to next step
 
                     }else {
@@ -162,11 +200,12 @@ export default class step8 extends Component {
         console.error(err);
         this.setState({isOpen:true})
         this.setState({
-            result: "Something went wrong! Did you use the QR code?"
+            snackbarmessage: "Something went wrong! Did you use the QR code?"
         })
     };
 
     render() {
+
         return (
             <Container>
                 <Box m={1}>
@@ -176,10 +215,11 @@ export default class step8 extends Component {
                         <Typography variant="h4">Nodes</Typography>
                         <Typography display="block" variant="body1">
                             {!isScanned && ("Scan the QR code to add the node to the system")}
-                            {isScanned && ("Give the node a name and assign it to a group")}
+                            {isScanned & !this.state.isDone && ("Give the node a name and assign it to a group")}
+                            {this.state.isDone && ("Move on to the next step")}
                         </Typography>
                     </Box>
-                    {!isScanned && (
+                {!isScanned && (
                         <Box m={1}>
                                 <QrReader
                                     delay={300}
@@ -187,19 +227,16 @@ export default class step8 extends Component {
                                     onScan={this.handleScan}
                                     facingMode={"environment"}
                                 />
-                                <Snackbar
-                                  open={this.isOpen}
-                                  autoHideDuration={2000}
-                                  onClose={this.handleClose}
-                                >
-                                <SnackbarContent
-                                  message={this.state.result}
-                                />
-                                </Snackbar>
                         </Box>)}
+                <Snackbar
+                    open={this.state.isOpen}
+                    autoHideDuration={2000}
+                    onClose={this.handleClose}
+                    message={this.state.snackbarmessage}
+               />
                         {isScanned && (
                     <Box m={1}>
-                        <form onSubmit={this.handleSubmit}>
+                        {!this.state.isDone &&(<form onSubmit={this.handleSubmit}>
                         <div>
                           <Box m={1}>
                             <Typography component="h1" variant="h6">Node Name</Typography>
@@ -237,7 +274,7 @@ export default class step8 extends Component {
                                 Save
                             </Button>
                         </div>
-                        </form>
+                        </form>)}
                     </Box>)}
 
             </Container>

@@ -49,7 +49,7 @@ export default function Nodes(props) {
         // doc.data() is never undefined for query doc snapshots
         //console.log(doc.id, " => ", doc.data());
         let nodedata = doc.data();
-        let idn = nodedata.quantified.id;
+        let idn = doc.id;
         let groupn = nodedata.group;
         let namen = nodedata.name;
         let statusn = "Online"; //nodedata.status
@@ -69,11 +69,14 @@ export default function Nodes(props) {
         };
 
         nodes.forEach(function (n) {
-          if(n.key === idn){
-             nodeExists = true;
+          if(n.key === idn) {
+            nodeExists = true;
+          }else if (idn ==="nodes"){
+            nodeExists = true;
           }else{
-            //nothing, node is already in the list
-          }
+              //nothing, node is already in the list
+            }
+
         })
 
         if (!nodeExists){
@@ -105,7 +108,6 @@ export default function Nodes(props) {
           <List color="primary">
             <ListSubheader disableSticky='true'>Offline nodes</ListSubheader>
             {isLoaded && offlineNodes.map((node) =>
-                <LinkContainer to={"/nodeInfo/" + node.id}>
                   <ListItem className="noPadding">
                     <ListItemAvatar>
                       <StyledBadge classes={{badge: "offline"}} badgeContent=" ">
@@ -114,11 +116,9 @@ export default function Nodes(props) {
                     </ListItemAvatar>
                     <ListItemText primary={node.name} secondary={node.group}/>
                   </ListItem>
-                </LinkContainer>
             )}
             <ListSubheader disableSticky='true'>Online nodes</ListSubheader>
             {isLoaded && onlineNodes.map((node) =>
-                <LinkContainer to={"/nodeInfo/" + node.id}>
                   <ListItem className="noPadding">
                     <ListItemAvatar>
                       <StyledBadge classes={{badge: "online"}} badgeContent=" ">
@@ -127,7 +127,6 @@ export default function Nodes(props) {
                     </ListItemAvatar>
                     <ListItemText primary={node.name} secondary={node.group}/>
                   </ListItem>
-                </LinkContainer>
             )}
           </List>
         </Paper>

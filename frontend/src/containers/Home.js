@@ -123,12 +123,12 @@ export default function Home(props) {
       if(loaded){
         console.log(amountOfNodes);
         isItLoaded(true);
+        if(amountOfNodes === 0){
+          props.history.push("/installation")
+        }
 
       }
     })
-    if(amountOfNodes === 0){
-      props.history.push("/installation")
-    }
 
   }else {
     //props.history.push('/login');

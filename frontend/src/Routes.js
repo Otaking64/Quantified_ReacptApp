@@ -10,10 +10,13 @@ import Installation from "./containers/Installation";
 import Dashboard from "./dashboard/dashboard";
 import FAQgeneral from "./faq/FAQ";
 import FAQnode from "./faq/FAQ_node"
+import FAQgateway from "./faq/FAQ_gateway"
+import FAQprofile from "./faq/FAQ_profile"
 import firebase, { FirebaseContext } from "firebase";
 import useAuth from "./auth/useAuth";
 import forgot from "./auth/forgotpass";
 import Profile from './containers/Profile';
+
 
 export default function Routes({ appProps }) {
     const user = useAuth()
@@ -37,6 +40,10 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/faq" exact component={FAQgeneral} appProps={appProps} />
       <Route path="/faq/node" exact component={FAQnode} />
       <AppliedRoute path="/faq/node" exact component={FAQnode} appProps={appProps} />
+      <Route path="/faq/profile" exact component={FAQprofile} />
+      <AppliedRoute path="/faq/profile" exact component={FAQprofile} appProps={appProps} />
+      <Route path="/faq/gateway" exact component={FAQgateway} />
+      <AppliedRoute path="/faq/gateway" exact component={FAQgateway} appProps={appProps} />
     <Route path="/profile" exact component={Profile} />
   <AppliedRoute path="/profile" exact component={Profile} appProps={appProps} />
       { /* Finally, catch all unmatched routes */ }

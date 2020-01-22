@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardActionArea,
   Avatar,
+  Container,
   Button,
   ButtonGroup,
 } from '@material-ui/core';
@@ -52,7 +53,7 @@ export default function FAQ(props) {
     });
 
   return (
-    <>
+    <Container>
       <TopMenuBar block pageName="FAQ" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
       <Card className={classes.section1}>
       <LinkContainer to="/faq/node">
@@ -71,7 +72,7 @@ export default function FAQ(props) {
           </LinkContainer>
       </Card>
       <Card className={classes.section1}>
-      <LinkContainer to="/faq/node">
+      <LinkContainer to="/faq/gateway">
       <CardActionArea>
         <CardHeader
           avatar={
@@ -87,7 +88,7 @@ export default function FAQ(props) {
           </LinkContainer>
       </Card>
       <Card className={classes.section1}>
-            <LinkContainer to="/faq/node">
+            <LinkContainer to="/faq/profile">
       <CardActionArea>
         <CardHeader
           avatar={
@@ -129,6 +130,6 @@ export default function FAQ(props) {
         </Button>
         </ButtonGroup>
       </div>
-    </>
+    </Container>
   );
 }

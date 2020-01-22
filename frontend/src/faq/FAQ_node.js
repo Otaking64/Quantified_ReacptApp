@@ -4,7 +4,9 @@ import {
   Divider,
   Typography,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  Box,
+  Container
 } from '@material-ui/core';
 import ExpansionCard from '../components/ExpansionPanel.js';
 import TopMenuBar from '../components/TopMenuBar.js'
@@ -42,12 +44,14 @@ export default function FAQnode(props) {
     }
   });
   return (
-    <>
+    <Container>
       <TopMenuBar block pageName="Node FAQ" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/faq"/>
       <div className={classes.section1}>
-        <ExpansionCard title="My node is not connecting" body="To connect your node, please follow the provided steps:" />
-      <ExpansionCard title="The node position is wrong" body="To see the location of your nodes, go to the nodes page on your profile" />
-      </div>
+        <ExpansionCard title="My node is not connecting" body="To connect your node, please make sure the gateway is connected and your LoRa network is active" />
+        <ExpansionCard title="The node position is wrong" body="To see the location of your nodes, go to the nodes page on your profile" />
+        <ExpansionCard title="I want to change a node position" body="This functionality is currently not supported. You can delete a node and add it on the requested position" />
+        <ExpansionCard title="My nodes are not displaying data" body="It could be that the battery of the node is empty. Please contact us below." />
+    </div>
 
       <Divider variant="middle"/>
       <div className={classes.section2} align="center">
@@ -73,7 +77,6 @@ export default function FAQnode(props) {
           </Button>
         </ButtonGroup>
       </div>
-      <BottomMenuBar slectedIcon={2} block/>
-    </>
+    </Container>
   );
 }

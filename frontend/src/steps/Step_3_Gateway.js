@@ -22,6 +22,9 @@ export default function Step3(){
           <Box m={1}>
               <ExpansionPanel title="Active internet connection" body="Make sure your internet is active to make a connection to the gateway"/>
               <ExpansionPanel title="Open the ports needed to connect" body="Open ports: 2000, 3000 and 603" />
+              <ExpansionPanel title="Make sure you have a LAN port available" body="The gateway connects to your local network through cable. Please make sure you have a LAN port available" />
+              <ExpansionPanel title="Make sure you have a power outlet available" body="The gateway needs power to work. Make sure you have a power outlet nearby" />
+              <ExpansionPanel title="Make sure you have a local LoRa network" body="This has already been communicated to you with Quantified. Please make sure the network is online for the gateway to connect to the nodes." />
         </Box>
     </Container>
   );

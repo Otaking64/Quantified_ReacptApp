@@ -63,8 +63,7 @@ export default function Dashboard(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-    <TopMenuBar block pageName="Dashboard" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
-      <main className={classes.content}>
+    <TopMenuBar block pageName="Dashboard" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/"/>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
@@ -76,7 +75,7 @@ export default function Dashboard(props) {
               <Paper className={fixedHeightPaper}>
                 <Box p={1}>
                   <Typography variant="h6" component="h2">Current temperature</Typography>
-                  <Typography variant="h2"><FakeTemp />&#x2103;</Typography>
+                  <Typography variant="h2"><FakeTemp />℃</Typography>
                   <Divider className={classes.divider}/>
                   <Typography variant="h6">Advice</Typography>
                   <Typography variant="body2">Temperature is too high</Typography>
@@ -103,7 +102,6 @@ export default function Dashboard(props) {
             </Grid>
           </Grid>
         </Container>
-      </main>
     </div>
 
     );

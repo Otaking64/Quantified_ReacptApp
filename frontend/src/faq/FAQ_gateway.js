@@ -4,7 +4,9 @@ import {
   Divider,
   Typography,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  Box,
+  Container
 } from '@material-ui/core';
 import ExpansionCard from '../components/ExpansionPanel.js';
 import TopMenuBar from '../components/TopMenuBar.js'
@@ -33,15 +35,17 @@ export default function FAQnode() {
   const classes = useStyles();
 
   return (
-    <>
+    <Container>
       <TopMenuBar block pageName="Node FAQ" hamburgerMenu={false} closeButtonOnly={false} closeWithPrompt={false} backButton={true} backRoutePage="/faq"/>
       <div className={classes.section1}>
-        <ExpansionCard title="My node is not connecting" body="To connect your node, please follow the provided steps:" />
-      <ExpansionCard title="The node position is wrong" body="To see the location of your nodes, go to the nodes page on your profile" />
-      </div>
+        <ExpansionCard title="The gateway is not powering on" body="Please make sure you have a active connection to the internet, a connection to yoir power outlet and the prepared network settings. If this does not work, please contact us below." />
+        <ExpansionCard title="The gateway is on but not connected to the internet" body="Make sure you have setup your local network for the gateway. Is this not working? Please contact us below." />
+        <ExpansionCard title="The gateway is connected but is not sending data to the application" body="The gateway uses the LoRa network to communicate with the nodes. Try to see if your local LoRa network is online. Is this not the case? Please contact us below." />
+        <ExpansionCard title="The gateway making a strange noise" body="This could mean you have a broken gateway. Please contact us below" />
+    </div>
 
       <Divider variant="middle"/>
-      <div className={classes.section2} align="center">
+      <Box m={1}>
         <Typography variant="h5">Problem not found?</Typography>
         <ButtonGroup
           orientation="vertical"
@@ -63,8 +67,7 @@ export default function FAQnode() {
             Send us an email
           </Button>
         </ButtonGroup>
-      </div>
-      <BottomMenuBar slectedIcon={2} block/>
-    </>
+      </Box>
+    </Container>
   );
 }

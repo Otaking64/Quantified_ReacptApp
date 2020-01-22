@@ -1,7 +1,7 @@
 import React from "react";
 import "./Installation.css";
 import NodeIcon from '../icons/icon_node';
-import { Grid, Paper, Button, Fab, Box, Divider, Container, Typography } from '@material-ui/core';
+import { Grid, Paper, Button, Box, Divider, Typography } from '@material-ui/core';
 import { Dashboard as DashboardIcon } from '@material-ui/icons';
 import { makeStyles  } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
@@ -140,7 +140,7 @@ export default function Home(props) {
       <TopMenuBar
       block pageName="Home" hamburgerMenu={true} closeButtonOnly={false} closeWithPrompt={false} backButton={false} backRoutePage="/"/>
       </header>
-      <body className={classes.height}>
+      <div className={classes.height}>
         <div className={classes.root}>
           <Box display="flex"
             flexGrow={3}
@@ -151,7 +151,7 @@ export default function Home(props) {
                   <Typography align="center" variant="h5" gutterBottom>
                     OVERVIEW
                   </Typography>
-                    <Divider fullwidth/>
+                  <Divider fullwidth/>
                   <Typography variant="h6">
                     Actual temperature:
                   </Typography>
@@ -200,7 +200,7 @@ export default function Home(props) {
                 </Grid>
               </Box>
           </div>
-      </body>
+      </div>
       </main>
   );
 }

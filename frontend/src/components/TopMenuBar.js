@@ -53,8 +53,8 @@ export default function TopMenuBar({
     props.history.push('/login');
   }
 
-  async function signout(){
-    firebase.auth().signOut()
+  async function signout(props){
+    firebase.auth().signOut();
 
   }
 

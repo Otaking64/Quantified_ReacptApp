@@ -79,6 +79,16 @@ export default function Home(props) {
   const[isloaded, isItLoaded] = React.useState(false);
   let loaded = false;
 
+  Firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("User is signed in");
+
+    } else {
+      console.log("User is not signed in");
+      props.history.push("/login")
+    }
+  });
+
   var user = Firebase.auth().currentUser;
 
   if (user) {
@@ -117,16 +127,17 @@ export default function Home(props) {
           }
         }
 
+
       });
 
+      if(amountOfNodes === 0){
+        props.history.push("/installation")
 
+      }
       if(loaded){
         console.log(amountOfNodes);
         isItLoaded(true);
-        if(amountOfNodes === 0){
-          props.history.push("/installation")
 
-        }
 
       }
     })

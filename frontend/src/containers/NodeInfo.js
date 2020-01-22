@@ -4,7 +4,7 @@ import TopMenuBar from "../components/TopMenuBar";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemAvatar, Badge, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import firebase from "firebase";
+import Firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
   inputFieldText: {
@@ -33,7 +33,8 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 export default function NodeInfo(props) {
-  firebase.auth().onAuthStateChanged(function(user) {
+
+  Firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log("User is signed in");
 
@@ -102,6 +103,45 @@ export default function NodeInfo(props) {
       z: 10
     },
   ];
+
+    var user = Firebase.auth().currentUser;
+
+    if (user) {
+      const uid = user.uid;
+
+      Firebase.firestore().collection(uid).get().then(function(querySnapshot){
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          let nodedata = doc.data();
+          let idn = nodedata.quantified.id;
+          let groupn = nodedata.group;
+          let namen = nodedata.name;
+          let statusn = "Online"; //nodedata.status
+          let xn = 65; //nodedata.x
+          let yn = 75; //nodedata.y
+          let zn = 10; //nodedata.z
+
+          let newNode = {
+            id: idn,
+            //key: idn,
+            name: namen,
+            group: groupn,
+            status: statusn,
+            x: xn,
+            y: yn,
+            z: zn
+          };
+
+          nodes.push(newNode);
+
+        });
+      })
+
+    }else{
+
+    }
+
   const selectedNode = nodes.filter((node) => node.id === nodeId)[0];
   const classes = useStyles();
 

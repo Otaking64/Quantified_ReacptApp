@@ -20,6 +20,18 @@ import Firebase from "firebase";
 
 let isScanned = false;
 let nid;
+let xn;
+let yn;
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        yn = position.coords.latitude;
+        xn = position.coords.longitude;
+
+    });
+}else {
+
+}
 
 export default class step8 extends Component {
 
@@ -60,6 +72,7 @@ export default class step8 extends Component {
                     console.log("Quantified");
 
                     nid = nodedata.quantified.id;
+
                     if (user) {
                         const uid = user.uid;
                         Firebase.firestore().collection(uid).doc(nid).get()
@@ -119,7 +132,10 @@ export default class step8 extends Component {
                     if (docSnapshot.exists){
                         Firebase.firestore().collection(uid).doc(nid).update({
                             name: nodesName,
-                            group: nodesGroup
+                            group: nodesGroup,
+                            x: xn,
+                            y: yn,
+                            z: 1
                         }).then(function () {
                             console.log("Written to firestore");
                         });

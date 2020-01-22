@@ -7,6 +7,10 @@ import { makeStyles  } from '@material-ui/core/styles';
 import { LinkContainer } from "react-router-bootstrap"
 import TopMenuBar from "../components/TopMenuBar";
 import FakeTemp from "../components/fakeTemp";
+import Firebase from "firebase";
+
+
+let amountOfNodes = 0;
 
 const useStyles = makeStyles(theme => ({
   root:{
@@ -65,8 +69,63 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Home() {
+
+export default function Home(props) {
+  let nodeIdList = [];
   const classes = useStyles();
+
+  const[isloaded, isItLoaded] = React.useState(false);
+  let loaded = false;
+
+  var user = Firebase.auth().currentUser;
+
+  if (user) {
+    const uid = user.uid;
+    Firebase.firestore().collection(uid).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        //console.log(doc.id, " => ", doc.data());
+        let nodedata = doc.data();
+        let idn = nodedata.quantified.id;
+        let nodeExists = false;
+
+        let newNode ={
+          id: idn,
+        };
+
+
+        nodeIdList.forEach(function (n) {
+          if(n.key === idn){
+            nodeExists = true;
+          }else{
+            //nothing, node is already in the list
+          }
+        });
+
+        if (!nodeExists){
+          nodeIdList.push(newNode);
+          if(amountOfNodes){
+            amountOfNodes++;
+          }else{
+            amountOfNodes = 1;
+
+            loaded = true;
+          }
+        }
+
+      });
+
+
+      if(loaded){
+        console.log(amountOfNodes);
+        isItLoaded(true);
+      }
+    })
+
+
+  }else {
+    //props.history.push('/login');
+  }
 
   return (
     <main>
@@ -85,7 +144,7 @@ export default function Home() {
                   <Typography align="center" variant="h5" gutterBottom>
                     OVERVIEW
                   </Typography>
-                    <Divider fullWidth/>
+                    <Divider fullwidth/>
                   <Typography variant="h6">
                     Actual temperature:
                   </Typography>
@@ -96,7 +155,7 @@ export default function Home() {
                     Online nodes:
                   </Typography>
                   <Typography variant="body2">
-                    15 nodes online
+                    {amountOfNodes}
                   </Typography>
                 </Box>
               </Paper>
